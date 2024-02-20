@@ -13,6 +13,7 @@ export default createGlobalStyle`
 
   body {
     background-color: ${({ theme }) => theme.DARK[400]};
+    color:${({ theme }) => theme.LIGHT[100]};
   }
 `;
 
