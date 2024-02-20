@@ -20,7 +20,7 @@ export function SignIn() {
             fill="#065E7C"
           />
         </svg>
-        FOOD EXPLORER
+        food explorer
       </h1>
       <Form onSubmit={(e) => e.preventDefault()}>
         

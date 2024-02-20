@@ -10,14 +10,14 @@ export const Container = styled.div`
     font-size: 700;
 
     -webkit-animation: focus-inexpand 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    animation: focus-in-expand 0.7s cubic-bezier(0.25. 0.46, 0.45, 0.94)both;
+    animation: focus-in-expand 0.7s cubic-bezier(0.25. 0.46, 0.45, 0.94) both;
 
     display: flex;
     align-items: center;
     justify-content: center;
-    gap:1.1rem;
+    gap: 2rem;
 
-    @media (min-width: 640px) {
+    @media (min-width: 769px) {
       padding: 0 7vw;
       display: flex;
       justify-content: space-between;
@@ -33,7 +33,7 @@ export const Container = styled.div`
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       padding-top: 16vh;
     }
 
@@ -104,9 +104,14 @@ export const Form = styled.form`
   width: 100%;
   flex-direction: column;
   gap: 3.2rem;
+  max-width: 50rem;
 
   -webkit-animation: bounce-in-bottom 1.1s both;
   animation: bounce-in-bottom 1.1s both;
+
+  a {
+    margin: 0 auto;
+  }
 
   > h2 {
     display: none;
@@ -116,7 +121,7 @@ export const Form = styled.form`
     animation: jello-horizontal 0.9s both;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 769px) {
     width: min(95%, 476px);
 
     background-color: ${({ theme }) => theme.DARK[700]};
@@ -210,7 +215,7 @@ export const Form = styled.form`
       animation-timing-function: ease-in;
       opacity: 0;
     }
-    35% {
+    38% {
       -webkit-transform: translateY(0);
       transform: translateY(0);
       -webkit-animation-timing-function: ease-out;
@@ -223,13 +228,13 @@ export const Form = styled.form`
       -webkit-animation-timing-function: ease-in;
       animation-timing-function: ease-in;
     }
-    70% {
+    72% {
       -webkit-transform: translateY(0px);
       transform: translateY(0px);
       -webkit-animation-timing-function: ease-out;
       animation-timing-function: ease-out;
     }
-    80% {
+    81% {
       -webkit-transform: translateY(28px);
       transform: translateY(28px);
       -webkit-animation-timing-function: ease-in;
@@ -263,7 +268,7 @@ export const Form = styled.form`
       animation-timing-function: ease-in;
       opacity: 0;
     }
-    35% {
+    38% {
       -webkit-transform: translateY(0);
       transform: translateY(0);
       -webkit-animation-timing-function: ease-out;
@@ -276,13 +281,13 @@ export const Form = styled.form`
       -webkit-animation-timing-function: ease-in;
       animation-timing-function: ease-in;
     }
-    70% {
+    72% {
       -webkit-transform: translateY(0px);
       transform: translateY(0px);
       -webkit-animation-timing-function: ease-out;
       animation-timing-function: ease-out;
     }
-    80% {
+    81% {
       -webkit-transform: translateY(28px);
       transform: translateY(28px);
       -webkit-animation-timing-function: ease-in;
