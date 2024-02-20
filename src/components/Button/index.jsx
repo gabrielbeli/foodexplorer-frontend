@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Container } from './stles';
+import { Container } from './styles';
 
 export function Button({ icon: Icon, onclick, title, ...rest}) {
   return (
