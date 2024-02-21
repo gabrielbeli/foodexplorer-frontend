@@ -1,13 +1,12 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { Container } from './styles';
 
-export function Button({ icon: Icon, onclick, title, ...rest}) {
+export function Button({ icon, onclick, title, ...rest}) {
   return (
-    <Container onclick={onclick}>
-      {Icon && <Icon />}
-      <button {...rest}>
-        {title}
-      </button>
+    <Container {...rest}>
+      {icon && <img src={icon} alt="" />}
+      {title}      
     </Container>
   );
 }
