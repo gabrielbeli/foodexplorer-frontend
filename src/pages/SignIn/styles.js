@@ -117,6 +117,12 @@ export const Form = styled.form`
     display: none;
   }
 
+  > div > input {
+    &:valid {
+      outline: 2px solid ${({ theme }) => theme.TINTS.MINT};
+    }
+  }
+
   > div:nth-child(4):hover {
     animation: jello-horizontal 0.9s both;
   }

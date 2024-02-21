@@ -21,10 +21,6 @@ export const Container = styled.div`
       outline: 2xp solid ${({ theme }) => theme.TINTS.CAKE[300]};
     }
 
-    &:valid {
-      outline: 2xp solid ${({ theme }) => theme.TINTS.TOMATO[100]};
-    }
-
     &::placeholder {
       color: ${({ theme }) => theme.LIGHT[500]};
     }
