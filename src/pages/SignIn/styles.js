@@ -7,7 +7,7 @@ export const Container = styled.div`
   > h1 {
     color: ${({ theme }) => theme.LIGHT[100]};
     font-size: clamp(3.2rem, 2.2rem + 3.125vw, 4.2rem);
-    font-size: 700;
+    font-weight: 700;
 
     -webkit-animation: focus-inexpand 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     animation: focus-in-expand 0.7s cubic-bezier(0.25. 0.46, 0.45, 0.94) both;

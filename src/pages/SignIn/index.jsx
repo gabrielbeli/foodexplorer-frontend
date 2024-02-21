@@ -44,7 +44,7 @@ export function SignIn() {
         />
 
         <Button title="Entrar" />
-        <TextLink name="Criar uma conta" />
+        <TextLink name="Criar uma conta" to="/register"/>
 
       </Form>
     </Container>
