@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { Link } from 'react-router-dom';
 
-export const Container = styled.a`
+export const Container = styled(Link)`
+  color: ${({ theme }) => theme.LIGHT[100]};
   font-family: 'Poppins', sans-serif;
   font-size: 1.4rem;
   font-weight: 500;
