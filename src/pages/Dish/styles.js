@@ -62,6 +62,20 @@ export const Content = styled.div`
       max-width: 29ch;
       margin: 0 auto;
     }
+
+    > ul {
+      columns: 3;
+      text-align: center;
+      gap: 1rem;
+
+      > li {
+        margin-bottom: 1rem;
+      }
+
+      @media (max-width: 400px) {
+        columns: 2;
+      }
+    }
   }
 
     @media (max-width:640px) {
@@ -97,6 +111,16 @@ export const Content = styled.div`
           font-size: clamp(1.4rem, -0.3855rem + 2.7855vw, 2.4rem);
           line-height: clamp(2.2rem, 0.2359 + 3.0641vw, 3.3rem);
           max-width: none;
+        }
+
+        > ul {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 1.2rem;
+
+          > li {
+            margin-bottom: 0;
+          }
         }
       }
     }

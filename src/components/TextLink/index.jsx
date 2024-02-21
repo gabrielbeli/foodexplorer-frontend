@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
-import { Container } from "./styles";
+import { Container } from './styles';
 
-export function TextLink({name, icon, ...rest}) {
+export function TextLink({ name, icon: Icon, ...rest }) {
   return (
     <Container {...rest}>
-      { icon && (<img src={icon} />) }
+      {Icon && <Icon />}
       {name}
     </Container>
-  )
+  );
 }

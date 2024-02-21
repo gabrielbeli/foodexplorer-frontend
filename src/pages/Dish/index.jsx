@@ -4,7 +4,8 @@ import { FiChevronLeft } from 'react-icons/fi';
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { TextLink } from '../../components/TextLink';
-import { Ingredients } from '../../components/Ingredients'
+import { Ingredients } from '../../components/Ingredients';
+import { Counter } from '../../components/Counter';
 
 import ravanello from '../../assets/ravanello.png';
 
@@ -34,7 +35,15 @@ export function Dish() {
 
             <ul>
               <Ingredients name='alface' />
+              <Ingredients name='cebola' />
+              <Ingredients name='pepino' />
+              <Ingredients name='rabanate' />
+              <Ingredients name='tomate' />
+              <Ingredients name='pão' />
+              <Ingredients name='gergelim' />
             </ul>
+
+            <Counter quantity="05" />
           </div>
         </Content>
       </main>
