@@ -25,6 +25,7 @@ export const Container = styled.div`
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
+  padding-top: 3.6rem;
 
   > div:first-child {
     > a {
@@ -57,7 +58,9 @@ export const Content = styled.div`
 
     > p {
       font-size: clamp(1.6rem, 1.0667rem + 1.6667vw, 2.4rem);
-      line-height: clamp(2.2rem, 1.1rem + 3.4375vw, 3.3rem);
+      line-height: 2.2rem;
+      max-width: 29ch;
+      margin: 0 auto;
     }
   }
 
@@ -68,15 +71,21 @@ export const Content = styled.div`
     }
 
     @media (min-width: 641px) {
+      padding-top: 2.4rem;
       flex-direction: row;
       align-items: center;
       justify-content: space-between;
-      gap: 2rem;
+      gap: clamp(2rem, -1.571rem + 5.571vw, 4rem);
+
+      > div:first-child {
+        > a {
+          margin-bottom: 4rem;
+        }
+      }
 
       > div:last-child {
         width: fit-content;
         align-items: flex-start;
-        background-color: yellow;
         max-width: 666px;
 
         > h2 {
@@ -84,9 +93,10 @@ export const Content = styled.div`
         }
 
         > p {
-          background-color: red;
           text-align: start;
-          font-size: 1.4rem;
+          font-size: clamp(1.4rem, -0.3855rem + 2.7855vw, 2.4rem);
+          line-height: clamp(2.2rem, 0.2359 + 3.0641vw, 3.3rem);
+          max-width: none;
         }
       }
     }
