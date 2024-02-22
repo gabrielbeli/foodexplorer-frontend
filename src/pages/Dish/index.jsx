@@ -11,13 +11,13 @@ import { Button } from '../../components/Button';
 import ravanello from '../../assets/ravanello.png';
 import receipt from '../../assets/icons/receipt.svg';
 
-export function Dish() {
+export function Dish({ isAdmin = false }) {
   return (
     <Container>
-      <Header />
+      <Header isAdmin />
       <TextLink name="voltar" icon={FiChevronLeft} />
       <main>
-        <Content>
+        <Content isAdmin={isAdmin}>
             <picture>
               <source
                 media="(max-width: 640px)"
@@ -44,8 +44,11 @@ export function Dish() {
             </ul>
 
             <div>
-              <Counter quantity="5" />
-              <Button title="pedir ∙ R$ 25,00" icon={receipt} />
+              {!isAdmin && <Counter quantity="5" />}
+              <Button
+                title={isAdmin ? 'Editar prato' : 'pedir ∙ R$ 25,00'}
+                icon={isAdmin ? undefined : receipt}
+              />
             </div>
           </div>
         </Content>

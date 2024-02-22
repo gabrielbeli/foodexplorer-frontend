@@ -80,8 +80,19 @@ export const Container = styled.header`
         display: none;
       }
 
-      > div > h1 {
-        font-size: clamp(1.6rem, -0.4571rem + 2.871vw, 2.4rem);
+      > div:first-of-type {
+        display: grid;
+        row-gap: 0;
+        grid-template-columns: 2.6rem auto;
+
+        > h1 {
+          font-size: clamp(1.6rem, -0.4571rem + 2.857vw, 2.4rem);
+        }
+
+        > span {
+          grid-column-start: 2;
+          justify-self: end;
+        }
       }
 
       > #search {

@@ -12,7 +12,7 @@ export const Container = styled.button`
 
   display: flex;
   border-radius: 5px;
-  padding: 1.2rem;
+  padding: 1.2rem 2.4rem;
   align-items: center;
   justify-content: center;
   gap: .8rem;

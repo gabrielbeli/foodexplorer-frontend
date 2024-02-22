@@ -66,6 +66,7 @@ export const Content = styled.div`
     > h2 {
       font-weight: 500;
       font-size: clamp(2.7rem, 1.4rem + 4.0625vw, 4rem);
+      margin-top: 1.6rem;
     }
 
     > p {
@@ -93,7 +94,7 @@ export const Content = styled.div`
     > div {
       display: grid;
       justify-items: center;
-      grid-template-columns: 1fr 2fr;
+      grid-template-columns: ${({ isAdmin }) => (isAdmin ? '1fr' : '1fr 2fr')};
       gap: clamp(1rem, -8.2723rem + 14.4654vw, 3.3rem);
 
       margin-top: 2rem;
@@ -116,6 +117,7 @@ export const Content = styled.div`
 
         > h2 {
           font-size: clamp(2.4rem, -0.4568rem + 4.568, 4rem);
+          margin: 0;
         }
 
         > p {
@@ -133,6 +135,10 @@ export const Content = styled.div`
           > li {
             margin-bottom: 0;
           }
+        }
+
+        > div > button {
+          padding-inline: ${({ isAdmin }) => (isAdmin ? '2.4rem' : '0')};
         }
       }
     }
