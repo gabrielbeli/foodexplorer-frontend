@@ -1,46 +1,58 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  min-height: 100vh;
+  height: 100vh;
+
+  > header {
+    position: sticky;
+    top: 0;
+  }
 
   display: grid;
   grid-template-areas: 
     'header'
+    'back'
     'main'
     'footer';
 
-  grid-template-rows: 11.4rem auto 7.7rem;
+  grid-template-rows: 11.4rem 7rem auto 7.7rem;
 
+  > a,
   > main {
-    grid-area: main;
     width: min(75%, 1122px);
     margin: 0 auto;
   }
 
+  > a {
+    grid-area: back;
+    font-size: clamp(1.4rem, 0.7333rem + 2.0833vw, 2.4rem);
+  }
+
+  > main {
+    grid-area: main;
+  }
+
   @media (min-width: 641px) {
-    grid-template-rows: 9.3rem auto 7.7rem;
+    grid-template-rows: 9.3rem 9rem auto 7.7rem;
+    > a {
+      align-self: start;
+      padding-top: 2.4rem;
+    }
   }
 `;
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  padding-top: 3.6rem;
+  padding-bottom: 2.4rem;
 
-  > div:first-child {
-    > a {
-      font-size: clamp(1.4rem, 0.7333rem + 2.0833vw, 2.4rem);
-      > img {
-        width: clamp(0.9rem, 0.7rem + 0.625vw, 1.2rem);
-      }
-    }
+  
     
-    > picture > img {
-      margin: 0 auto;
-    }
+  > picture > img {
+    margin: 0 auto;
   }
-
-  > div:last-child {
+  
+  > div {
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
@@ -76,30 +88,30 @@ export const Content = styled.div`
         columns: 2;
       }
     }
-  }
+  
 
-    @media (max-width:640px) {
-      > div:first-child > picture > img {
-        margin: 1.6rem auto;
+    > div {
+      display: grid;
+      justify-items: center;
+      grid-template-columns: 1fr 2fr;
+      gap: clamp(1rem, -8.2723rem + 14.4654vw, 3.3rem);
+
+      margin-top: 2rem;
+
+      > button {
+        font-size: clamp(1rem, 0.6632rem + 1.0526vw, 1.4rem);
       }
     }
+  }  
 
     @media (min-width: 641px) {
-      padding-top: 2.4rem;
       flex-direction: row;
-      align-items: center;
-      justify-content: space-between;
       gap: clamp(2rem, -1.571rem + 5.571vw, 4rem);
 
-      > div:first-child {
-        > a {
-          margin-bottom: 4rem;
-        }
-      }
-
-      > div:last-child {
+      > div {
         width: fit-content;
         align-items: flex-start;
+        align-self: center;
         max-width: 666px;
 
         > h2 {

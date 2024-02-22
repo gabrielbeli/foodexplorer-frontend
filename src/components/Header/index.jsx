@@ -6,7 +6,7 @@ import { Button } from '../Button';
 
 import menu from '../../assets/icons/menu.svg';
 import explorer from '../../assets/icons/explorer.svg';
-import receipt from '../../assets/icons/Receipt.svg';
+import receipt from '../../assets/icons/receipt.svg';
 
 import { Container } from './styles';
 
