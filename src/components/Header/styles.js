@@ -6,13 +6,44 @@ export const Container = styled.header`
   background-color: ${({ theme }) => theme.DARK[700]};
   color: ${({ theme }) => theme.LIGHT[100]};
 
-  > div {
+  .hide {
+    display: none !important;
+  }
+
+  #search {
+    background-color: ${({ theme }) => theme.DARK[900]};
+
+    border-radius: 5px;
+
+    display: flex;
+    align-items: center;
+    flex: 2;
+    padding-left: 1.2rem;
+
+    > div {
+      width: 100%;
+
+      > label {
+        display: none;
+      }
+
+      > input:focus {
+        outline: none;
+      }
+    }
+  }
+
+  > header {
     width: min(90%, 1122px);
     margin: 0 auto;
 
     display: flex;
-    justify-content: space-between;
     align-items: center;
+
+    > h2 {
+      margin-left: 1.6rem;
+      font-size: 2.1rem;
+    }
 
     >div:first-of-type {
       display: flex;
@@ -20,7 +51,7 @@ export const Container = styled.header`
       gap: clamp(0.8rem, 0.6rem + 0.625vw, 1rem);
       margin: 0 auto;
       
-      h1 {
+      > h1 {
         font-weight: 700;
       }
       
@@ -40,7 +71,7 @@ export const Container = styled.header`
       > button {
         background-color: transparent;
       }
-      > button:last-child {
+      > button:last-of-type {
         position: relative;
 
         > span {
@@ -80,42 +111,8 @@ export const Container = styled.header`
         display: none;
       }
 
-      > div:first-of-type {
-        display: grid;
-        row-gap: 0;
-        grid-template-columns: 2.6rem auto;
-
-        > h1 {
-          font-size: clamp(1.6rem, -0.4571rem + 2.857vw, 2.4rem);
-        }
-
-        > span {
-          grid-column-start: 2;
-          justify-self: end;
-        }
-      }
-
-      > #search {
-        background-color: ${({ theme }) => theme.DARK[900]};
-
-        border-radius: 5px;
-
-        display: flex;
-        align-items: center;
-        flex: 2;
-        padding-left: 1.2rem;
-
-        > div {
-          width: 100%;
-
-          > label {
-            display: none;
-          }
-
-          > input:focus {
-            outline: none;
-          }
-        }
+      > div > h1 {
+        font-size: clamp(1.6rem, -0.4571rem + 2.8571vw, 2.4rem);
       }
 
       > button {
@@ -138,6 +135,70 @@ export const Container = styled.header`
           display: none;
         }
       }
+    }
+  }
+
+  > #menuOpen {
+    width: min(75%, 1122px);
+    margin: 8px auto 0;
+    background-color: ${({ theme }) => theme.DARK[400]};
+    height: calc(100vh - 19rem);
+    padding-top: 3.6rem;
+
+    -webkit-animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
+    > div {
+      margin-bottom: 3.6rem;
+    }
+
+    > ul {
+      list-style: none;
+      > li {
+        border-bottom: 1px solid ${({ theme }) => theme.DARK[1000]};
+        
+        > a {
+          width: fit-content;
+          font-size: 2.4rem;
+          font-weight: 300;
+          padding: 1rem;
+          &:not(:hover) {
+            color: ${({ theme }) => theme.LIGHT[300]};
+          }
+        }
+      }
+    }
+  }
+
+  @-webkit-keyframes tilt-in-tl {
+    0% {
+      -webkit-transform: rotateY(35deg) rotateX(20deg) translate(-250px, -250px)
+        skew(12deg, 15deg);
+      transform: rotateY(35deg) rotateX(20deg) translate(-250px, -250rem) 
+        skew(12deg, 15deg);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0)
+        skew(0deg, 0deg);
+      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+      opacity: 1;
+    }
+  }
+
+  @keyframes tilt-in-tl {
+    0% {
+      -webkit-transform: rotateY(35deg) rotateX(20deg) translate(-250px, -250px)
+        skew(12deg, 15deg);
+      transform: rotateY(35deg) rotateX(20deg) translate(-250px, -250rem) 
+        skew(12deg, 15deg);
+      opacity: 0;
+    }
+    100% {
+      -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0)
+        skew(0deg, 0deg);
+      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
+      opacity: 1;
     }
   }
 `;

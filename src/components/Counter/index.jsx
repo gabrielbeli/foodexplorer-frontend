@@ -1,5 +1,5 @@
 import { Container } from './styles';
-import { Fiplus, FiMinus } from 'react-icons/fi';
+import { FiPlus, FiMinus } from 'react-icons/fi';
 
 export function Counter({ quantity }) {
   quantity = String(quantity).padStart(2, '0');
@@ -11,7 +11,7 @@ export function Counter({ quantity }) {
       {quantity}
 
       <button>
-        <Fiplus />
+        <FiPlus />
       </button>
     </Container>
   );
