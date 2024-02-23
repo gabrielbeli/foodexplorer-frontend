@@ -5,6 +5,7 @@ export const Container = styled.div`
 
   > header {
     position: sticky;
+    z-index: 2;
     top: 0;
   }
   
