@@ -113,6 +113,7 @@ export const Form = styled.form`
     > div:nth-child(2) {
       > input {
         height: 4.8rem;
+        background-color: ${({ theme }) => theme.DARK[800]};
       }
     }
 
@@ -129,6 +130,10 @@ export const Form = styled.form`
       background-position: center right 1.6rem;
 
       cursor: pointer;
+
+      &:focus {
+        outline: 2px solid ${({ theme }) => theme.TINTS.CAKE[300]};
+      }
 
       appearance: none;
       -webkit-appearance: none;
@@ -162,7 +167,23 @@ export const Form = styled.form`
 
     > div:last-child {
       gap: 1.6rem;
+
+      > input {
+        height: 4.8rem;
+        background-color: ${({ theme }) => theme.DARK[800]};
+        color: ${({ theme }) => theme.LIGHT[400]};
+      }
     }
+  }
+
+  > #textarea {
+    display: flex;
+    flex-direction: column;
+    gap: 1.6rem;
+  }
+
+  > #buttonAdd {
+    background-color: ${({ theme }) => theme.TINTS.TOMATO[400]};
   }
 
   @media (min-width: 740px) {
@@ -179,5 +200,42 @@ export const Form = styled.form`
         max-width: 229px;
       }
     }
+
+    #twoColumns {
+      flex-direction: row;
+
+      > div:first-child {
+        flex: 1;
+      }
+    }
+  }
+
+  @media (min-width: 740px) {
+    > #buttonAdd {
+      width: 17.2rem;
+      align-self: flex-end;
+    }
+  }
+`;
+
+export const Textarea = styled.textarea`
+  border-radius: 0%.8rem;
+  height: 17.2rem;
+  padding: 1.4rem;
+
+  outline: none;
+  border: none;
+
+  background-color: ${({ theme }) => theme.DARK[800]};
+  color: ${({ theme }) => theme.LIGHT[400]};
+
+  resize: none;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.LIGHT[500]};
+  }
+
+  &:focus {
+    outline: 2px solid ${({ theme }) => theme.TINTS.CAKE[300]};
   }
 `;

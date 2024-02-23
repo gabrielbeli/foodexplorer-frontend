@@ -1,4 +1,4 @@
-import { Container, Form } from './styles';
+import { Container, Form, Textarea } from './styles';
 import { FiChevronLeft, FiUpload } from 'react-icons/fi';
 
 import { Header } from '../../components/Header';
@@ -62,6 +62,15 @@ export function New() {
              min="0"
             />          
          </div>
+
+         <div id="textarea">
+          <label htmlFor="description">Descrição</label>
+          <Textarea
+            id="description"
+            placeholder="Sobre o prato, ingredientes e composição" />
+         </div>
+
+         <Button type="button" id="buttonAdd" title="Salvar alterações" />
         </Form>
       </main>
       <Footer />
