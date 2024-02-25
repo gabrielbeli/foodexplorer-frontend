@@ -22,7 +22,6 @@ export const Container = styled.div`
 
   > main {
     grid-area: main;    
-    margin: 0 auto;
     margin-top: 6.2rem;
     padding: 0 0 2.5rem 0;
     padding-left: 5.5vw;

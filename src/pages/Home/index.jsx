@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-key */
 import { Container, Banner } from './styles';
 
 import { Header } from '../../components/Header';
@@ -23,48 +24,52 @@ export function Home() {
         </div>
       </Banner>
       <main>
-        <Section title="Pratos principais">
+        
+        <Section 
+          title="Pratos principais"
+          cards={[
           <Card
             dish={{
               image: 'https://github.com/gabrielbeli',
               name: 'Torradas de Parma',
               description: 'Presunto de parma e rucula em um pão com fermentação natural',
-              price: '25,97'
-               }}
-          />
-          <Card
-            dish={{
-              image: 'https://github.com/gabrielbeli',
-              name: 'Torradas de Parma',
-              description: 'Presunto de parma e rucula em um pão com fermentação natural',
-              price: '25,97'
+              price: '25,97',
             }}
-          />
+          />,
           <Card
             dish={{
               image: 'https://github.com/gabrielbeli',
               name: 'Torradas de Parma',
               description: 'Presunto de parma e rucula em um pão com fermentação natural',
-              price: '25,97'
+              price: '25,97',
             }}
-          />
+          />,
           <Card
             dish={{
               image: 'https://github.com/gabrielbeli',
               name: 'Torradas de Parma',
               description: 'Presunto de parma e rucula em um pão com fermentação natural',
-              price: '25,97'
+              price: '25,97',
             }}
-          />
+          />,
           <Card
             dish={{
               image: 'https://github.com/gabrielbeli',
               name: 'Torradas de Parma',
               description: 'Presunto de parma e rucula em um pão com fermentação natural',
-              price: '25,97'
+              price: '25,97',
             }}
-          />
-        </Section>        
+          />,
+          <Card
+            dish={{
+              image: 'https://github.com/gabrielbeli',
+              name: 'Torradas de Parma',
+              description: 'Presunto de parma e rucula em um pão com fermentação natural',
+              price: '25,97',
+            }}
+          />,
+         ]}
+        ></Section>        
       </main>
       <Footer />
     </Container>
