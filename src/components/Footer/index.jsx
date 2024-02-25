@@ -1,7 +1,5 @@
 import { Container } from "./styles";
 
-import explorer from '../../assets/icons/explorer.svg';
-
 export function Footer() {
   return (
     <Container>

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { FiX, FiPlus } from 'react-icons/fi';
 
 import { Container } from './styles';

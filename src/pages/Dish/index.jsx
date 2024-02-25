@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Container, Content } from './styles';
 import { FiChevronLeft } from 'react-icons/fi';
 
