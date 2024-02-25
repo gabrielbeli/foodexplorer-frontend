@@ -19,17 +19,11 @@ export function Dish({ isAdmin = false }) {
       <TextLink name="voltar" icon={FiChevronLeft} />
       <main>
         <Content isAdmin={isAdmin}>
-            <picture>
-              <source
-                media="(max-width: 640px)"
-                srcSet={ravanello}
-                type="image/png"
-              />
-              <img src={ravanello} alt="" />
-            </picture>
-
+          <img src={ravanello} alt="" />
+          
           <div>
             <h2>Salada Ravanello</h2>
+            
             <p>
               Rabanetes, folhas verdes, molho agridoce, crotons e gergelim salpicado. 
             </p>

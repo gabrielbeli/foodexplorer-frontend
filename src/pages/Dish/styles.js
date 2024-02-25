@@ -49,8 +49,10 @@ export const Content = styled.div`
 
   
     
-  > picture > img {
+  > img {
     margin: 0 auto;
+    width: 26.4rem;
+    border-radius: 50%;
   }
   
   > div {
@@ -109,6 +111,11 @@ export const Content = styled.div`
     @media (min-width: 641px) {
       flex-direction: row;
       gap: clamp(2rem, -1.571rem + 5.571vw, 4rem);
+
+      > img {
+        width: clamp(26.4rem, 20.4518rem + 9.2796vw, 39.011rem);
+        height: clamp(26.4rem, 20.5041rem + 9.1979vw, 38.9rem);
+      }
 
       > div {
         width: fit-content;
