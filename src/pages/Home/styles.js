@@ -122,27 +122,3 @@ export const Banner = styled.div`
   }
 `;
 
-export const Section = styled.section`
-  width: min(89vw, 1122px);
-  margin: 0 auto;
-
-  > h2 {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 1.8rem;
-    line-height: 2.5rem;
-    margin-bottom: 2.4rem;
-  }
-
-  .carousel {
-    cursor: grab;
-    overflow: hidden;
-    .inner {
-      display: flex;
-      gap: 1.6rem;
-
-      .item {        
-      }
-    }
-  }
-`;
