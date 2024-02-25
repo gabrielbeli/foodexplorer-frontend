@@ -21,6 +21,19 @@ export function Header({ isAdmin = false}) {
     setShowMenu((prevState) => !prevState);
   }
 
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth > 640) {
+        setShowMenu(false);
+      }
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
   return (
     <Container isAdmin={isAdmin}>
      <header>
@@ -63,11 +76,7 @@ export function Header({ isAdmin = false}) {
             )}
           </>
         )}
-        {
-          showMenu && (
-            <h2>Menu</h2>
-          )
-        }
+       {showMenu && <h2>Menu</h2>}
       </header>
       <Menu show={showMenu} />      
     </Container>

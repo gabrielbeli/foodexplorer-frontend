@@ -1,25 +1,32 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  &.menu {
+  
     position: sticky;
     background-color: ${({ theme }) => theme.DARK[400]};
     height: 100vh;
     display: none;
-  }
+  
   &.menu.show {
     display: block;
   }
   > .menu-content {
-    -webkit-animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-      both;
-    animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    
     width: min(75%, 1122px);
     margin: 0 auto 0;
     background-color: ${({ theme }) => theme.DARK[400]};
     height: 100%;
     height: calc(100vh - 18.2rem);
     padding-top: 3.6rem;
+
+    -webkit-animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
+    &.tilt-in-tl-reverse {
+      -webkit-animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+    }
+    
     > div {
       margin-bottom: 3.6rem;
     }
