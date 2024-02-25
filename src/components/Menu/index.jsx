@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import { FiSearch } from 'react-icons/fi';
-import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import { TextLink } from '../TextLink';
 import { Input } from '../Input';
@@ -11,7 +10,7 @@ import { Container } from './styles';
 export function Menu({ show, isAdmin }) {
   return (
     <Container className={`menu ${show ? 'show' : ''}`}>
-      <div className={`menu-content`}>
+      <div className="menu-content">
         <div id="search">
           <FiSearch />
           <Input

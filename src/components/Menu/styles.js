@@ -4,7 +4,6 @@ export const Container = styled.div`
   
     position: sticky;
     background-color: ${({ theme }) => theme.DARK[400]};
-    height: 100vh;
     display: none;
   
   &.menu.show {
@@ -19,14 +18,8 @@ export const Container = styled.div`
     height: calc(100vh - 18.2rem);
     padding-top: 3.6rem;
 
-    -webkit-animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
     animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-
-    &.tilt-in-tl-reverse {
-      -webkit-animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    animation: tilt-in-tl 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    }
-    
+  
     > div {
       margin-bottom: 3.6rem;
     }
@@ -46,32 +39,14 @@ export const Container = styled.div`
       }
     }
   }
-  @-webkit-keyframes tilt-in-tl {
-    0% {
-      -webkit-transform: rotateY(35deg) rotateX(20deg) translate(-250px, -250px)
-        skew(12deg, 15deg);
-      transform: rotateY(35deg) rotateX(20deg) translate(-250px, -250px)
-        skew(12deg, 15deg);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0)
-        skew(0deg, 0deg);
-      transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
-      opacity: 1;
-    }
-  }
+
   @keyframes tilt-in-tl {
     0% {
-      -webkit-transform: rotateY(35deg) rotateX(20deg) translate(-250px, -250px)
-        skew(12deg, 15deg);
       transform: rotateY(35deg) rotateX(20deg) translate(-250px, -250px)
         skew(12deg, 15deg);
       opacity: 0;
     }
     100% {
-      -webkit-transform: rotateY(0) rotateX(0deg) translate(0, 0)
-        skew(0deg, 0deg);
       transform: rotateY(0) rotateX(0deg) translate(0, 0) skew(0deg, 0deg);
       opacity: 1;
     }

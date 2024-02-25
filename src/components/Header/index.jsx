@@ -38,11 +38,14 @@ export function Header({ isAdmin = false}) {
     <Container isAdmin={isAdmin}>
      <header>
         <button id='menuBurguer'>
-          <img 
-            src={menu} 
-            alt="menu hamburguer" 
-            onClick={handleModal} />       
-        </button>
+          {!showMenu && (
+            <img src={menu} alt="menu hamburguer" onClick={handleModal} />
+          )}  
+
+          {!showMenu && (
+            <img src={close} alt="menu close" onClick={handleModal} />
+          )} 
+        </button>        
         
         {!showMenu && (
           <>
