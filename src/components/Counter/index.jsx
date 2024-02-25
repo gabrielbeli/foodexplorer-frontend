@@ -1,16 +1,31 @@
+/* eslint-disable react/prop-types */
 import { Container } from './styles';
 import { FiPlus, FiMinus } from 'react-icons/fi';
+import { useState } from 'react';
 
-export function Counter({ quantity }) {
-  quantity = String(quantity).padStart(2, '0');
+export function Counter() {
+  const [quantity, setQuantity] = useState(1);
+
+  function handleDecrement() {
+    if (quantity > 1 ) {
+      setQuantity((prevState) => --prevState);
+    }
+  }
+
+  function handleIncrement() {
+    if (quantity < 99) {
+      setQuantity((prevState) => ++prevState);
+    }
+  }
+
   return (
     <Container>
-      <button>
+      <button onClick={handleDecrement}>
         <FiMinus />
       </button>
-      {quantity}
+      {String(quantity).padStart(2, '0')}
 
-      <button>
+      <button onClick={handleIncrement}>
         <FiPlus />
       </button>
     </Container>
