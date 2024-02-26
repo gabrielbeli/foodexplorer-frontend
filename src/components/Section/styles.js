@@ -12,30 +12,41 @@ export const Container = styled.section`
     margin-bottom: 2.4rem;
   }
 
-  .carousel {
-    cursor: grab;
-    overflow: hidden;
+  .swiper {
+    /* background-color: red; */
   }
 
-  .inner {
-    display: flex;
-    gap: 1.6rem;
+  .swiper-wrapper {
+    /* background-color: blue; */
+    justify-content: start;
+    align-items: center;
   }
 
-  /* .item {
-    min-height: 200px;
-    min-width: 400px;
-    padding: 14px;
+  .swiper-slide {
+    /* background-color: yellow; */
+    width: fit-content;
   }
 
-  .item:last-child {
-    margin-right: 6rem;
+  @media (max-width: 640px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+      display: none;
+    }
   }
 
-  .item img {
-    width: 100%;
-    height: 90%;
-    border-radius: 12px;
-    pointer-events: none;
-  } */
+  @media (min-width: 641px) {
+    width: min(95%, 1122px);
+    margin: 0 auto;
+
+    > h2 {
+      font-size: clamp(2.4rem, 1.3294rem + 1.6701vw, 3.2rem);
+      line-height: clamp(2.5rem, -0.1764rem + 4.1754vw, 4.5rem);
+    }
+
+    .swiper-button-prev::after,
+    .swiper-button-next::after {
+      font-size: 3rem;
+      color: ${({ theme }) => theme.LIGHT[100]};
+    }
+  }
 `;

@@ -68,6 +68,22 @@ export function Home() {
               price: '25,97',
             }}
           />,
+          <Card
+          dish={{
+            image: 'https://github.com/gabrielbeli',
+            name: 'Torradas de Parma',
+            description: 'Presunto de parma e rucula em um pão com fermentação natural',
+            price: '25,97',
+          }}
+        />,
+        <Card
+          dish={{
+            image: 'https://github.com/gabrielbeli',
+            name: 'Torradas de Parma',
+            description: 'Presunto de parma e rucula em um pão com fermentação natural',
+            price: '25,97',
+          }}
+        />,
          ]}
         ></Section>        
       </main>

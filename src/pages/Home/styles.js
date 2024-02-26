@@ -34,6 +34,10 @@ export const Container = styled.div`
 
   @media (min-width: 641px) {
     grid-template-rows: 9.3rem clamp(16.4rem, -18.2486rem + 54.0541vw, 42.rem) auto 7.7rem;
+    
+    > main {
+      padding-left: 0;
+    } 
   }
 `;
 
