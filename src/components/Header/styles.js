@@ -20,6 +20,10 @@ export const Container = styled.header`
     flex: 2;
     padding-left: 1.2rem;
 
+    > svg {
+      min-width: 1.2rem;
+    }
+
     > div {
       width: 100%;
 
@@ -99,7 +103,8 @@ export const Container = styled.header`
     
       > #search,
       > #logout,
-      #redBtn {
+      #redBtn,
+      >#new {
         display: none;
       }
     }
@@ -111,6 +116,14 @@ export const Container = styled.header`
       > #menuBurguer,
       > button#receipt {
         display: none !important;
+      }
+
+      > #logout {
+        flex-shrink: 0;
+      }
+
+      #new {
+        flex-shrink: 0;
       }
 
       > #logo {
@@ -127,11 +140,12 @@ export const Container = styled.header`
         }
       }
 
-      > a {
+      > a#receiptDesktop {
         flex: 1;
-
         max-width: 216px;
         > button#redBtn {
+          padding-inline: 0;
+          min-width: 12rem;
           > img {
             width: 2rem;
           }
@@ -145,7 +159,7 @@ export const Container = styled.header`
       }
     }
       
-      @media (max-width: 641px) and (max-width: 711px) {
+      @media (max-width: 641px) and (max-width: 810px) {
         > #logo {
           max-width: 8rem;
           > h1 {

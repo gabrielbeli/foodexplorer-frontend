@@ -15,7 +15,11 @@ export const Container = styled.button`
   padding: 1.2rem 2.4rem;
   align-items: center;
   justify-content: center;
-  gap: .8rem;
+  gap: 0.8rem;
 
   cursor: pointer;
+
+  > svg {
+    font-size: 2.4rem;
+  }
 `;

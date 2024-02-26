@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Container, Content } from './styles';
 import { FiChevronLeft } from 'react-icons/fi';
+import { IoReceiptOutline } from 'react-icons/io5';
 import { Link } from 'react-router-dom';
 
 import { Header } from '../../components/Header';
@@ -11,7 +12,6 @@ import { Counter } from '../../components/Counter';
 import { Button } from '../../components/Button';
 
 import ravanello from '../../assets/ravanello.png';
-import receipt from '../../assets/icons/receipt.svg';
 
 export function Dish() {
   const isAdmin = false;
@@ -46,7 +46,7 @@ export function Dish() {
               <Link to={isAdmin ? `/edit/1` : ''}>
               <Button
                 title={isAdmin ? 'Editar prato' : 'pedir ∙ R$ 25,00'}
-                icon={isAdmin ? undefined : receipt}
+                icon={isAdmin ? undefined : IoReceiptOutline}
               />
               </Link>
             </div>

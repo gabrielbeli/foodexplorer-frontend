@@ -111,7 +111,7 @@ export const Content = styled.div`
     }
   }  
 
-    @media (min-width: 641px) {
+    @media (min-width: 781px) {
       flex-direction: row;
       gap: clamp(2rem, -1.571rem + 5.571vw, 4rem);
 
