@@ -43,6 +43,7 @@ export const Container = styled.header`
     > h2 {
       margin-left: 1.6rem;
       font-size: 2.1rem;
+      background-color: blue;
     }
 
     > #logo {
@@ -53,6 +54,7 @@ export const Container = styled.header`
       
       > h1 {
         font-weight: 700;
+        color: ${({ theme }) => theme.LIGHT[200]};
       }
       
       > span {
@@ -97,7 +99,7 @@ export const Container = styled.header`
     
       > #search,
       > #logout,
-      > #redBtn {
+      #redBtn {
         display: none;
       }
     }
@@ -111,16 +113,28 @@ export const Container = styled.header`
         display: none !important;
       }
 
-      > #logo > h1 {
-        font-size: clamp(1.6rem, -0.4571rem + 2.8571vw, 2.4rem);
+      > #logo {
+        display: grid;
+        grid-template-columns: 2.6rem max-content;
+        row-gap: 0;
+        > h1 {
+          font-size: clamp(1.6rem, -0.4571rem + 2.8571vw, 2.4rem);
+        }
+        > span {
+          margin-top: -3px;
+          grid-column-start: 2;
+          justify-self: end;
+        }
       }
 
-      > button#redBtn {
-        max-width: 216px;
+      > a {
         flex: 1;
 
-        > img {
-          width: 2rem;
+        max-width: 216px;
+        > button#redBtn {
+          > img {
+            width: 2rem;
+          }
         }
       }
 
@@ -129,10 +143,13 @@ export const Container = styled.header`
         height: clamp(2.5rem, -0.3rem + 4.375vw, 3.2rem);
         cursor: pointer;
       }
-
-      @media (max-width: 711px) {
-        > #logo > h1 {
-          display: none;
+    }
+      
+      @media (max-width: 641px) and (max-width: 711px) {
+        > #logo {
+          max-width: 8rem;
+          > h1 {
+            display: none;
         }
       }
     }

@@ -12,7 +12,7 @@ export function New() {
   return (
     <Container>
       <Header />
-      <TextLink name="voltar" icon={FiChevronLeft} />
+      <TextLink name="voltar" icon={FiChevronLeft} to={-1} />
       <main>
         <Form>
           <h1>Novo prato</h1>

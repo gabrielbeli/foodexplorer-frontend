@@ -102,7 +102,10 @@ export const Content = styled.div`
 
       margin-top: 2rem;
 
-      > button {
+      > a {
+        width: 100%;
+      }
+      > a > button {
         font-size: clamp(1rem, 0.6632rem + 1.0526vw, 1.4rem);
       }
     }
@@ -145,7 +148,7 @@ export const Content = styled.div`
           }
         }
 
-        > div > button {
+        > div > a > button {
           padding-inline: ${({ isAdmin }) => (isAdmin ? '2.4rem' : '0')};
         }
       }

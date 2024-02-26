@@ -7,7 +7,9 @@ import { Footer } from '../Footer';
 
 import { Container } from './styles';
 
-export function Menu({ show, isAdmin }) {
+export function Menu({ show }) {
+  const isAdmin = false;
+  
   return (
     <Container className={`menu ${show ? 'show' : ''}`}>
       <div className="menu-content">

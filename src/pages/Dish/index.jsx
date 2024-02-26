@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { Container, Content } from './styles';
 import { FiChevronLeft } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -12,11 +13,13 @@ import { Button } from '../../components/Button';
 import ravanello from '../../assets/ravanello.png';
 import receipt from '../../assets/icons/receipt.svg';
 
-export function Dish({ isAdmin = false }) {
+export function Dish() {
+  const isAdmin = false;
+  
   return (
     <Container>
       <Header />
-      <TextLink name="voltar" icon={FiChevronLeft} />
+      <TextLink name="voltar" icon={FiChevronLeft} to={-1} />
       <main>
         <Content isAdmin={isAdmin}>
           <img src={ravanello} alt="" />
@@ -40,10 +43,12 @@ export function Dish({ isAdmin = false }) {
 
             <div>
               {!isAdmin && <Counter quantity="5" />}
+              <Link to={isAdmin ? `/edit/1` : ''}>
               <Button
                 title={isAdmin ? 'Editar prato' : 'pedir ∙ R$ 25,00'}
                 icon={isAdmin ? undefined : receipt}
               />
+              </Link>
             </div>
           </div>
         </Content>

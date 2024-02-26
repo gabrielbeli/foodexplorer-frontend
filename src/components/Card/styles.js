@@ -39,26 +39,36 @@ export const Container = styled.div`
     }
   }
 
-  > img {
-    width: 8.8rem;
-    height: 8.8rem;
-    border-radius: 50%;
-  }
+  > a {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+  
+    color: ${({ theme }) => theme.LIGHT[300]};
+    
+    > img {
+      width: 8.8rem;
+      height: 8.8rem;
+      border-radius: 50%;
+    }
+    
+    > p {
+      display: none;
+    }
 
-  > p {
-    display: none;
-  }
+    > span {
+      color: ${({ theme }) => theme.TINTS.CAKE[200]};
+    }
 
-  > span {
-    color: ${({ theme }) => theme.TINTS.CAKE[200]};;
-  }
-
-  > h3 {
+    > h3 {
     font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 1.4rem;
+    }
   }
-
+  
   > div {
     width: 100%;
 
@@ -82,26 +92,30 @@ export const Container = styled.div`
     height: 46.2rem;
     gap: 1.5rem;
 
-    > img {
-      width: 17.6rem;
-      height: 17.6rem;
-    }
+    > a {
+      gap: 1.5rem;
+    
+      > img {
+        width: 17.6rem;
+        height: 17.6rem;
+      }
+    
+      > h3 {
+        font-weight: 700;
+        font-size: 2.4rem;
+        width: 256px;
+      }
 
-    > h3 {
-      font-weight: 700;
-      font-size: 2.4rem;
-      width: 256px;
-    }
+      > p {
+        display: block;
+        color: ${({ theme }) => theme.LIGHT[400]};
+        font-size: 1.4rem;
+        line-height: 2.2rem;
+      }
 
-    > p {
-      display: block;
-      color: ${({ theme }) => theme.LIGHT[400]};
-      font-size: 1.4rem;
-      line-height: 2.2rem;
-    }
-
-    > span {
-      font-size: 3.2rem;
+      > span {
+        font-size: 3.2rem;
+      }
     }
 
     > div {

@@ -16,7 +16,7 @@ export function Section({ title, cards }) {
     breakpoints: {
       641: {
         spaceBetween: 27,
-        grabCursor: true,
+        //grabCursor: true,
     },
   },
 };

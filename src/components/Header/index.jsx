@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useEffect, useState } from 'react';
 import { FiSearch, FiLogOut } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 import { Input } from '../Input';
 import { Button } from '../Button';
-import { TextLink } from '../TextLink';
 import { Menu } from '../Menu';
 
 import menu from '../../assets/icons/menu.svg';
@@ -14,8 +14,9 @@ import receipt from '../../assets/icons/receipt.svg';
 
 import { Container } from './styles';
 
-export function Header({ isAdmin = false}) {
+export function Header() {
   const [showMenu, setShowMenu] = useState(false);
+  const isAdmin = true;
 
   function handleModal() {
     setShowMenu((prevState) => !prevState);
@@ -40,20 +41,18 @@ export function Header({ isAdmin = false}) {
         <button id='menuBurguer'>
           {!showMenu && (
             <img src={menu} alt="menu hamburguer" onClick={handleModal} />
-          )}  
-
+          )}
           {!showMenu && (
             <img src={close} alt="menu close" onClick={handleModal} />
           )} 
         </button>        
-        
         {!showMenu && (
           <>
-            <div id="logo">
+            <Link id="logo" to="/">
               <img src={explorer} alt="Logo foodExplorer" />
               <h1>food explorer</h1>
               {isAdmin && <span>admin</span>}
-            </div>
+            </Link>
 
             <div id="search">
               <FiSearch />
@@ -63,11 +62,13 @@ export function Header({ isAdmin = false}) {
               />
             </div>
 
+            <Link to={isAdmin ? '/new':''}>
             <Button
               id="redBtn"
               title={isAdmin ? 'Novo prato' : `Pedidos (${0})`}
               icon={isAdmin ? '' : receipt}
             />
+            </Link>
 
             <FiLogOut id="logout" />
 

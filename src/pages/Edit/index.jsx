@@ -11,8 +11,8 @@ import { AddIngredients } from '../../components/AddIngredients';
 export function Edit() {
   return (
     <Container>
-      <Header isAdmin />
-      <TextLink name="voltar" icon={FiChevronLeft} />
+      <Header />
+      <TextLink name="voltar" icon={FiChevronLeft} to={-1}/>
       <main>
         <Form>
           <h1>Editar prato</h1>
