@@ -45,6 +45,7 @@ export const Container = styled.section`
 
     .swiper-button-prev::after,
     .swiper-button-next::after {
+      font-weight: 700;
       font-size: 3rem;
       color: ${({ theme }) => theme.LIGHT[100]};
     }

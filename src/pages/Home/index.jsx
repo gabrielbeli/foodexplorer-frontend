@@ -26,7 +26,131 @@ export function Home() {
       <main>
         
         <Section 
-          title="Pratos principais"
+          title="Refeições"
+          cards={[
+          <Card
+            dish={{
+              image: 'https://github.com/gabrielbeli',
+              name: 'Torradas de Parma',
+              description: 'Presunto de parma e rucula em um pão com fermentação natural',
+              price: '25,97',
+            }}
+          />,
+          <Card
+            dish={{
+              image: 'https://github.com/gabrielbeli',
+              name: 'Torradas de Parma',
+              description: 'Presunto de parma e rucula em um pão com fermentação natural',
+              price: '25,97',
+            }}
+          />,
+          <Card
+            dish={{
+              image: 'https://github.com/gabrielbeli',
+              name: 'Torradas de Parma',
+              description: 'Presunto de parma e rucula em um pão com fermentação natural',
+              price: '25,97',
+            }}
+          />,
+          <Card
+            dish={{
+              image: 'https://github.com/gabrielbeli',
+              name: 'Torradas de Parma',
+              description: 'Presunto de parma e rucula em um pão com fermentação natural',
+              price: '25,97',
+            }}
+          />,
+          <Card
+            dish={{
+              image: 'https://github.com/gabrielbeli',
+              name: 'Torradas de Parma',
+              description: 'Presunto de parma e rucula em um pão com fermentação natural',
+              price: '25,97',
+            }}
+          />,
+          <Card
+          dish={{
+            image: 'https://github.com/gabrielbeli',
+            name: 'Torradas de Parma',
+            description: 'Presunto de parma e rucula em um pão com fermentação natural',
+            price: '25,97',
+          }}
+        />,
+        <Card
+          dish={{
+            image: 'https://github.com/gabrielbeli',
+            name: 'Torradas de Parma',
+            description: 'Presunto de parma e rucula em um pão com fermentação natural',
+            price: '25,97',
+          }}
+        />,
+         ]}
+        ></Section>
+
+        <Section 
+          title="Sobremesas"
+          cards={[
+          <Card
+            dish={{
+              image: 'https://github.com/gabrielbeli',
+              name: 'Torradas de Parma',
+              description: 'Presunto de parma e rucula em um pão com fermentação natural',
+              price: '25,97',
+            }}
+          />,
+          <Card
+            dish={{
+              image: 'https://github.com/gabrielbeli',
+              name: 'Torradas de Parma',
+              description: 'Presunto de parma e rucula em um pão com fermentação natural',
+              price: '25,97',
+            }}
+          />,
+          <Card
+            dish={{
+              image: 'https://github.com/gabrielbeli',
+              name: 'Torradas de Parma',
+              description: 'Presunto de parma e rucula em um pão com fermentação natural',
+              price: '25,97',
+            }}
+          />,
+          <Card
+            dish={{
+              image: 'https://github.com/gabrielbeli',
+              name: 'Torradas de Parma',
+              description: 'Presunto de parma e rucula em um pão com fermentação natural',
+              price: '25,97',
+            }}
+          />,
+          <Card
+            dish={{
+              image: 'https://github.com/gabrielbeli',
+              name: 'Torradas de Parma',
+              description: 'Presunto de parma e rucula em um pão com fermentação natural',
+              price: '25,97',
+            }}
+          />,
+          <Card
+          dish={{
+            image: 'https://github.com/gabrielbeli',
+            name: 'Torradas de Parma',
+            description: 'Presunto de parma e rucula em um pão com fermentação natural',
+            price: '25,97',
+          }}
+        />,
+        <Card
+          dish={{
+            image: 'https://github.com/gabrielbeli',
+            name: 'Torradas de Parma',
+            description: 'Presunto de parma e rucula em um pão com fermentação natural',
+            price: '25,97',
+          }}
+        />,
+         ]}
+        ></Section>
+
+        <Section 
+          title="Bebidas"
           cards={[
           <Card
             dish={{

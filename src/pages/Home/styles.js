@@ -37,6 +37,7 @@ export const Container = styled.div`
     
     > main {
       padding-left: 0;
+      gap: 4.8rem;
     } 
   }
 `;
