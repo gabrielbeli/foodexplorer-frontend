@@ -14,7 +14,7 @@ export function Section({ title, cards }) {
     spaceBetween: 16,
     slidesPerView: 'auto',
     breakpoints: {
-      641: {
+      769: {
         spaceBetween: 27,
         //grabCursor: true,
     },

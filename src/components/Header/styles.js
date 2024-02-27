@@ -67,7 +67,7 @@ export const Container = styled.header`
       }
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
       padding: 5.6rem 0 2.4rem;
 
       > #search {
@@ -78,6 +78,11 @@ export const Container = styled.header`
       }
       > button#receipt {
         position: relative;
+
+        > svg {
+          color: ${({ theme }) => theme.LIGHT[100]};
+          font-size: 3rem;
+        }
 
         > span {
           color: ${({ theme }) => theme.LIGHT[100]};
@@ -110,7 +115,7 @@ export const Container = styled.header`
       }
     }
 
-    @media (min-width: 641px) {
+    @media (min-width: 769px) {
       gap: clamp(1.5rem, -0.7573rem + 3.527vw, 3.2rem);
       padding-block: 2.4rem;
 
@@ -153,9 +158,7 @@ export const Container = styled.header`
         > button#redBtn {
           padding-inline: 0;
           min-width: ${({ isAdmin }) => (isAdmin ? '12rem' : '7rem')};
-          > img {
-            width: 2rem;
-          }
+         
         }
       }
 
@@ -166,7 +169,7 @@ export const Container = styled.header`
       }
     }
       
-    @media (max-width: 641px) and (max-width: 810px) {
+    @media (max-width: 769px) and (max-width: 810px) {
         > #logo {
           max-width: 8rem;
           > h1 {

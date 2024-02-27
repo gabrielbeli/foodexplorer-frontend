@@ -8,7 +8,7 @@ import { Footer } from '../Footer';
 import { Container } from './styles';
 
 export function Menu({ show }) {
-  const isAdmin = false;
+  const isAdmin = true;
   
   return (
     <Container className={`menu ${show ? 'show' : ''}`}>

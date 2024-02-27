@@ -32,11 +32,12 @@ export const Container = styled.div`
     gap: 2.4rem;
   }
 
-  @media (min-width: 641px) {
+  @media (min-width: 769px) {
     grid-template-rows: 9.3rem clamp(16.4rem, -18.2486rem + 54.0541vw, 42.rem) auto 7.7rem;
     
     > main {
       padding-left: 0;
+      padding-bottom: 4.8rem;
       gap: 4.8rem;
     } 
   }
@@ -93,10 +94,10 @@ export const Banner = styled.div`
     }
   }
   
-  @media (min-width: 641px) {
+  @media (min-width: 769px) {
     height: clamp(12rem, -6.657rem + 29.106vw, 26rem);
     justify-content: space-between;
-    margin-top: clamp(4.4rem, -11.5917rem + 24.948vw, 16.4rem);
+    margin-top: clamp(8.6rem, -8.3921rem + 22.0963vw, 16.4rem);
     
     > picture {
       position: static;

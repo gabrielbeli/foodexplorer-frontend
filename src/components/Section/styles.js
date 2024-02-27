@@ -53,14 +53,14 @@ export const Container = styled.section`
     padding-right: 0.5rem;
   }
 
-  @media (max-width: 640px) {
+  @media (max-width: 768px) {
     .swiper-button-prev,
     .swiper-button-next {
       display: none;
     }
   }
 
-  @media (min-width: 641px) {
+  @media (min-width: 769px) {
     width: min(95%, 1122px);
     margin: 0 auto;
 

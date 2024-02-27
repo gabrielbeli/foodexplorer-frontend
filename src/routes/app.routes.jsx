@@ -7,7 +7,7 @@ import { Home } from '../pages/Home';
 
 export function AppRoutes() {
   const user = {
-    isAdmin: false,
+    isAdmin: true,
   };
   
   return (

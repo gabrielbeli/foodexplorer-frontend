@@ -30,7 +30,7 @@ export const Container = styled.div`
         border-bottom: 1px solid ${({ theme }) => theme.DARK[1000]};
         > a {
           width: fit-content;
-          font-size: 2.4rem;
+          font-size: clamp(2rem, 1.7143rem + 0.8929vw, 2.4rem);
           font-weight: 300;
           padding: 1rem;
           &:not(:hover) {

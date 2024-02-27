@@ -15,7 +15,7 @@ export function Home() {
       <Header />
       <Banner>
         <picture>
-        <source media="(max-width: 640px)" srcSet={foots100} />
+        <source media="(max-width: 768px)" srcSet={foots100} />
           <img src={foots200} alt="" />
         </picture>
         <div>

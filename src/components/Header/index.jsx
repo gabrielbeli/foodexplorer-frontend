@@ -11,7 +11,6 @@ import { Menu } from '../Menu';
 import menu from '../../assets/icons/menu.svg';
 import close from '../../assets/icons/close.svg';
 import explorer from '../../assets/icons/explorer.svg';
-import receipt from '../../assets/icons/receipt.svg';
 
 import { Container } from './styles';
 import { TextLink } from '../TextLink';
@@ -40,8 +39,9 @@ export function Header() {
   }
 
   useEffect(() => {
+    enableScroll();
     function handleResize() {
-      if (window.innerWidth > 640) {
+      if (window.innerWidth > 768) {
         setShowMenu(false);
         enableScroll();
       }
@@ -95,7 +95,7 @@ export function Header() {
             </div>
 
             {!isAdmin && (
-              <div id='buttons'>
+              <div id="buttons">
                 <TextLink name="Histórico de pedidos" to="" id="historic" />
                 <TextLink name="Meus favoritos" to="" id="fav" />
               </div>
@@ -113,12 +113,11 @@ export function Header() {
 
             <FiLogOut id="logout" />
 
-            {!isAdmin && (
-              <button id="receipt">
-                <img src={receipt} alt="Ícone nota fiscal" />
-                <span>0</span>
-              </button>
-            )}
+            <button id="receipt">
+              {isAdmin ? <IoReceiptOutline /> : <FiShoppingCart />}
+
+              <span>0</span>
+            </button>            
           </>
         )}
        {showMenu && <h2>Menu</h2>}

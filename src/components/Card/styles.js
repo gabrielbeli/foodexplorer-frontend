@@ -87,7 +87,7 @@ export const Container = styled.div`
     }
   }
 
-  @media (min-width: 641px) {
+  @media (min-width: 769px) {
     width: 30.4rem;
     height: 46.2rem;
     gap: 1.5rem;

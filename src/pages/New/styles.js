@@ -30,7 +30,7 @@ export const Container = styled.div`
     padding-bottom: 3.2rem;
   }
 
-  @media (min-width: 641px) {
+  @media (min-width: 769px) {
     grid-template-rows: 9.3rem 9rem auto 7.7rem;
     > a {
       align-self: start;
