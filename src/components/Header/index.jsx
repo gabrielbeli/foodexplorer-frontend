@@ -18,7 +18,7 @@ import { TextLink } from '../TextLink';
 
 export function Header() {
   const [showMenu, setShowMenu] = useState(false);
-  const isAdmin = false;
+  const isAdmin = true;
 
   let scrollTop;
   let scrollLeft; 
@@ -73,7 +73,7 @@ export function Header() {
               alt="menu close" 
               onClick={() => {
                 handleModal();
-                disableScroll();
+                enableScroll();
               }} 
             />
           )} 
@@ -94,13 +94,20 @@ export function Header() {
               />
             </div>
 
+            {!isAdmin && (
+              <div id='buttons'>
+                <TextLink name="Histórico de pedidos" to="" id="historic" />
+                <TextLink name="Meus favoritos" to="" id="fav" />
+              </div>
+            )}
+
             {isAdmin && <TextLink name="Novo prato" to="/new" id="new" />}
 
             <Link to={isAdmin ? '/new':''}>
             <Button
               id="redBtn"
-              title={isAdmin ? `Pedidos (${0})` : `Pedidos (${0})`}
-              icon={isAdmin ? IoReceiptOutline : ''}
+              title={isAdmin ? `Pedidos (${0})` : `(${0})`}
+              icon={isAdmin ? IoReceiptOutline : FiShoppingCart}
             />
             </Link>
 

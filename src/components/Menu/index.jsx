@@ -24,7 +24,17 @@ export function Menu({ show }) {
         <ul>
           {isAdmin && (
             <li>
-              <TextLink name="Novo prato" />
+              <TextLink name="Novo prato" to="/new" />
+            </li>
+          )}
+          {!isAdmin && (
+            <li>
+              <TextLink name="Histórico de pedidos" to="" />
+            </li>
+          )}
+          {!isAdmin && (
+            <li>
+              <TextLink name="Meus favoritos" to="" />
             </li>
           )}
           <li>
