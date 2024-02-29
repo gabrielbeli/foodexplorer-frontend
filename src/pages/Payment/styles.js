@@ -60,6 +60,10 @@ export const Content = styled.div`
      line-height: 3.2rem;
 
      margin-top: 3.2rem;
+
+     > span {
+       color: ${({ theme }) => theme.TINTS.MINT};
+     }
    }
  }
 

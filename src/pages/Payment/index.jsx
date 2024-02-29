@@ -59,7 +59,7 @@ export function Payment() {
             </li>
           </ul>
 
-          <p>Total: R$103.88</p>
+          <p>Total: <span>R$103.88</span></p>
         </section>
 
         <Link to="/payment-only">

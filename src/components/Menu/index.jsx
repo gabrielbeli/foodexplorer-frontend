@@ -34,7 +34,7 @@ export function Menu({ show }) {
           )}
           {!isAdmin && (
             <li>
-              <TextLink name="Meus favoritos" to="" />
+              <TextLink name="Meus favoritos" to="/favorites" />
             </li>
           )}
           <li>

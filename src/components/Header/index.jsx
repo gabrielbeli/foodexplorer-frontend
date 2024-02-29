@@ -97,7 +97,7 @@ export function Header() {
             {!isAdmin && (
               <div id="buttons">
                 <TextLink name="Histórico de pedidos" to="" id="historic" />
-                <TextLink name="Meus favoritos" to="" id="fav" />
+                <TextLink name="Meus favoritos" to="/favorites" id="fav" />
               </div>
             )}
 
