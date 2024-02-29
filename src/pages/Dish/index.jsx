@@ -19,7 +19,10 @@ export function Dish() {
   return (
     <Container>
       <Header />
-      <TextLink name="voltar" icon={FiChevronLeft} to={-1} />
+      <div className="wrapper">
+        <TextLink name="voltar" icon={FiChevronLeft} to={-1} />
+      </div>
+
       <main>
         <Content isAdmin={isAdmin}>
           <img src={ravanello} alt="" />

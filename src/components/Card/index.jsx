@@ -9,7 +9,7 @@ import { Counter } from '../Counter';
 import { Button } from '../Button';
 
 export function Card({ dish, favorite = false }) {
-  const isAdmin = true;
+  const isAdmin = false;
   
   return (
     <Container>

@@ -12,7 +12,10 @@ export function Edit() {
   return (
     <Container>
       <Header />
-      <TextLink name="voltar" icon={FiChevronLeft} to={-1}/>
+      <div className="wrapper">
+        <TextLink name="voltar" icon={FiChevronLeft} to={-1}/>
+      </div>
+      
       <main>
         <Form>
           <h1>Editar prato</h1>

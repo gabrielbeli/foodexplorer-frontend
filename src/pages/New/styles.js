@@ -16,15 +16,20 @@ export const Container = styled.div`
   
   grid-template-rows: 11.4rem 7rem auto 7.7rem;
 
-  > a,
+  > .wrapper,
   > main {
     width: min(75%, 1122px);
     margin: 0 auto;
   }
-  > a {
+  > .wrapper {
     grid-area: back;
-    font-size: clamp(1.4rem, 07333rem + 2.0833vw, 2.4rem);
+    display: flex;
+    align-items: center;
+    > a {
+      font-size: clamp(1.4rem, 0.7333rem + 2.0833vw, 2.4rem);
+    }
   }
+  
   > main {
     grid-area: main;
     padding-bottom: 3.2rem;
@@ -32,10 +37,6 @@ export const Container = styled.div`
 
   @media (min-width: 769px) {
     grid-template-rows: 9.3rem 9rem auto 7.7rem;
-    > a {
-      align-self: start;
-      padding-top: 2.4rem;
-    }
   }
 `;
 

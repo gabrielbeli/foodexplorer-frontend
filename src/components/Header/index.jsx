@@ -17,7 +17,7 @@ import { TextLink } from '../TextLink';
 
 export function Header() {
   const [showMenu, setShowMenu] = useState(false);
-  const isAdmin = true;
+  const isAdmin = false;
 
   let scrollTop;
   let scrollLeft; 
@@ -103,7 +103,7 @@ export function Header() {
 
             {isAdmin && <TextLink name="Novo prato" to="/new" id="new" />}
 
-            <Link to={isAdmin ? '/new':''}>
+            <Link to={isAdmin ? '':'/payment'} id="receiptDesktop">
             <Button
               id="redBtn"
               title={isAdmin ? `Pedidos (${0})` : `(${0})`}
