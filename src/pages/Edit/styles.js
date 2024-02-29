@@ -18,7 +18,7 @@ export const Container = styled.div`
 
   > .wrapper,
   > main {
-    width: min(75%, 1122px);
+    width: min(90%, 1122px);
     margin: 0 auto;
   }
   > .wrapper {

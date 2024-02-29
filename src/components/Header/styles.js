@@ -76,7 +76,9 @@ export const Container = styled.header`
       > button {
         background-color: transparent;
       }
-      > button#receipt {
+      
+      #receipt {
+        background-color: transparent;
         position: relative;
 
         > svg {
@@ -120,7 +122,7 @@ export const Container = styled.header`
       padding-block: 2.4rem;
 
       > #menuBurguer,
-      > button#receipt {
+      > a:has(#receipt) {
         display: none !important;
       }
 
