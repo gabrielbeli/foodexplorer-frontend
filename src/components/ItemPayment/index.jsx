@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IoReceiptOutline } from 'react-icons/io5';
 import { Container } from './styles';
 
@@ -13,8 +13,37 @@ import clock from '../../assets/icons/clock.svg';
 
 export function ItemPayment() {
   const [pixSelected, setPixSelected] = useState(true);
-
   const [purchase, setPurchase] = useState('initial');
+  const [pixCode, setPixCode] = useState('');
+  const inputCopy = useRef();
+
+  function copyText(e) {
+    inputCopy.current.select();
+    inputCopy.current.setSelectionRange(0, 99999);
+
+    const text = inputCopy.current.value;
+    if (!navigator.clipboard) {
+      document.execCommand('copy');
+    } else {
+      navigator.clipboard.writeText(text);
+    }
+  }
+
+  useEffect(() => {
+    const randomPixCode = (len) => {
+      let code = '';
+
+      do {
+        code += Math.random().toString(36).slice(2);
+      } while (code.length < len);
+
+      code = code.slice(0, len);
+
+      return code;
+    };
+
+    setPixCode(randomPixCode(30));
+  }, []);
 
   return (
     <Container>
@@ -38,7 +67,14 @@ export function ItemPayment() {
 
       <div className="payment">
         {pixSelected && purchase == 'initial' && (
+          <>
           <img src={qrCode} alt="Qr-code" />
+          <div className="copy-wrapper">
+            <input type="text" readOnly value={pixCode} ref={inputCopy} />
+
+            <button onClick={copyText}>copy</button>
+          </div>
+          </>
         )}
 
         {!pixSelected && purchase == 'initial' && (

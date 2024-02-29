@@ -43,7 +43,34 @@ export const Container = styled.div`
 
     > img {
       width: min(50vw, 25rem);
+      margin: 0 auto;
       height: min(50vw, 25rem);
+    }
+
+    .copy-wrapper {
+      margin-top: 1.5rem;
+      display: flex;
+
+      > input {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        background-color: transparent;
+        outline: none;
+        border: 1px solid ${({ theme }) => theme.LIGHT[600]};
+        border-radius: 0.8rem 0 0 0.8rem;
+
+        color: ${({ theme }) => theme.LIGHT[400]};
+        padding: 0.4rem 0.8rem;
+        width: 100%;
+      }
+
+      > button {
+        color: ${({ theme }) => theme.LIGHT[400]};
+        
+        border-radius: 0 0.8rem 0.8rem 0;
+        padding: 0.4rem 0.8rem;
+        background: ${({ theme }) => theme.TINTS.TOMATO[400]};
+      }
     }
 
     > #state {
