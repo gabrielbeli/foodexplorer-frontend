@@ -5,6 +5,7 @@ import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { TextLink } from '../../components/TextLink';
 import { Input } from '../../components/Input';
+import { Select } from '../../components/Select';
 import { Button } from '../../components/Button';
 import { AddIngredients } from '../../components/AddIngredients';
 
@@ -41,11 +42,11 @@ export function New() {
 
            <div>
              <label htmlFor="category">Categoria</label>
-             <select id="category">
+             <Select id="category">
               <option value="Refeição">Refeição</option>
               <option value="Pratos principais">Pratos principais</option>
               <option value="Entrada">Entrada</option>
-             </select>
+             </Select>
            </div>
          </div>
 

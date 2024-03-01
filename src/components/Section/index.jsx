@@ -1,6 +1,7 @@
+/* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation } from 'swiper';
+/*import { Navigation } from 'swiper';*/
 import { Container } from "./styles";
 
 import 'swiper/css';

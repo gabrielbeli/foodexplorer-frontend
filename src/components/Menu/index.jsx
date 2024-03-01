@@ -29,7 +29,7 @@ export function Menu({ show }) {
           )}
           {!isAdmin && (
             <li>
-              <TextLink name="Histórico de pedidos" to="" />
+              <TextLink name="Histórico de pedidos" to="/requests" />
             </li>
           )}
           {!isAdmin && (

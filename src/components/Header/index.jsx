@@ -96,7 +96,7 @@ export function Header() {
 
             {!isAdmin && (
               <div id="buttons">
-                <TextLink name="Histórico de pedidos" to="" id="historic" />
+                <TextLink name="Histórico de pedidos" to="/requests" id="historic" />
                 <TextLink name="Meus favoritos" to="/favorites" id="fav" />
               </div>
             )}
@@ -112,7 +112,7 @@ export function Header() {
             </Link>
 
             <FiLogOut id="logout" />
-            <Link to={isAdmin ? '' : '/payment'}>
+            <Link to={isAdmin ? '/requests' : '/payment'}>
               <button id="receipt">
                 {isAdmin ? <IoReceiptOutline /> : <FiShoppingCart />}
 
