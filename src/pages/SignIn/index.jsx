@@ -2,9 +2,14 @@ import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { TextLink } from '../../components/TextLink';
 
+import { useAuth } from '../../hooks/auth';
+
 import { Container, Form } from './styles';
 
 export function SignIn() {
+  const data = useAuth();
+
+  console.log(data);
   return (
     <Container>
       <h1>
@@ -44,9 +49,9 @@ export function SignIn() {
         />
 
         <Button title="Entrar" />
-        <TextLink name="Criar uma conta" to="/register"/>
+        <TextLink name="Criar uma conta" to="/register" />
 
       </Form>
     </Container>
-  )
+  );
 }
