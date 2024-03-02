@@ -1,6 +1,6 @@
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
-import { Select } from '../../components/Select';
+import { StatusSelect } from '../../components/StatusSelect';
 
 import { Container, Content, RequestMobile } from './styles';
 
@@ -18,24 +18,8 @@ export function Requests() {
             <RequestMobile>
               <div className='info'>
                 <span className='code'>000004</span>
-                <span className='status'>
-                  <svg
-                    width="8"
-                    height="8"
-                    viewBox='0 0 8 8'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <circle
-                      cx="4"
-                      cy="4"
-                      r="4"
-                      transform="matrix(1 0 0 -1 0 8)"
-                      fill="#AB222E"
-                    />
-                  </svg>
-                  Pendente
-                </span>
+
+                {!isAdmin && <span className='status'>Pendente</span>}
                 <span className='time'>15/05 às 19h00</span>
               </div>
               <p className='details'>
@@ -45,34 +29,14 @@ export function Requests() {
                 1 x Suco de Maracujá
               </p>
 
-              <Select>
-                <option value="Pendente">
-
-                  Pendente
-                </option>
-              </Select>
+              {isAdmin && <StatusSelect />}
             </RequestMobile>
+
             <RequestMobile>
               <div className='info'>
                 <span className='code'>000004</span>
-                <span className='status'>
-                  <svg
-                    width="8"
-                    height="8"
-                    viewBox='0 0 8 8'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <circle
-                      cx="4"
-                      cy="4"
-                      r="4"
-                      transform="matrix(1 0 0 -1 0 8)"
-                      fill="#AB222E"
-                    />
-                  </svg>
-                  Pendente
-                </span>
+                
+                {!isAdmin && <span className='status'>Pendente</span>}
                 <span className='time'>15/05 às 19h00</span>
               </div>
               <p className='details'>
@@ -82,34 +46,14 @@ export function Requests() {
                 1 x Suco de Maracujá
               </p>
 
-              <Select>
-                <option value="Pendente">
-
-                  Pendente
-                </option>
-              </Select>
+              {isAdmin && <StatusSelect />}
             </RequestMobile>
+
             <RequestMobile>
               <div className='info'>
                 <span className='code'>000004</span>
-                <span className='status'>
-                  <svg
-                    width="8"
-                    height="8"
-                    viewBox='0 0 8 8'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <circle
-                      cx="4"
-                      cy="4"
-                      r="4"
-                      transform="matrix(1 0 0 -1 0 8)"
-                      fill="#AB222E"
-                    />
-                  </svg>
-                  Pendente
-                </span>
+                
+                {!isAdmin && <span className='status'>Pendente</span>}
                 <span className='time'>15/05 às 19h00</span>
               </div>
               <p className='details'>
@@ -119,34 +63,14 @@ export function Requests() {
                 1 x Suco de Maracujá
               </p>
 
-              <Select>
-                <option value="Pendente">
-
-                  Pendente
-                </option>
-              </Select>
+              {isAdmin && <StatusSelect />}
             </RequestMobile>
+
             <RequestMobile>
               <div className='info'>
                 <span className='code'>000004</span>
-                <span className='status'>
-                  <svg
-                    width="8"
-                    height="8"
-                    viewBox='0 0 8 8'
-                    fill='none'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <circle
-                      cx="4"
-                      cy="4"
-                      r="4"
-                      transform="matrix(1 0 0 -1 0 8)"
-                      fill="#AB222E"
-                    />
-                  </svg>
-                  Pendente
-                </span>
+                
+                {!isAdmin && <span className='status'>Pendente</span>}
                 <span className='time'>15/05 às 19h00</span>
               </div>
               <p className='details'>
@@ -156,12 +80,7 @@ export function Requests() {
                 1 x Suco de Maracujá
               </p>
 
-              <Select>
-                <option value="Pendente">
-
-                  Pendente
-                </option>
-              </Select>
+              {isAdmin && <StatusSelect />}
             </RequestMobile> 
           </section>
 
@@ -176,25 +95,9 @@ export function Requests() {
             </thead>
           <tbody>
             <tr>
-              <td className='status'>
-              <svg
-                width="8"
-                height="8"
-                viewBox='0 0 8 8'
-                fill='none'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <circle
-                  cx="4"
-                  cy="4"
-                  r="4"
-                  transform="matrix(1 0 0 -1 0 8)"
-                  fill="#AB222E"
-                />
-              </svg>
-              Pendente
-              </td>
-
+             
+              <td className='status'>Pendente</td>
+              
               <td className='details'>
                 1 x Salada radish, 
                 1 x Torradas de Parma, 
