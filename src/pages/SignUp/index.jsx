@@ -1,10 +1,46 @@
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Input } from '../../components/Input';
 import { Button } from '../../components/Button';
 import { TextLink } from '../../components/TextLink';
 
+import { api } from '../../services/api';
+
 import { Container, Form } from './styles';
 
 export function SignUp() {
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
+
+  async function handleSignUp() {
+    if (!name || !email || !password) {
+      return;
+    }
+
+    if (!email.includes('@') || password.length < 6) {
+      return;
+    }
+
+    try {
+      await api.post('/users', { name, email, password });
+
+      setEmail('');
+      setPassword('');
+      setName('');
+      alert('Cadastro realizado com sucesso!');
+      navigate('/');
+    } catch (error) {
+      if (error.response) {
+        alert(error.response.data.message);
+      } else {
+        alert('Não foi possível cadastrar');
+      }
+    }
+  }
+
   return (
     <Container>
     <h1>
@@ -32,6 +68,8 @@ export function SignUp() {
        label="Seu nome"
        placeholder="Joao P Souza"
        required
+       value={name}
+       onChange={(e) => setName(e.target.value)}
       />
 
       <Input
@@ -40,6 +78,8 @@ export function SignUp() {
        label="Email"
        placeholder="exemplo@exemplo.com.br"
        required
+       value={email}
+       onChange={(e) => setEmail(e.target.value)}
       />
 
       <Input
@@ -49,9 +89,11 @@ export function SignUp() {
        placeholder="No mínimo 6 caracteres"
        minLength="6"
        required
+       value={password}
+       onChange={(e) => setPassword(e.target.value)}
       />
 
-      <Button title="Criar conta" />
+      <Button title="Criar conta" onClick={handleSignUp} />
       <TextLink name="Já tenho uma conta" to={-1}/>
 
     </Form>

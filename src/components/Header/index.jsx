@@ -103,7 +103,7 @@ export function Header() {
 
             {isAdmin && <TextLink name="Novo prato" to="/new" id="new" />}
 
-            <Link to={isAdmin ? '' : '/payment'} id="receiptDesktop">
+            <Link to={isAdmin ? '/requests' : '/payment'} id="receiptDesktop">
             <Button
               id="redBtn"
               title={isAdmin ? `Pedidos (${0})` : `(${0})`}
