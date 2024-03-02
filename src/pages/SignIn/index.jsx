@@ -5,11 +5,23 @@ import { TextLink } from '../../components/TextLink';
 import { useAuth } from '../../hooks/auth';
 
 import { Container, Form } from './styles';
+import { useState } from 'react';
 
 export function SignIn() {
-  const data = useAuth();
+  
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  console.log(data);
+  const { signIn } = useAuth();
+
+  async function handleSignIn() {
+    if (!email || !password || !email.includes('@') || password.length < 6) {
+      return;
+    }
+
+    await signIn({ email, password });
+  }
+
   return (
     <Container>
       <h1>
@@ -37,6 +49,8 @@ export function SignIn() {
          label="Email"
          placeholder="exemplo@email.com"
          required
+         value={email}
+         onChange={(e) => setEmail(e.target.value)}
         />
 
         <Input
@@ -46,9 +60,11 @@ export function SignIn() {
          placeholder="No mínimo 6 caracteres"
          minLength="6"
          required
+         value={password}
+         onChange={(e) => setPassword(e.target.value)}
         />
 
-        <Button title="Entrar" />
+        <Button title="Entrar" onClick={handleSignIn} />
         <TextLink name="Criar uma conta" to="/register" />
 
       </Form>
