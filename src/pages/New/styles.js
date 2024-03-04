@@ -82,19 +82,25 @@ export const Form = styled.form`
         justify-content: center;
         height: 4.8rem;
 
+        padding: 0 0.5rem;
+        text-transform: ellipsis;
+
         > span {
           color: ${({ theme }) => theme.LIGHT[100]};
           font-family: 'Poppins', sans-serif;
           font-size: 1.4rem;
           font-weight: 500;
 
+          white-space: nowrap;
           display: flex;
           align-items: center;
           gap: 0.8rem;
 
           cursor: pointer;
+          overflow: hidden;
 
           > svg {
+            flex-shrink: 0;
             width: 2.4rem;
             height: 2.4rem;
           }

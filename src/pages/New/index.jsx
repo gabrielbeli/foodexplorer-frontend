@@ -1,5 +1,9 @@
 import { Container, Form, Textarea } from './styles';
 import { FiChevronLeft, FiUpload } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+
+import { api } from '../../services/api';
 
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -10,6 +14,72 @@ import { Button } from '../../components/Button';
 import { AddIngredients } from '../../components/AddIngredients';
 
 export function New() {
+  const [photoFile, setPhotoFile] = useState(null);
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('meals');
+  const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState('');
+  const [ingredients, setIngredients] = useState([]);
+  const [newIngredients, setNewIngredients] = useState('');
+
+  const navigate = useNavigate();
+
+  async function newDish() {
+    const notANumber = isNaN(price) || price === '';
+
+    if (!name || price < 0 || notANumber) {
+      return;
+    }
+
+    if (newIngredients != '') {
+      return alert(
+        `Clique no + para adicionar o ingrediente tag: ${newIngredients}. ou limpe o campo!`
+      );
+    }
+
+    const response = await api.post('/dishes', {
+      name,
+      category,
+      price,
+      description,
+      ingredients,
+    });
+
+    const id = response.data.id;
+
+    if (photoFile) {
+      const fileUploadForm = new FormData();
+      fileUploadForm.append('photo', photoFile);
+
+      await api.patch(`dishes/photo/${id}`, fileUploadForm);
+    }
+
+    navigate('/');
+    setName('');
+    setIngredients([]);
+    setPrice('');
+    setDescription('');
+  }
+
+  function handleNewIngredients() {
+    if (newIngredients) {
+      const isNewIngredients = !ingredients.includes(newIngredients);
+      if (isNewIngredients) {
+        setIngredients((prevState) => [...prevState, newIngredients]);        
+      } else {
+        alert('Ingrediente já adicionado');
+      }
+    }
+
+    setNewIngredients('');
+    document.getElementById('add').focus();
+  }
+
+  function handleUploadPhoto(event) {
+    const file = event.target.files[0];
+    setPhotoFile(file);
+  }
+
   return (
     <Container>
       <Header />
@@ -19,7 +89,7 @@ export function New() {
       </div>
       
       <main>
-        <Form>
+        <Form onSubmit={(e) => e.preventDefault()}>
           <h1>Novo prato</h1>
 
           <div id='threeColumns'>
@@ -27,22 +97,34 @@ export function New() {
               <label htmlFor="image">Imagem do prato</label>
               <div>
                <span>
-                <FiUpload /> Selecione a imagem
+                <FiUpload />{' '}
+                {photoFile ? photoFile.name : 'Selecione a imagem'}
                </span>
                <Input 
                 id="image"
                 accept="image/png, image/jpeg"
                 type="file"
-                style={{ cursor: 'pointer' }}  
+                style={{ cursor: 'pointer' }}
+                onChange={handleUploadPhoto}  
                />
              </div>
            </div>
 
-           <Input id="name" label="Nome" placeholder="Salada Ceaser" />
+           <Input 
+            id="name" 
+            label="Nome" 
+            placeholder="Salada Ceaser"
+            required
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            />
 
            <div>
              <label htmlFor="category">Categoria</label>
-             <Select id="category">
+             <Select 
+              id="category"
+              onChange={(e) => setCategory(e.target.value)}
+             >
               <option value="Refeição">Refeição</option>
               <option value="Pratos principais">Pratos principais</option>
               <option value="Entrada">Entrada</option>
@@ -54,11 +136,26 @@ export function New() {
            <div>
              <label htmlFor="add">Ingredientes</label>
              <div>
-              <AddIngredients value="Pão" size="6" />
-              <AddIngredients value="Feijão" size="4" />
-              <AddIngredients id="add" isNew size="6" />
+             {ingredients.map((ingredients, index) => (
+              <AddIngredients 
+                key={String(index)} 
+                value={ingredients} 
+                size={String(ingredients.length)} 
+              />
+             ))}
+        
+              <AddIngredients 
+                id="add" 
+                isNew 
+                size="6"
+                value={newIngredients}
+                onChange={(e) =>
+                setNewIngredients(e.target.value)}
+                onClick={handleNewIngredients}
+              />
              </div>
            </div>
+            
             <Input
              id="price"
              type="number"
@@ -72,10 +169,14 @@ export function New() {
           <label htmlFor="description">Descrição</label>
           <Textarea
             id="description"
-            placeholder="Sobre o prato, ingredientes e composição" />
+            placeholder="Sobre o prato, ingredientes e composição"
+            value={description}
+            onChange={(e) => 
+            setDescription(e.target.value)}
+          />
          </div>
 
-         <Button type="button" id="buttonAdd" title="Salvar alterações" />
+         <Button id="buttonAdd" title="Salvar alterações" onClick={newDish} />
         </Form>
       </main>
       <Footer />
