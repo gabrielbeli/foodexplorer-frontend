@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { Container } from './styles';
 
 import Select from 'react-select';
@@ -25,13 +26,14 @@ const dot = (color = 'transparent') => ({
 });
 
 const colorStyles = {
-  control: (styles, state) => ({
+  control: (styles, { isDisabled}) => ({
     display: 'flex',
-    height: '4.8rem',
+    height: isDisabled ? '' : '4.8rem',
     color: '#C4C4CC',
-    backgroundColor: '#0D1D25',
+    backgroundColor: isDisabled ? 'transparent' : '#0D1D25',
     borderRadius: '5px',
     border: 'none',
+    minWidth: isDisabled ? '' : 155,
   }),
 
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
@@ -73,9 +75,9 @@ const colorStyles = {
   indicatorSeparator: () => ({
     display: 'none',
   }),
-  indicatorContainer: (styles, state) => ({
+  indicatorContainer: (styles, { isDisabled }) => ({
     ...styles,
-    color: 'red',
+    display: isDisabled ? 'none' : 'flex',
   }),
   menu: (styles, state) => ({
     ...styles,
@@ -83,14 +85,15 @@ const colorStyles = {
   }),
 };
 
-export function StatusSelect() {
+export function StatusSelect({ isDisabled = false, className}) {
   return (
-    <Container>
+    <Container className={className}>
       <Select
         options={options}
         isSearchable={false}
         defaultValue={options[0]}
         styles={colorStyles}
+        isDisabled={isDisabled}
       />
     </Container>
   );

@@ -17,6 +17,8 @@ function AuthProvider({ children }) {
 
       api.defaults.headers.common['Authorization'] = token;
 
+      user.isAdmin = user.isAdmin === 1;
+
       localStorage.setItem('@foodexplorer:user', JSON.stringify(user));
       localStorage.setItem('@foodexplorer:token', token);
 
@@ -24,8 +26,7 @@ function AuthProvider({ children }) {
         user,
         token,
       });
-
-      console.log(data);    
+    
     } catch (error) {
       if (error.response) {
         alert(error.response.data.message);
@@ -33,6 +34,13 @@ function AuthProvider({ children }) {
         alert('Não foi possível entrar');
       }
     }
+  }
+
+  async function signOut() {
+    localStorage.removeItem('@foodexplorer:user');
+    localStorage.removeItem('@foodexplorer:token');
+
+    setData({});
   }
 
   useEffect(() => {
@@ -48,7 +56,7 @@ function AuthProvider({ children }) {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ signIn, user: data.user }}>
+    <AuthContext.Provider value={{ signIn, signOut, user: data.user }}>
       {children}
     </AuthContext.Provider>
   );

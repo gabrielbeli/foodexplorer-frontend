@@ -3,17 +3,18 @@ import { FiHeart } from 'react-icons/fi';
 import Edit from '../../assets/icons/pencil.svg';
 import { Link } from 'react-router-dom'
 
+import { useAuth } from '../../hooks/auth';
 import { Container } from './styles';
 
 import { Counter } from '../Counter';
 import { Button } from '../Button';
 
 export function Card({ dish, favorite = false }) {
-  const isAdmin = false;
+  const { user } = useAuth();
   
   return (
     <Container>
-      {isAdmin ? (
+      {user.isAdmin ? (
         <button>
           <Link to="/edit/1">
             <img src={Edit} />
@@ -30,7 +31,7 @@ export function Card({ dish, favorite = false }) {
         <p>{dish.description}</p>
         <span>R$ {dish.price}</span>
       </Link>
-      {isAdmin && (
+      {!user.isAdmin && (
         <div>
           <Counter />
           <Button title="incluir" />

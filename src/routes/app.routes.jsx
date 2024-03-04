@@ -1,5 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 
+import { useAuth } from "../hooks/auth";
+
 import { Dish } from '../pages/Dish';
 import { New } from '../pages/New';
 import { Edit } from '../pages/Edit';
@@ -10,9 +12,7 @@ import { Favorites } from '../pages/Favorites';
 import { Requests } from '../pages/Requests';
 
 export function AppRoutes() {
-  const user = {
-    isAdmin: false,
-  };
+  const { user } = useAuth();
   
   return (
     <Routes>

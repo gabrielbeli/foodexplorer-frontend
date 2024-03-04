@@ -51,16 +51,6 @@ export const Content = styled.div`
     font-size: 1.4rem;
   }
 
-  .status::before {
-    content: '';
-    display: inline-block;
-    margin-right: 0.8rem;
-    width: 1rem;
-    height: 1rem;
-    background-color: ${({ theme }) => theme.TINTS.TOMATO[300]};
-    border-radius: 50%;
-  }
-
   > #requests {
     display: grid;
     gap: 1.7rem;
@@ -84,13 +74,23 @@ export const Content = styled.div`
     > table {
       display: table;
       border-collapse: collapse;
+      width: 100%;
+
+      thead {
+        > tr {
+          > th:first-child {
+            border-radius: 1rem;
+          }
+        }
+      }
       
       th,
       td {
         border-collapse: 2px solid ${({ theme }) => theme.DARK[1000]};
         text-align: start;
+        padding: 2.4rem;
         padding-inline: clamp(1.2rem, -7.9569rem + 9.2308vw, 2.4rem);
-        padding-block: clamp(1.05rem, -6.9623rem + 8.0769vw, 2.1rem);
+        padding-block: 2.1rem;
       }
     }
   }
@@ -99,21 +99,45 @@ export const Content = styled.div`
 export const RequestMobile = styled.div`
   width: 100%;
   padding: 1.6rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1.6rem;
+  display: grid;
+  row-gap: 1.6rem;
 
   border: 2px solid ${({ theme }) => theme.DARK[1000]};
   border-radius: 0.8rem;
 
-  > .info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 2.2rem;
-  }
+  grid-template-columns: 0.5fr 1fr 1fr;
+
+  grid-template-areas: ${({ isAdmin }) => {
+    if (isAdmin) {
+      return `'code . time'
+      'details details details'
+      'status status status'`;
+    }
+    return `'code status time'
+    'details detaisl details'`
+  }};
 
   > .details {
     line-height: 2.2rem;
+    grid-area: details;
+  }
+  .code {
+    grid-area: code;
+  }
+  .time {
+    grid-area: time;
+    justify-self: end;
+  }
+  .status {
+    grid-area: status;
+    justify-self: ${({ isAdmin }) => (isAdmin ? 'stretch' : 'center')};
+  }
+
+  @media (max-width: 370px) {
+    .code,
+    .status,
+    .time {
+      font-size: 1.2rem;
+    }
   }
 `;

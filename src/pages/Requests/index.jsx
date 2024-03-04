@@ -2,26 +2,28 @@ import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { StatusSelect } from '../../components/StatusSelect';
 
+import { useAuth } from '../../hooks/auth';
+
 import { Container, Content, RequestMobile } from './styles';
 
 export function Requests() {
-  const isAdmin = false;
+  const { user } = useAuth;
+  
   return (
     <Container>
       <Header />
 
       <main>
         <Content>
-          {isAdmin ? <h1>Pedidos</h1> : <h1>Histórico de pedidos</h1>}
+          {user.isAdmin ? <h1>Pedidos</h1> : <h1>Histórico de pedidos</h1>}
 
           <section id="requests">
-            <RequestMobile>
-              <div className='info'>
-                <span className='code'>000004</span>
+            <RequestMobile isAdmin={user.isAdmin}>
 
-                {!isAdmin && <span className='status'>Pendente</span>}
-                <span className='time'>15/05 às 19h00</span>
-              </div>
+              <span className='code'>000004</span>
+
+              <span className='time'>15/05 às 19h00</span>
+              
               <p className='details'>
                 1 x Salada radish, 
                 1 x Torradas de Parma, 
@@ -29,16 +31,15 @@ export function Requests() {
                 1 x Suco de Maracujá
               </p>
 
-              {isAdmin && <StatusSelect />}
+              <StatusSelect className="status" isDisabled={!user.isAdmin} />
             </RequestMobile>
 
-            <RequestMobile>
-              <div className='info'>
-                <span className='code'>000004</span>
-                
-                {!isAdmin && <span className='status'>Pendente</span>}
-                <span className='time'>15/05 às 19h00</span>
-              </div>
+            <RequestMobile isAdmin={user.isAdmin}>
+
+              <span className='code'>000004</span>
+
+              <span className='time'>15/05 às 19h00</span>
+              
               <p className='details'>
                 1 x Salada radish, 
                 1 x Torradas de Parma, 
@@ -46,16 +47,15 @@ export function Requests() {
                 1 x Suco de Maracujá
               </p>
 
-              {isAdmin && <StatusSelect />}
+              <StatusSelect className="status" isDisabled={!user.isAdmin} />
             </RequestMobile>
 
-            <RequestMobile>
-              <div className='info'>
-                <span className='code'>000004</span>
-                
-                {!isAdmin && <span className='status'>Pendente</span>}
-                <span className='time'>15/05 às 19h00</span>
-              </div>
+            <RequestMobile isAdmin={user.isAdmin}>
+
+              <span className='code'>000004</span>
+
+              <span className='time'>15/05 às 19h00</span>
+              
               <p className='details'>
                 1 x Salada radish, 
                 1 x Torradas de Parma, 
@@ -63,16 +63,15 @@ export function Requests() {
                 1 x Suco de Maracujá
               </p>
 
-              {isAdmin && <StatusSelect />}
+              <StatusSelect className="status" isDisabled={!user.isAdmin} />
             </RequestMobile>
+            
+            <RequestMobile isAdmin={user.isAdmin}>
 
-            <RequestMobile>
-              <div className='info'>
-                <span className='code'>000004</span>
-                
-                {!isAdmin && <span className='status'>Pendente</span>}
-                <span className='time'>15/05 às 19h00</span>
-              </div>
+              <span className='code'>000004</span>
+
+              <span className='time'>15/05 às 19h00</span>
+              
               <p className='details'>
                 1 x Salada radish, 
                 1 x Torradas de Parma, 
@@ -80,8 +79,8 @@ export function Requests() {
                 1 x Suco de Maracujá
               </p>
 
-              {isAdmin && <StatusSelect />}
-            </RequestMobile> 
+              <StatusSelect className="status" isDisabled={!user.isAdmin} />
+            </RequestMobile>
           </section>
 
           <table>
@@ -95,8 +94,14 @@ export function Requests() {
             </thead>
           <tbody>
             <tr>
+
+              <td>
+
+              <StatusSelect isDisabled={!user.isAdmin} />
+
+              </td>
              
-              <td className='status'>Pendente</td>
+              <td className='status'>000004</td>
               
               <td className='details'>
                 1 x Salada radish, 
@@ -105,7 +110,41 @@ export function Requests() {
                 1 x Suco de Maracujá
               </td>
               <td className='time'>15/05 às 19h00</td>
-            </tr>            
+            </tr>
+            <tr>
+              <td>
+
+                <StatusSelect isDisabled={!user.isAdmin} />
+
+              </td>
+
+              <td className='status'>000003</td>
+
+              <td className='details'>
+                1 x Salada radish, 
+                1 x Torradas de Parma, 
+                1 x Chá de Canela, 
+                1 x Suco de Maracujá
+              </td>
+              <td className='time'>15/05 às 19h00</td>              
+            </tr>
+            <tr>
+              <td>
+
+                <StatusSelect isDisabled={!user.isAdmin} />
+
+              </td>
+
+              <td className='status'>000002</td>
+
+              <td className='details'>
+                1 x Salada radish, 
+                1 x Torradas de Parma, 
+                1 x Chá de Canela, 
+                1 x Suco de Maracujá
+              </td>
+              <td className='time'>15/05 às 19h00</td>              
+            </tr>                        
           </tbody>
           </table>
         </Content>
