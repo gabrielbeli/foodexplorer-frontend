@@ -1,10 +1,12 @@
 /* eslint-disable react/prop-types */
+import { useEffect, useState } from 'react';
 import { Container, Content } from './styles';
 import { FiChevronLeft } from 'react-icons/fi';
 import { IoReceiptOutline } from 'react-icons/io5';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/auth';
+import { api } from '../../services/api';
 
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
@@ -13,10 +15,27 @@ import { Ingredients } from '../../components/Ingredients';
 import { Counter } from '../../components/Counter';
 import { Button } from '../../components/Button';
 
-import ravanello from '../../assets/ravanello.png';
+import photoPlaceholder from '../../assets/photoPlaceholder.png';
 
 export function Dish() {
+  const [dish, setDish] = useState({});
   const { user } = useAuth();
+
+  const { id } = useParams();
+
+  const photoUrl = dish.photo
+    ? `${api.defaults.baseURL}/files/${dish.photo}`
+    : photoPlaceholder;
+
+  useEffect(() => {
+    async function fetchDish() {
+      const response = await api.get(`/dishes/${id}`);
+
+      setDish(response.data);
+    }
+
+    fetchDish();
+  }, []);
   
   return (
     <Container>
@@ -26,29 +45,30 @@ export function Dish() {
       </div>
 
       <main>
-        <Content isAdmin={user.isAdmin}>
-          <img src={ravanello} alt="" />
+        <Content 
+          isAdmin={user.isAdmin}
+          Numberingredients={dish.ingredients?.length}
+        >
+          <img src={photoUrl} alt="" />
           
           <div>
-            <h2>Salada Ravanello</h2>
+            <h2>{dish.name}</h2>
             
             <p>
-              Rabanetes, folhas verdes, molho agridoce, crotons e gergelim salpicado. 
+              {dish.description ? dish.description : ''} 
             </p>
 
             <ul>
-              <Ingredients name='alface' />
-              <Ingredients name='cebola' />
-              <Ingredients name='pepino' />
-              <Ingredients name='rabanate' />
-              <Ingredients name='tomate' />
-              <Ingredients name='pão' />
-              <Ingredients name='gergelim' />
+              {dish.ingredients && dish.ingredients.map((ingredients) => (
+                <Ingredients
+                  key={String(ingredients.id)}
+                  name={ingredients.name} />
+              ))}
             </ul>
 
             <div>
               {!user.isAdmin && <Counter quantity="5" />}
-              <Link to={user.isAdmin ? `/edit/1` : ''}>
+              <Link to={user.isAdmin ? `/edit/&{dish.id}` : ''}>
               <Button
                 title={user.isAdmin ? 'Editar prato' : 'pedir ∙ R$ 25,00'}
                 icon={user.isAdmin ? undefined : IoReceiptOutline}

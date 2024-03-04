@@ -52,6 +52,7 @@ export const Content = styled.div`
   > img {
     margin: 0 auto;
     width: 26.4rem;
+    height: 26.4rem;
     border-radius: 50%;
   }
   
@@ -80,7 +81,8 @@ export const Content = styled.div`
     }
 
     > ul {
-      columns: 3;
+      columns: ${({ Numberingredients }) => 
+        (Numberingredients >= 3 ? 3 : Numberingredients)};
       text-align: center;
       gap: 1rem;
 

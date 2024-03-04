@@ -3,7 +3,7 @@ import { Footer } from '../../components/Footer';
 import { ItemDish } from '../../components/ItemDish';
 
 import { Container, Content } from './styles';
-import ravanello from '../../assets/ravanello.png';
+import photoPlaceholder from '../../assets/photoPlaceholder.png';
 
 export function Favorites() {
   return (
@@ -17,56 +17,56 @@ export function Favorites() {
           <ul>
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 name={`Salada Radish`}
                 btnTitle="Remover dos Favoritos"
               />
             </li>
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 name={`Salada Radish`}
                 btnTitle="Remover dos Favoritos"
               />
             </li>
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 name={`Salada Radish`}
                 btnTitle="Remover dos Favoritos"
               />
             </li>
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 name={`Salada Radish`}
                 btnTitle="Remover dos Favoritos"
               />
             </li>
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 name={`Salada Radish`}
                 btnTitle="Remover dos Favoritos"
               />
             </li>
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 name={`Salada Radish`}
                 btnTitle="Remover dos Favoritos"
               />
             </li>
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 name={`Salada Radish`}
                 btnTitle="Remover dos Favoritos"
               />
             </li>
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 name={`Salada Radish`}
                 btnTitle="Remover dos Favoritos"
               />

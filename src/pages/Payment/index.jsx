@@ -7,7 +7,7 @@ import { Button } from '../../components/Button';
 import { ItemPayment } from '../../components/ItemPayment';
 
 import { Container, Content } from './styles';
-import ravanello from '../../assets/ravanello.png';
+import photoPlaceholder from '../../assets/photoPlaceholder.png';
 
 export function Payment() {
   return (
@@ -20,7 +20,7 @@ export function Payment() {
           <ul>
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 quantity={1}
                 name={`Salada Radish`}
                 amount={25.97}
@@ -30,7 +30,7 @@ export function Payment() {
 
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 quantity={1}
                 name={`Salada Radish`}
                 amount={25.97}
@@ -40,7 +40,7 @@ export function Payment() {
 
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 quantity={1}
                 name={`Salada Radish`}
                 amount={25.97}
@@ -50,7 +50,7 @@ export function Payment() {
 
             <li>
               <ItemDish
-                img={ravanello}
+                img={photoPlaceholder}
                 quantity={1}
                 name={`Salada Radish`}
                 amount={25.97}
@@ -66,7 +66,7 @@ export function Payment() {
           <Button title="Avançar" />
         </Link>
 
-        <section id='payment'>
+        <section id="payment">
           <h1>Pagamento</h1>
           <ItemPayment />
         </section>
