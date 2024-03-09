@@ -23,7 +23,7 @@ export function Card({ dish, favorite = false }) {
     <Container>
       {user.isAdmin ? (
         <button>
-          <Link to="/edit/1">
+          <Link to={`/edit/${dish.id}`}>
             <img src={Edit} />
           </Link>
         </button>
