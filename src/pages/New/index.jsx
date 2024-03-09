@@ -37,6 +37,10 @@ export function New() {
       );
     }
 
+    if(ingredients.length === 0) {
+      return alert('Informe ao menos o ingrediente principal do prato!');
+    }
+
     const response = await api.post('/dishes', {
       name,
       category,
@@ -146,7 +150,8 @@ export function New() {
               <AddIngredients 
                 key={String(index)} 
                 value={ingredients}
-                onClick={(e) => handleRemoveIngredients(ingredients)}
+                onClick={(e) => 
+                handleRemoveIngredients(ingredients)}
                 size={String(ingredients.length)} 
               />
              ))}
