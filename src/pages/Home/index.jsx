@@ -16,19 +16,19 @@ import { useState } from 'react';
 
 export function Home() {
   const [dishes, setDishes] = useState([]);
-  const [search, setSearch] = useState([]);
+  const [search, setSearch] = useState('');
   useEffect(() => {
-    async function fetchDishes(category) {
-      const response = await api.get(`/dishes/?search=`);
+    async function fetchDishes() {
+      const response = await api.get(`/dishes/?search=${search}`);
       setDishes(response.data);
       console.log(response.data);
     }
 
     fetchDishes();
-  }, []);
+  }, [search]);
    return (
     <Container>
-      <Header />
+      <Header onChange={(e) => setSearch(e.target.value)} />
       <Banner>
         <picture>
         <source media="(max-width: 768px)" srcSet={foots100} />

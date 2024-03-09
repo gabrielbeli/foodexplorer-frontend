@@ -17,7 +17,7 @@ import explorer from '../../assets/icons/explorer.svg';
 import { Container } from './styles';
 import { TextLink } from '../TextLink';
 
-export function Header() {
+export function Header({ onChange }) {
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
 
@@ -100,6 +100,7 @@ export function Header() {
               <Input
                 type="search"
                 placeholder="Busque por pratos ou ingredientes"
+                onChange={onChange}
               />
             </div>
 
@@ -133,7 +134,7 @@ export function Header() {
         )}
        {showMenu && <h2>Menu</h2>}
       </header>
-      <Menu show={showMenu} />      
+      <Menu show={showMenu} onChange={onChange} />      
     </Container>
   );
 }
