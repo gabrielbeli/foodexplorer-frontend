@@ -107,10 +107,16 @@ export const Container = styled.div`
       }
 
       > p {
-        display: block;
         color: ${({ theme }) => theme.LIGHT[400]};
         font-size: 1.4rem;
         line-height: 2.2rem;
+        text-overflow: ellipsis;
+
+        overflow: hidden;
+        display: -webkit-box;
+        max-height: 4.4rem;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
       }
 
       > span {

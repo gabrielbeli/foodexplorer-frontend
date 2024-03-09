@@ -1,16 +1,23 @@
 /* eslint-disable react/prop-types */
 import { FiHeart } from 'react-icons/fi';
-import Edit from '../../assets/icons/pencil.svg';
 import { Link } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/auth';
-import { Container } from './styles';
+import { api } from '../../services/api';
 
 import { Counter } from '../Counter';
 import { Button } from '../Button';
+import Edit from '../../assets/icons/pencil.svg';
+import photoPlaceholder from '../../assets/photoPlaceholder.png';
+
+import { Container } from './styles';
 
 export function Card({ dish, favorite = false }) {
   const { user } = useAuth();
+
+  const photoUrl = dish.photo
+    ? `${api.defaults.baseURL}/files/${dish.photo}`
+    : photoPlaceholder;
   
   return (
     <Container>
@@ -25,11 +32,16 @@ export function Card({ dish, favorite = false }) {
           <FiHeart className={favorite ? 'fav' : ''} />
         </button>
       )}
-      <Link to="/dish/1">
-        <img src={dish.image} alt={dish.name} />
+      <Link to={`/dish/${dish.id}`}>
+        <img src={photoUrl} alt={dish.name} />
         <h3>{dish.name} &gt;</h3>
         <p>{dish.description}</p>
-        <span>R$ {dish.price}</span>
+        <span>R$ 
+          {dish.price.toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+          })}
+        </span>
       </Link>
       {!user.isAdmin && (
         <div>
