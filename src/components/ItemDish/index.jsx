@@ -1,12 +1,19 @@
 /* eslint-disable react/prop-types */
+import { useNavigate } from 'react-router-dom';
 import { Container } from './styles';
 
-export function ItemDish({ quantity, name, amount, img, btnTitle, ...rest}) {
+export function ItemDish({ quantity, name, amount, img, btnTitle, dishId, ...rest}) {
+  const navigate = useNavigate();
+
+  function goToDish() {
+    navigate(`/dish/${dishId}`);
+  }
+
   return (
     <Container>
-      <img src={img} alt={name} />
+      <img src={img} alt={name} onClick={goToDish} />
       <div>
-        <h2>
+        <h2 onClick={goToDish}>
           {quantity && (`${quantity} x -`)} {name}{' '}
           {amount && <small>R$ {amount}</small>}
         </h2>

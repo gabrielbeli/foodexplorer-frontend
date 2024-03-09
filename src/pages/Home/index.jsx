@@ -21,7 +21,6 @@ export function Home() {
     async function fetchDishes() {
       const response = await api.get(`/dishes/?search=${search}`);
       setDishes(response.data);
-      console.log(response.data);
     }
 
     fetchDishes();

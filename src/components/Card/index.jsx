@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import { FiHeart } from 'react-icons/fi';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 
 import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
@@ -12,12 +13,40 @@ import photoPlaceholder from '../../assets/photoPlaceholder.png';
 
 import { Container } from './styles';
 
-export function Card({ dish, favorite = false }) {
+export function Card({ dish }) {
+  const [favorite, setFavorite] = useState(false);
+  const [idFavorite, setIdFavorite] = useState(null);
   const { user } = useAuth();
 
   const photoUrl = dish.photo
     ? `${api.defaults.baseURL}/files/${dish.photo}`
     : photoPlaceholder;
+  
+  async function handleFavorite() {
+    console.log(idFavorite);
+    if (favorite) {
+      await api.delete(`/favorites/${idFavorite}`);
+      setFavorite(false);
+    } else {
+      const { id } = await api.post('/favorites', { dish_id: dish.id });
+      setFavorite(true);
+      setIdFavorite(id);
+    }
+  }
+
+  useEffect(() => {
+    async function fetchFavorites() {
+      const response = await api.get('/favorites');
+
+      const favorite = response.data.find(
+        (favorite) => favorite.dish_id === dish.id
+      );
+      setFavorite(favorite ? true : false);
+      setIdFavorite(favorite ? favorite.id : null);
+    }
+
+    fetchFavorites();
+  }, []);
   
   return (
     <Container>
@@ -28,7 +57,7 @@ export function Card({ dish, favorite = false }) {
           </Link>
         </button>
       ) : (
-        <button>
+        <button onClick={handleFavorite}>
           <FiHeart className={favorite ? 'fav' : ''} />
         </button>
       )}

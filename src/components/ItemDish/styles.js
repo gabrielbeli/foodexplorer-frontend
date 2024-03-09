@@ -5,11 +5,17 @@ export const Container = styled.div`
   align-items: center;
   gap: 1.3rem;
 
+  transition: filter 0.2s;
+  &:hover {
+    filter: brightness(0.9);
+  }
+
   > img {
     width: 7.2rem;
     height: 7.2rem;
     border-radius: 50%;
     object-fit: cover;
+    cursor: pointer;
   }
 
   > div {
@@ -22,6 +28,7 @@ export const Container = styled.div`
       display: flex;
       align-items: baseline;
       gap: 1rem;
+      cursor: pointer;
 
       > small {
         color: ${({ theme }) => theme.LIGHT[400]};
