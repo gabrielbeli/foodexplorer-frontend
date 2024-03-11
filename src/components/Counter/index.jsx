@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { Container } from './styles';
 import { FiPlus, FiMinus } from 'react-icons/fi';
-import { useState } from 'react';
 
 export function Counter({quantity, setQuantity}) {
   

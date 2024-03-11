@@ -6,10 +6,11 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 import { api } from '../../services/api';
 
-import { Counter } from '../Counter';
-import { Button } from '../Button';
 import Edit from '../../assets/icons/pencil.svg';
 import photoPlaceholder from '../../assets/photoPlaceholder.png';
+
+import { Counter } from '../Counter';
+import { Button } from '../Button';
 
 import { Container } from './styles';
 

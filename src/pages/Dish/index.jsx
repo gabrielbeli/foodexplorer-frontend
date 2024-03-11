@@ -19,13 +19,18 @@ import photoPlaceholder from '../../assets/photoPlaceholder.png';
 
 export function Dish() {
   const [dish, setDish] = useState({});
-  const { user } = useAuth();
+  const [quantity, setQuantity] = useState(1);
 
+  const { user } = useAuth();
   const { id } = useParams();
 
   const photoUrl = dish.photo
     ? `${api.defaults.baseURL}/files/${dish.photo}`
     : photoPlaceholder;
+
+  async function handleRequest() {
+    await api.post('/requests', { quantity, dish_id: dish.id });
+  }
 
   useEffect(() => {
     async function fetchDish() {
@@ -67,10 +72,23 @@ export function Dish() {
             </ul>
 
             <div>
-              {!user.isAdmin && <Counter quantity="5" />}
+              {!user.isAdmin && (
+                <Counter quantity={quantity} setQuantity={setQuantity} />
+              )}
               <Link to={user.isAdmin ? `/edit/&{dish.id}` : ''}>
               <Button
-                title={user.isAdmin ? 'Editar prato' : 'pedir ∙ R$ 25,00'}
+                onClick={user.isAdmin ? () => {} : handleRequest}
+                title={
+                  user.isAdmin 
+                    ? 'Editar prato' 
+                    : `pedir ∙ ${(dish.price * quantity).toLocaleString(
+                      'pt_BR',
+                      {
+                        style: 'currency',
+                        currency: 'BRL',
+                      }
+                    )}`
+                }
                 icon={user.isAdmin ? undefined : IoReceiptOutline}
               />
               </Link>
