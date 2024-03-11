@@ -15,7 +15,14 @@ export function ItemDish({ quantity, name, amount, img, btnTitle, dishId, ...res
       <div>
         <h2 onClick={goToDish}>
           {quantity && (`${quantity} x -`)} {name}{' '}
-          {amount && <small>R$ {amount}</small>}
+          {amount && (
+            <small>
+              {amount.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL',
+              })}
+            </small>
+          )}
         </h2>
         <button {...rest}>{btnTitle}</button>
       </div>

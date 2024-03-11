@@ -16,14 +16,20 @@ import { Container } from './styles';
 export function Card({ dish }) {
   const [favorite, setFavorite] = useState(false);
   const [idFavorite, setIdFavorite] = useState(null);
+  const [quantity, setQuantity] = useState(1);
+
   const { user } = useAuth();
 
   const photoUrl = dish.photo
     ? `${api.defaults.baseURL}/files/${dish.photo}`
     : photoPlaceholder;
   
+  async function handleRequest() {
+    await api.post('/requests', { quantity,dish_id: dish.id });
+  }
+  
   async function handleFavorite() {
-    console.log(idFavorite);
+
     if (favorite) {
       await api.delete(`/favorites/${idFavorite}`);
       setFavorite(false);
@@ -74,8 +80,8 @@ export function Card({ dish }) {
       </Link>
       {!user.isAdmin && (
         <div>
-          <Counter />
-          <Button title="incluir" />
+          <Counter quantity={quantity} setQuantity={setQuantity} />
+          <Button title="incluir" onClick={handleRequest} />
         </div>
       )}
     </Container>
