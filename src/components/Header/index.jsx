@@ -21,7 +21,7 @@ export function Header({ onChange }) {
   const [showMenu, setShowMenu] = useState(false);
   const navigate = useNavigate();
 
-  const { user, signOut } = useAuth();
+  const { user, signOut, userRequests } = useAuth();
 
   function handleSignOut() {
     signOut();
@@ -117,7 +117,7 @@ export function Header({ onChange }) {
             <Link to={user.isAdmin ? '/requests' : '/payment'} id="receiptDesktop">
             <Button
               id="redBtn"
-              title={user.isAdmin ? `Pedidos (${0})` : `(${0})`}
+              title={user.isAdmin ? `Pedidos (${0})` : `(${userRequests.length})`}
               icon={user.isAdmin ? IoReceiptOutline : FiShoppingCart}
             />
             </Link>
@@ -127,7 +127,9 @@ export function Header({ onChange }) {
               <button id="receipt">
                 {user.isAdmin ? <IoReceiptOutline /> : <FiShoppingCart />}
 
-                <span>0</span>
+                <span>
+                  {user.isAdmin ? 0 : userRequests.length}
+                </span>
               </button>
             </Link>            
           </>

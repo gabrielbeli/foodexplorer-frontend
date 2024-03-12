@@ -84,6 +84,9 @@ export const Container = styled.div`
 
     > button {
       padding: 4px 0;
+      background-color: ${({ inCart, theme }) => inCart
+        ? `${theme.TINTS.MINT}`
+        : `${({ theme }) => theme.TINTS.TOMATO[100]}`};
     }
   }
 

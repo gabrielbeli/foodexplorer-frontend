@@ -21,7 +21,7 @@ export function Dish() {
   const [dish, setDish] = useState({});
   const [quantity, setQuantity] = useState(1);
 
-  const { user } = useAuth();
+  const { user, createRequests } = useAuth();
   const { id } = useParams();
 
   const photoUrl = dish.photo
@@ -29,7 +29,7 @@ export function Dish() {
     : photoPlaceholder;
 
   async function handleRequest() {
-    await api.post('/requests', { quantity, dish_id: dish.id });
+    await createRequests({ quantity, dish_id: dish.id });
   }
 
   useEffect(() => {

@@ -1,14 +1,48 @@
 import { Header } from '../../components/Header';
 import { Footer } from '../../components/Footer';
 import { StatusSelect } from '../../components/StatusSelect';
+import { useEffect, useState } from 'react';
 
 import { useAuth } from '../../hooks/auth';
 
 import { Container, Content, RequestMobile } from './styles';
+import { api } from '../../services/api';
 
 export function Requests() {
   const { user } = useAuth;
   
+  const [purchases, setPurchases] = useState([]);
+
+  async function handleStatus(purchase_id, status) {
+    await api.patch(`purchases/${purchase_id}`, { status });
+  }
+
+  useEffect(() => {
+    async function fetchPurchases() {
+      const response = await api.get('/purchases');
+      const purchasesWithDate = response.data.map((purchase) => {
+        const created = new Date(purchase.update_at);
+
+        created.setTime(created.getTime() - 3 * 3600000);
+
+        const date = created.toLocaleString('default', {
+          day: '2-digit',
+          month: '2-digit',
+        });
+        const hours = String(created.getHours()).padStart(2, '0');
+        const minutes = String(created.getMinutes()).padStart(2, '0');
+        const updated_at = `${date} às ${hours}:${minutes}`;
+
+        return {
+          ...purchase,
+          updated_at,
+        };
+      });
+      setPurchases(purchasesWithDate.reverse());
+    }
+    fetchPurchases();
+  }, []);
+
   return (
     <Container>
       <Header />
@@ -18,69 +52,24 @@ export function Requests() {
           {user.isAdmin ? <h1>Pedidos</h1> : <h1>Histórico de pedidos</h1>}
 
           <section id="requests">
-            <RequestMobile isAdmin={user.isAdmin}>
+            {purchases.map((purchase) => (
+              <RequestMobile isAdmin={user.isAdmin} key={purchase.id}>
+                <span className='code'>
+                  {String(purchase.id).padStart(6, '0')}
+                </span>
+                <span className="time">{purchase.updated_at}</span>
 
-              <span className='code'>000004</span>
-
-              <span className='time'>15/05 às 19h00</span>
-              
-              <p className='details'>
-                1 x Salada radish, 
-                1 x Torradas de Parma, 
-                1 x Chá de Canela, 
-                1 x Suco de Maracujá
-              </p>
-
-              <StatusSelect className="status" isDisabled={!user.isAdmin} />
-            </RequestMobile>
-
-            <RequestMobile isAdmin={user.isAdmin}>
-
-              <span className='code'>000004</span>
-
-              <span className='time'>15/05 às 19h00</span>
-              
-              <p className='details'>
-                1 x Salada radish, 
-                1 x Torradas de Parma, 
-                1 x Chá de Canela, 
-                1 x Suco de Maracujá
-              </p>
-
-              <StatusSelect className="status" isDisabled={!user.isAdmin} />
-            </RequestMobile>
-
-            <RequestMobile isAdmin={user.isAdmin}>
-
-              <span className='code'>000004</span>
-
-              <span className='time'>15/05 às 19h00</span>
-              
-              <p className='details'>
-                1 x Salada radish, 
-                1 x Torradas de Parma, 
-                1 x Chá de Canela, 
-                1 x Suco de Maracujá
-              </p>
-
-              <StatusSelect className="status" isDisabled={!user.isAdmin} />
-            </RequestMobile>
-            
-            <RequestMobile isAdmin={user.isAdmin}>
-
-              <span className='code'>000004</span>
-
-              <span className='time'>15/05 às 19h00</span>
-              
-              <p className='details'>
-                1 x Salada radish, 
-                1 x Torradas de Parma, 
-                1 x Chá de Canela, 
-                1 x Suco de Maracujá
-              </p>
-
-              <StatusSelect className="status" isDisabled={!user.isAdmin} />
-            </RequestMobile>
+                <p className="details">{purchase.details}</p>
+                <StatusSelect
+                  className="status"
+                  isDisabled={!user.isAdmin}
+                  value={purchase.status}
+                  onChange={(e) => {
+                  handleStatus(purchase.id, e.value);
+                  }}
+                />
+              </RequestMobile>
+            ))}
           </section>
 
           <table>
@@ -93,58 +82,26 @@ export function Requests() {
               </tr>
             </thead>
           <tbody>
-            <tr>
-
+          {purchases.map((purchase) => (
+            <tr key={purchase.id}>
               <td>
-
-              <StatusSelect isDisabled={!user.isAdmin} />
-
+                <StatusSelect
+                  isDisabled={!user.isAdmin}
+                  value={purchase.status}
+                  onChange={(e) => {
+                  handleStatus(purchase.id, e.value);
+                  }}
+                />
               </td>
-             
-              <td className='status'>000004</td>
-              
-              <td className='details'>
-                1 x Salada radish, 
-                1 x Torradas de Parma, 
-                1 x Chá de Canela, 
-                1 x Suco de Maracujá
+
+              <td className="code">
+                {String(purchase.id).padStart(6, '0')}
               </td>
-              <td className='time'>15/05 às 19h00</td>
+
+              <td className="details">{purchase.details}</td>
+              <td className="time">{purchase.updated_at}</td>
             </tr>
-            <tr>
-              <td>
-
-                <StatusSelect isDisabled={!user.isAdmin} />
-
-              </td>
-
-              <td className='status'>000003</td>
-
-              <td className='details'>
-                1 x Salada radish, 
-                1 x Torradas de Parma, 
-                1 x Chá de Canela, 
-                1 x Suco de Maracujá
-              </td>
-              <td className='time'>15/05 às 19h00</td>              
-            </tr>
-            <tr>
-              <td>
-
-                <StatusSelect isDisabled={!user.isAdmin} />
-
-              </td>
-
-              <td className='status'>000002</td>
-
-              <td className='details'>
-                1 x Salada radish, 
-                1 x Torradas de Parma, 
-                1 x Chá de Canela, 
-                1 x Suco de Maracujá
-              </td>
-              <td className='time'>15/05 às 19h00</td>              
-            </tr>                        
+              ))}
           </tbody>
           </table>
         </Content>
