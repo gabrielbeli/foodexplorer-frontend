@@ -3,6 +3,7 @@ import { IoReceiptOutline } from 'react-icons/io5';
 
 import { useAuth } from '../../hooks/auth';
 
+import InputMask from 'react-input-mask';
 import creditCard from '../../assets/icons/cardcredit.svg';
 import pix from '../../assets/icons/pix.svg';
 import qrCode from '../../assets/icons/qr-code.svg';
@@ -17,9 +18,13 @@ export function ItemPayment() {
   const [pixSelected, setPixSelected] = useState(true);
   const [purchase, setPurchase] = useState('initial');
   const [pixCode, setPixCode] = useState('');
-  const inputCopy = useRef();
-
+  
   const [numberCard, setNumberCard] = useState('');
+  const [validityCard, setValidityCard] = useState('');
+  const [CVCCard, setCVCCard] = useState('');
+  
+  const inputCopy = useRef();
+  
   const { createPurchases, userPurchases, userRequests } = useAuth();
 
   function copyText(e) {
@@ -38,6 +43,11 @@ export function ItemPayment() {
     if (userRequests.length === 0) {
       return alert('Adicione ao menos um item no carrinho');
     }
+
+    if (!numberCard || !validityCard || !CVCCard) {
+      return alert('Informe todos os dados do cartão');
+    }
+    
     await createPurchases();
     setPurchase('await');
   }
@@ -49,7 +59,7 @@ export function ItemPayment() {
     }
     const lastPurchase = userPurchases[userPurchases.length -1];
     if (lastPurchase) {
-      console.log(lastPurchase);
+      
       if (lastPurchase.status === 'pending') {
         setPurchase('await');
       } else if (lastPurchase.status === 'preparing') {
@@ -111,26 +121,45 @@ export function ItemPayment() {
         )}
 
         {!pixSelected && purchase == 'initial' && (
-          <form action="">
+          <form onSubmit={(e) => e.preventDefault()}>
             <div className="input-wrapper">
               <label htmlFor="card">Número do cartão</label>
-              <input type="number" id="card" placeholder="0000 0000 0000 0000" />              
+              <InputMask
+                id="card"
+                type="text"
+                mask="9999 9999 9999 9999"
+                placeholder="0000 0000 0000 0000"
+                onChange={(e) => setNumberCard(e.target.value)} required 
+              />              
             </div>
 
             <div id="twoColumns">
               <div className="input-wrapper">
                 <label htmlFor="validity">Validade</label>
-                <input type="number" id="validity" placeholder="04/25" />
+                <input
+                  id="validity" 
+                  type="text"
+                  mask="99/99"
+                  required 
+                  placeholder="04/07"
+                  onChange={(e) => setValidityCard(e.target.value)}
+                />
               </div>
 
               <div className="input-wrapper">
                 <label htmlFor="codeCard">CVC</label>
-                <input type="number" id="codeCard" placeholder="000" />
+                <input 
+                  id="codeCard"
+                  type="text"
+                  mask="999" 
+                  placeholder="000"
+                  required
+                  onChange={(e) => setCVCCard(e.target.value)}
+                />
               </div>
             </div>
 
             <Button
-              type="button"
               icon={IoReceiptOutline}
               title="Finalizar pagamento"
               onClick={handlePurchase}
