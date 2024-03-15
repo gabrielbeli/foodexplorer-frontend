@@ -6,42 +6,38 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../hooks/auth';
 
 import { Container, Content, RequestMobile } from './styles';
-import { api } from '../../services/api';
 
 export function Requests() {
-  const { user } = useAuth;
+  const { user, userPurchases, updateStatusPurchase } = useAuth();
   
   const [purchases, setPurchases] = useState([]);
 
   async function handleStatus(purchase_id, status) {
-    await api.patch(`purchases/${purchase_id}`, { status });
+    await updateStatusPurchase({purchase_id, status });
   }
 
   useEffect(() => {
-    async function fetchPurchases() {
-      const response = await api.get('/purchases');
-      const purchasesWithDate = response.data.map((purchase) => {
-        const created = new Date(purchase.update_at);
+    const purchasesWithDate = userPurchases.map((purchase) => {
+    const created = new Date(purchase.update_at);
 
-        created.setTime(created.getTime() - 3 * 3600000);
+    created.setTime(created.getTime() - 3 * 3600000);
 
-        const date = created.toLocaleString('default', {
-          day: '2-digit',
-          month: '2-digit',
-        });
-        const hours = String(created.getHours()).padStart(2, '0');
-        const minutes = String(created.getMinutes()).padStart(2, '0');
-        const updated_at = `${date} às ${hours}:${minutes}`;
+    const date = created.toLocaleString('default', {
+      day: '2-digit',
+      month: '2-digit',
+    });
+    const hours = String(created.getHours()).padStart(2, '0');
+    const minutes = String(created.getMinutes()).padStart(2, '0');
+    const updated_at = `${date} às ${hours}:${minutes}`;
 
-        return {
-          ...purchase,
-          updated_at,
-        };
-      });
-      setPurchases(purchasesWithDate.reverse());
-    }
-    fetchPurchases();
-  }, []);
+    return {
+      ...purchase,
+      updated_at,
+    };
+  });
+  
+  setPurchases(purchasesWithDate.reverse());
+  }, [userPurchases]);
 
   return (
     <Container>

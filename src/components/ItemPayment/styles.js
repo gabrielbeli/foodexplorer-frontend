@@ -87,6 +87,12 @@ export const Container = styled.div`
         font-size: clamp(1.4rem, -1rem + 7.5vw, 2rem);
         font-weight: 700;
         line-height: 3.2rem;
+        > span {
+          display: inline-block;
+          font-size: clamp(0.9rem, 0.6857rem + 0.6696vw, 1.2rem);
+          line-height: 1.2rem;
+          color: ${({ theme }) => theme.TINTS.TOMATO[400]};
+        }
       }
     }
 
