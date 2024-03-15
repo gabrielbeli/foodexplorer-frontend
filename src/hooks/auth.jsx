@@ -121,6 +121,8 @@ function AuthProvider({ children }) {
       if (user && token) {
         api.defaults.headers.common['Authorization'] `Bearer ${token}`;
 
+       try {
+
         const response = await api.get('/requests');
         localStorage.setItem( 
           '@foodexplorer:requests', 
@@ -132,7 +134,9 @@ function AuthProvider({ children }) {
           '@foodexplorer:purchases',
           JSON.stringify(purchases.data)
         );
-
+       } catch (error) {
+         return;
+       }
         setData({
           user: JSON.parse(user),          
           token,

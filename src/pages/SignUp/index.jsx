@@ -7,11 +7,14 @@ import { TextLink } from '../../components/TextLink';
 import { api } from '../../services/api';
 
 import { Container, Form } from './styles';
+import { useAuth } from '../../hooks/auth';
 
 export function SignUp() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [btnDisabled, setBtnDisabled] = useState(false);
+  const { signIn } = useAuth();
 
   const navigate = useNavigate();
 
@@ -25,12 +28,14 @@ export function SignUp() {
     }
 
     try {
+      setBtnDisabled(true);
       await api.post('/users', { name, email, password });
 
       setEmail('');
       setPassword('');
       setName('');
       alert('Cadastro realizado com sucesso!');
+      await signIn({ email, password });
       navigate('/');
     } catch (error) {
       if (error.response) {
@@ -38,6 +43,7 @@ export function SignUp() {
       } else {
         alert('Não foi possível cadastrar');
       }
+      setBtnDisabled(false);
     }
   }
 
@@ -93,7 +99,11 @@ export function SignUp() {
        onChange={(e) => setPassword(e.target.value)}
       />
 
-      <Button title="Criar conta" onClick={handleSignUp} />
+      <Button 
+        title="Criar conta" 
+        onClick={handleSignUp}
+        disabled={btnDisabled} 
+      />
       <TextLink name="Já tenho uma conta" to={-1}/>
 
     </Form>

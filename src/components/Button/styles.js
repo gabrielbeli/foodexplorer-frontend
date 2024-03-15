@@ -19,6 +19,12 @@ export const Container = styled.button`
 
   cursor: pointer;
 
+  &:disabled {
+    opacity: 0.5;
+    filter: none;
+    cursor: wait;
+  }
+
   > svg {
     font-size: 2.4rem;
   }
