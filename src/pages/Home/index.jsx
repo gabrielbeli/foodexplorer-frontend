@@ -27,7 +27,11 @@ export function Home() {
   }, [search]);
    return (
     <Container>
-      <Header onChange={(e) => setSearch(e.target.value)} />
+      <Header 
+        onChange={(e) => 
+        setSearch(e.target.value)}
+        searchDisabled={false} 
+      />
       <Banner>
         <picture>
         <source media="(max-width: 768px)" srcSet={foots100} />

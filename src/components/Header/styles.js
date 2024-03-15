@@ -20,6 +20,9 @@ export const Container = styled.header`
     flex: 2;
     padding-left: 1.2rem;
 
+    opacity: ${({ searchDisabled }) => (searchDisabled ? 0.5 : 1)};
+    cursor: ${({ searchDisabled }) => (searchDisabled ? 'not-allowed' : 'unset')};
+
     > svg {
       min-width: 1.2rem;
     }
