@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { Container, Form, Textarea } from './styles';
 import { FiChevronLeft, FiUpload } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { toast } from 'react-toastify';
 
 import { api } from '../../services/api';
 
@@ -32,13 +34,13 @@ export function New() {
     }
 
     if (newIngredients != '') {
-      return alert(
+      return toast.warn(
         `Clique no + para adicionar o ingrediente tag: ${newIngredients}. ou limpe o campo!`
       );
     }
 
-    if(ingredients.length === 0) {
-      return alert('Informe ao menos o ingrediente principal do prato!');
+    if (ingredients.length === 0) {
+      return toast.warn('Informe ao menos o ingrediente principal do prato!');
     }
 
     const response = await api.post('/dishes', {
@@ -71,7 +73,7 @@ export function New() {
       if (isNewIngredients) {
         setIngredients((prevState) => [...prevState, newIngredients]);        
       } else {
-        alert('Ingrediente já adicionado');
+        toast.warn('Ingrediente já adicionado');
       }
     }
 

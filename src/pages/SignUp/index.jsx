@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../../components/Input';
@@ -20,11 +21,14 @@ export function SignUp() {
 
   async function handleSignUp() {
     if (!name || !email || !password) {
-      return;
+      return toast.warn('Preencha todos os campos!');
     }
 
-    if (!email.includes('@') || password.length < 6) {
-      return;
+    if (!email.includes('@')) {
+      return toast.warn('Informe um e-mail válido!');
+    }
+    if (password.length < 6) {
+      return toast.warn('Informe uma senha válida!');
     }
 
     try {
@@ -34,14 +38,14 @@ export function SignUp() {
       setEmail('');
       setPassword('');
       setName('');
-      alert('Cadastro realizado com sucesso!');
+      toast.success('Cadastro realizado com sucesso!');
       await signIn({ email, password });
       navigate('/');
     } catch (error) {
       if (error.response) {
-        alert(error.response.data.message);
+        toast.error(error.response.data.message);
       } else {
-        alert('Não foi possível cadastrar');
+        toast.error('Não foi possível cadastrar');
       }
       setBtnDisabled(false);
     }

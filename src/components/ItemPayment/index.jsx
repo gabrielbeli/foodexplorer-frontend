@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { useEffect, useRef, useState } from "react";
 import { IoReceiptOutline } from 'react-icons/io5';
 
 import { useAuth } from '../../hooks/auth';
+import { toast } from 'react-toastify';
 
 import InputMask from 'react-input-mask';
 import creditCard from '../../assets/icons/cardcredit.svg';
@@ -41,11 +43,11 @@ export function ItemPayment() {
 
   async function handlePurchase() {
     if (userRequests.length === 0) {
-      return alert('Adicione ao menos um item no carrinho');
+      return toast.warn('Adicione ao menos um item no carrinho');
     }
 
     if (!numberCard || !validityCard || !CVCCard) {
-      return alert('Informe todos os dados do cartão');
+      return toast.warn('Informe todos os dados do cartão');
     }
     
     await createPurchases();
