@@ -18,7 +18,7 @@ function AuthProvider({ children }) {
     purchase_id, status }) {
       await api.patch(`purchases/${purchase_id}`, { status });
 
-      const purchases = await api.get('/puchases');
+      const purchases = await api.get('/purchases');
       localStorage.setItem( 
         '@foodexplorer:puchases', 
         JSON.stringify(purchases.data));
@@ -74,10 +74,11 @@ function AuthProvider({ children }) {
       );
 
       const purchases = await api.get('/purchases');
+
       localStorage.setItem(
-        '@foodexplorer:purchases',
-        JSON.stringify(purchases.data)
-      );
+        '@foodexplorer:purchases', 
+        JSON.stringify(purchases.data));
+
 
       setData({
         user,
@@ -119,7 +120,7 @@ function AuthProvider({ children }) {
         '@foodexplorer:token');
 
       if (user && token) {
-        api.defaults.headers.common['Authorization'] `Bearer ${token}`;
+        api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
 
        try {
 
