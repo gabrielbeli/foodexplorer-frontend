@@ -1,95 +1,95 @@
 /* eslint-disable no-unused-vars */
-import { useEffect, useRef, useState } from "react";
-import { IoReceiptOutline } from 'react-icons/io5';
+import { useEffect, useRef, useState } from "react"
+import { IoReceiptOutline } from 'react-icons/io5'
 
-import { useAuth } from '../../hooks/auth';
-import { toast } from 'react-toastify';
+import { useAuth } from '../../hooks/auth'
+import { toast } from 'react-toastify'
 
-import InputMask from 'react-input-mask';
-import creditCard from '../../assets/icons/cardcredit.svg';
-import pix from '../../assets/icons/pix.svg';
-import qrCode from '../../assets/icons/qr-code.svg';
-import knifeFork from '../../assets/icons/knifeFork.svg';
-import check from '../../assets/icons/check.svg';
-import clock from '../../assets/icons/clock.svg';
-import { Button } from '../Button';
+import InputMask from 'react-input-mask'
+import creditCard from '../../assets/icons/cardcredit.svg'
+import pix from '../../assets/icons/pix.svg'
+import qrCode from '../../assets/icons/qr-code.svg'
+import knifeFork from '../../assets/icons/knifeFork.svg'
+import check from '../../assets/icons/check.svg'
+import clock from '../../assets/icons/clock.svg'
+import { Button } from '../Button'
 
-import { Container } from './styles';
+import { Container } from './styles'
 
 export function ItemPayment() {
-  const [pixSelected, setPixSelected] = useState(true);
-  const [purchase, setPurchase] = useState('initial');
-  const [pixCode, setPixCode] = useState('');
+  const [pixSelected, setPixSelected] = useState(true)
+  const [purchase, setPurchase] = useState('initial')
+  const [pixCode, setPixCode] = useState('')
   
-  const [numberCard, setNumberCard] = useState('');
-  const [validityCard, setValidityCard] = useState('');
-  const [CVCCard, setCVCCard] = useState('');
+  const [numberCard, setNumberCard] = useState('')
+  const [validityCard, setValidityCard] = useState('')
+  const [CVCCard, setCVCCard] = useState('')
   
-  const inputCopy = useRef();
+  const inputCopy = useRef()
   
-  const { createPurchases, userPurchases, userRequests } = useAuth();
+  const { createPurchases, userPurchases, userRequests } = useAuth()
 
-  function copyText(e) {
-    inputCopy.current.select();
-    inputCopy.current.setSelectionRange(0, 99999);
+  function copyText() {
+    inputCopy.current.select()
+    inputCopy.current.setSelectionRange(0, 99999)
 
-    const text = inputCopy.current.value;
+    const text = inputCopy.current.value
     if (!navigator.clipboard) {
-      document.execCommand('copy');
+      document.execCommand('copy')
     } else {
-      navigator.clipboard.writeText(text);
+      navigator.clipboard.writeText(text)
     }
   }
 
   async function handlePurchase() {
     if (userRequests.length === 0) {
-      return toast.warn('Adicione ao menos um item no carrinho');
+      return toast.warn('Adicione ao menos um item no carrinho')
     }
 
     if (!numberCard || !validityCard || !CVCCard) {
-      return toast.warn('Informe todos os dados do cartão');
+      return toast.warn('Informe todos os dados do cartão')
     }
     
-    await createPurchases();
+    await createPurchases()
     toast.success('Recebemos seu pedido, receba em breve na sua casa!')
-    setPurchase('await');
+    setPurchase('await')
   }
 
   useEffect(() => {
     if (userRequests.length !== 0) {
-      setPurchase('initial');
-      return;
+      setPurchase('initial')
+      return
     }
-    const lastPurchase = userPurchases[userPurchases.length -1];
+    const lastPurchase = userPurchases[userPurchases.length -1]
     if (lastPurchase) {
       
       if (lastPurchase.status === 'pending') {
-        setPurchase('await');
+        setPurchase('await')
       } else if (lastPurchase.status === 'preparing') {
-        setPurchase('pay');
+        setPurchase('pay')
       } else {
-        setPurchase('delivered');
+        setPurchase('delivered')
       }
     } else {
-      setPurchase('initial');
+      setPurchase('initial')
     }
-  }, [userPurchases]);
+  }, [userPurchases, userRequests.length])
 
   useEffect(() => {
     const randomPixCode = (len) => {
-      let code = '';
+      let code = ''
 
       do {
         code += Math.random().toString(36).slice(2);
-      } while (code.length < len);
+      } while (code.length < len)
 
-      code = code.slice(0, len);
+      code = code.slice(0, len)
 
-      return code;
+      return code
     };
 
-    setPixCode(randomPixCode(30));
-  }, []);
+    setPixCode(randomPixCode(30))
+  }, [])
 
   return (
     <Container>
@@ -112,7 +112,7 @@ export function ItemPayment() {
       </div>
 
       <div className="payment">
-        {pixSelected && purchase == 'initial' && (
+        {pixSelected && purchase === 'initial' && (
           <>
           <img src={qrCode} alt="Qr-code" />
           <div className="copy-wrapper">
@@ -123,7 +123,7 @@ export function ItemPayment() {
           </>
         )}
 
-        {!pixSelected && purchase == 'initial' && (
+        {!pixSelected && purchase === 'initial' && (
           <form onSubmit={(e) => e.preventDefault()}>
             <div className="input-wrapper">
               <label htmlFor="card">Número do cartão</label>
@@ -170,21 +170,21 @@ export function ItemPayment() {
           </form>
         )}
 
-        {purchase != 'initial' && (
+        {purchase !== 'initial' && (
           <div id='state'>
-            {purchase == 'await' && (
+            {purchase === 'await' && (
               <>
                 <img src={clock} alt="ícone de um relógio" />
                 <p>Aguardando pagamento no caixa</p>
               </>
             )}
-            {purchase == 'pay' && (
+            {purchase === 'pay' && (
               <>
                 <img src={check} alt="ícone de afirmação" />
                 <p>Pagamento aprovado</p>
               </>
             )}
-            {purchase == 'delivered' && (
+            {purchase === 'delivered' && (
               <>
                 <img src={knifeFork} alt="ícone de uma faca e garfo" />
                 <p>
@@ -199,5 +199,5 @@ export function ItemPayment() {
         )}
       </div>
     </Container>
-  );
+  )
 }

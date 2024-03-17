@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.li`
   background-color: ${({ theme }) => theme.DARK[100]};
@@ -13,4 +13,4 @@ export const Container = styled.li`
   border-radius: 5px;
 
   list-style: none;
-`;
+`

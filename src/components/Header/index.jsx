@@ -1,70 +1,71 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';
-import { FiSearch, FiLogOut, FiShoppingCart } from 'react-icons/fi';
-import { IoReceiptOutline } from 'react-icons/io5';
-import { Link, useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import { FiSearch, FiLogOut, FiShoppingCart } from 'react-icons/fi'
+import { IoReceiptOutline } from 'react-icons/io5'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/auth'
 
-import { Input } from '../Input';
-import { Button } from '../Button';
-import { Menu } from '../Menu';
+import { Input } from '../Input'
+import { Button } from '../Button'
+import { Menu } from '../Menu'
 
-import menu from '../../assets/icons/menu.svg';
-import close from '../../assets/icons/close.svg';
-import explorer from '../../assets/icons/explorer.svg';
+import menu from '../../assets/icons/menu.svg'
+import close from '../../assets/icons/close.svg'
+import explorer from '../../assets/icons/explorer.svg'
 
-import { Container } from './styles';
-import { TextLink } from '../TextLink';
+import { Container } from './styles'
+import { TextLink } from '../TextLink'
 
 export function Header({ onChange, searchDisabled = true }) {
-  const [showMenu, setShowMenu] = useState(false);
-  const navigate = useNavigate();
+  const [showMenu, setShowMenu] = useState(false)
+  const navigate = useNavigate()
 
-  const { user, signOut, userRequests, userPurchases } = useAuth();
+  const { user, signOut, userRequests, userPurchases } = useAuth()
 
-  const [purchasesPending, setPurchasesPending] = useAuth([]);
+  const [purchasesPending, setPurchasesPending] = useAuth([])
 
   function handleSignOut() {
-    signOut();
-    navigate('/');
+    signOut()
+    navigate('/')
   }
 
-  let scrollTop;
-  let scrollLeft; 
+  let scrollTop
+  let scrollLeft
 
   function disableScroll() {
-    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    (scrollLeft = window.pageXOffset || document.documentElement.scrollLeft),
+    scrollTop = window.pageYOffset || document.documentElement.scrollTop
+    ;(scrollLeft = window.pageXOffset || document.documentElement.scrollLeft)(
     (window.onscroll = function () {
-      window.scrollTo(scrollLeft, scrollTop);
-    });
+      window.scrollTo(scrollLeft, scrollTop)
+    }),
+    )
   }
 
   function enableScroll() {
-    window.onscroll = function () {};
+    window.onscroll = () => ''
   }
 
   function handleModal() {
-    setShowMenu((prevState) => !prevState);
+    setShowMenu((prevState) => !prevState)
   }
 
   useEffect(() => {
     setPurchasesPending(
       userPurchases.filter((purchase) => purchase.status === 'pending')
-    );
-  }, [userPurchases]);
+    )
+  }, [userPurchases])
 
   useEffect(() => {
-    enableScroll();
+    enableScroll()
     function handleResize() {
       if (window.innerWidth > 768) {
-        setShowMenu(false);
-        enableScroll();
+        setShowMenu(false)
+        enableScroll()
       }
     }
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize)
     return () => {
       window.removeEventListener('resize', handleResize);
     };
@@ -79,8 +80,8 @@ export function Header({ onChange, searchDisabled = true }) {
               src={menu} 
               alt="menu hamburguer" 
               onClick={() => {
-                handleModal();
-                disableScroll();
+                handleModal()
+                disableScroll()
               }} 
             />
           )}
@@ -89,8 +90,8 @@ export function Header({ onChange, searchDisabled = true }) {
               src={close} 
               alt="menu close" 
               onClick={() => {
-                handleModal();
-                enableScroll();
+                handleModal()
+                enableScroll()
               }} 
             />
           )} 
@@ -152,5 +153,5 @@ export function Header({ onChange, searchDisabled = true }) {
         searchDisabled={searchDisabled}
       />      
     </Container>
-  );
+  )
 }

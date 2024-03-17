@@ -1,44 +1,44 @@
 /* eslint-disable no-unused-vars */
-import { FiChevronLeft, FiUpload } from 'react-icons/fi';
-import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+import { FiChevronLeft, FiUpload } from 'react-icons/fi'
+import { useNavigate, useParams } from 'react-router-dom'
+import { useEffect, useState } from 'react'
+import { toast } from 'react-toastify'
 
-import { api } from '../../services/api';
+import { api } from '../../services/api'
 
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
-import { TextLink } from '../../components/TextLink';
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
-import { Select } from '../../components/Select';
-import { AddIngredients } from '../../components/AddIngredients';
+import { Header } from '../../components/Header'
+import { Footer } from '../../components/Footer'
+import { TextLink } from '../../components/TextLink'
+import { Input } from '../../components/Input'
+import { Button } from '../../components/Button'
+import { Select } from '../../components/Select'
+import { AddIngredients } from '../../components/AddIngredients'
 
-import { Container, Form, Textarea } from './styles';
+import { Container, Form, Textarea } from './styles'
 
 export function Edit() {
-  const [photoFile, setPhotoFile] = useState(null);
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('meals');
-  const [price, setPrice] = useState(0);
-  const [description, setDescripation] = useState('');
-  const [ingredients, setIngredients] = useState([]);
-  const [newIngredients, setNewIngredients] = useState('');
+  const [photoFile, setPhotoFile] = useState(null)
+  const [name, setName] = useState('')
+  const [category, setCategory] = useState('meal')
+  const [price, setPrice] = useState(0)
+  const [description, setDescripation] = useState('')
+  const [ingredients, setIngredients] = useState([])
+  const [newIngredients, setNewIngredients] = useState('')
 
-  const navigate = useNavigate();
-  const { id } = useParams();
+  const navigate = useNavigate()
+  const { id } = useParams()
 
   async function updateDish() {
-    const notANumber = isNaN(price) || price === '';
+    const notANumber = isNaN(price) || price === ''
 
     if (!name || price < 0 || notANumber) {
-      return;
+      return
     }  
 
-    if (newIngredients != '') {
+    if (newIngredients !== '') {
       return toast.warn(
-        `Clique o + para adicionar o ingrediente tag: ${newIngredients}. ou limpe o campo!`
-      );
+        `Clique o + para adicionar o ingrediente tag: ${newIngredients}. ou limpe o campo!`,
+      )
     }
 
   try {
@@ -48,42 +48,42 @@ export function Edit() {
       price,
       description,
       ingredients,
-    });
+    })
 
     if (photoFile) {
-      const fileUploadForm = new FormData();
-      fileUploadForm.append('photo', photoFile);
+      const fileUploadForm = new FormData()
+      fileUploadForm.append('photo', photoFile)
 
       await api.patch(`dishes/photo/${id}`, fileUploadForm);
     }
 
-    toast.success('Prato atualizado!');
-    navigate(-1);
+    toast.success('Prato atualizado!')
+    navigate(-1)
   } catch (error) {
     if (error.response) {
-      toast.error(error.response.data.message);
+      toast.error(error.response.data.message)
     } else {
-      toast.error('Não foi possível atualizar!');
+      toast.error('Não foi possível atualizar!')
     }
   }
 }
 
   async function removeDish() {
-    const confirmation = confirm(`Certeza que deseja remover o ${name}`);
+    const confirmation = confirm(`Certeza que deseja remover o ${name}`)
     if (confirmation) {
-      await api.delete(`/dishes/${id}`);
-      toast.sucess('Prato removido!');
-      navigate('/');
+      await api.delete(`/dishes/${id}`)
+      toast.sucess('Prato removido!')
+      navigate('/')
     }
   }
 
   function handleNewIngredients() {
     if (newIngredients) {
-      const isNewIngredients = !ingredients.includes(newIngredients);
+      const isNewIngredients = !ingredients.includes(newIngredients)
       if (isNewIngredients) { setIngredients((prevState) => [
-        ...prevState, newIngredients]);
+        ...prevState, newIngredients])
       } else {
-        toast.warn('Ingrediente já adicionado');
+        toast.warn('Ingrediente já adicionado')
       }
     }
 
@@ -93,36 +93,35 @@ export function Edit() {
 
   function handleRemoveIngredients(ingredientsDeleted) {
     setIngredients((prevState) => prevState.filter((ingredients) => ingredients !==
-    ingredientsDeleted)
-    );
+    ingredientsDeleted),
+    )
   }
 
   function handleUploadPhoto(event) {
-    const file = event.target.files[0];
-    setPhotoFile(file);
+    const file = event.target.files[0]
+    setPhotoFile(file)
   }
 
   useEffect(() => {
     async function fetchDish() {
-      const response = await api.get(`/dishes/${id}`);
+      const response = await api.get(`/dishes/${id}`)
 
-      const dish = response.data;
+      const dish = response.data
 
-      setName(dish.name);
+      setName(dish.name)
       setIngredients(dish.ingredients.map((ingredients) =>
-      ingredients.name));
-      setPrice(dish.price);
-      setDescripation(dish.description);
-      setCategory(dish.category);
+      ingredients.name))
+      setPrice(dish.price)
+      setDescripation(dish.description)
+      setCategory(dish.category)
     }
 
-    fetchDish();
-  }, []);
+    fetchDish()
+  }, [id])
 
   return (
     <Container>
-      <Header />
-
+      
       <div className="wrapper">
         <TextLink name="voltar" icon={FiChevronLeft} to={-1}/>
       </div>
@@ -179,7 +178,7 @@ export function Edit() {
                   <AddIngredients
                     key={String(index)}
                     value={ingredients}
-                    onClick={(e) => handleRemoveIngredients(ingredients)}
+                    onClick={() => handleRemoveIngredients(ingredients)}
                     size={String(ingredients.length)}
                   />
                 ))}
@@ -232,7 +231,7 @@ export function Edit() {
           </div>
         </Form>
       </main>
-      <Footer/>
+      
     </Container>
-  );
+  )
 }

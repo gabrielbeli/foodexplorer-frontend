@@ -1,27 +1,10 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.div`
-  min-height: 100vh;
-  
+  min-height: 100vh;  
   overflow: hidden;
-  
-  display: grid;  
-  grid-template-areas: 
-    'header'
-    'banner'
-    'main'
-    'footer';
-  
-  grid-template-rows: 11.4rem 16.4rem auto 7.7rem;
 
-  > header {
-    position: sticky;
-    z-index: 2;
-    top: 0;
-  }
-
-  > main {
-    grid-area: main;    
+  > main {   
     margin-top: 6.2rem;
     padding: 0 0 2.5rem 0;
     padding-left: 5.5vw;
@@ -33,21 +16,19 @@ export const Container = styled.div`
   }
 
   @media (min-width: 769px) {
-    grid-template-rows: 9.3rem clamp(16.4rem, -18.2486rem + 54.0541vw, 42.rem) auto 7.7rem;
-    
+
     > main {
       padding-left: 0;
       padding-bottom: 4.8rem;
       gap: 4.8rem;
     } 
   }
-`;
+`
 
 export const Banner = styled.div`
   height: 12rem;
   width: min(89%, 1122px);
   margin: 4.4rem auto 0;
-  grid-area: banner;
   background: ${({ theme }) => theme.GRADIENTS[200]};
   border-radius: 3px;
 
@@ -125,5 +106,5 @@ export const Banner = styled.div`
       }
     }
   }
-`;
+`
 

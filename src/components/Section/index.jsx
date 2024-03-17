@@ -1,12 +1,12 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
-import { Swiper, SwiperSlide } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react'
 /*import { Navigation } from 'swiper';*/
-import { Container } from "./styles";
+import { Container } from "./styles"
 
-import 'swiper/css';
-import 'swiper/css/bundle';
-import 'swiper/css/navigation';
+import 'swiper/css'
+import 'swiper/css/bundle'
+import 'swiper/css/navigation'
 
 export function Section({ title, cards }) {
   const settings = {
@@ -20,7 +20,7 @@ export function Section({ title, cards }) {
         //grabCursor: true,
     },
   },
-};
+}
   return (
     <Container>
       <h2>{title}</h2>
@@ -33,5 +33,5 @@ export function Section({ title, cards }) {
         ))}
       </Swiper>
     </Container>
-  );
+  )
 }

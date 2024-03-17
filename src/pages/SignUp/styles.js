@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   min-height: 100vh;
@@ -35,7 +35,7 @@ export const Container = styled.div`
       padding-top: 16vh;
     }
   }
-`;
+`
 
 export const Form = styled.form`
   margin: 0 auto;
@@ -260,4 +260,4 @@ export const Form = styled.form`
       animation-timing-function: ease-out;
     }
   }
-`;
+`

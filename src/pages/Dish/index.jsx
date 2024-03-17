@@ -1,50 +1,64 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';
-import { Container, Content } from './styles';
-import { FiChevronLeft } from 'react-icons/fi';
-import { IoReceiptOutline } from 'react-icons/io5';
-import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react'
+import { Container, Content } from './styles'
+import { FiChevronLeft } from 'react-icons/fi'
+import { IoReceiptOutline } from 'react-icons/io5'
+import { Link, useParams } from 'react-router-dom'
 
-import { useAuth } from '../../hooks/auth';
-import { api } from '../../services/api';
+import { useAuth } from '../../hooks/auth'
+import { api } from '../../services/api'
 
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
-import { TextLink } from '../../components/TextLink';
-import { Ingredients } from '../../components/Ingredients';
-import { Counter } from '../../components/Counter';
-import { Button } from '../../components/Button';
+import { Header } from '../../components/Header'
+import { Footer } from '../../components/Footer'
+import { TextLink } from '../../components/TextLink'
+import { Ingredients } from '../../components/Ingredients'
+import { Counter } from '../../components/Counter'
+import { Button } from '../../components/Button'
 
-import photoPlaceholder from '../../assets/photoPlaceholder.png';
+import photoPlaceholder from '../../assets/photoPlaceholder.png'
 
 export function Dish() {
-  const [dish, setDish] = useState({});
-  const [quantity, setQuantity] = useState(1);
+  const [dish, setDish] = useState({})
+  const [quantity, setQuantity] = useState(1)
+  const [inCart, setInCart] = useState(false)
 
-  const { user, createRequests } = useAuth();
-  const { id } = useParams();
+  const { user, createRequests, userRequests } = useAuth()
+  const { id } = useParams()
 
   const photoUrl = dish.photo
     ? `${api.defaults.baseURL}/files/${dish.photo}`
-    : photoPlaceholder;
+    : photoPlaceholder
 
   async function handleRequest() {
-    await createRequests({ quantity, dish_id: dish.id });
+    await createRequests({ quantity, dish_id: dish.id })
   }
 
   useEffect(() => {
     async function fetchDish() {
-      const response = await api.get(`/dishes/${id}`);
+      const response = await api.get(`/dishes/${id}`)
 
-      setDish(response.data);
+      setDish(response.data)
     }
 
-    fetchDish();
-  }, []);
+    fetchDish()
+  }, [id])
+
+  useEffect(() => {
+    const request = userRequests.find(
+      (requests) => requests.dish_id == id
+    )
+    if (request) {
+      setQuantity(request?.quantity)
+      setInCart(true)
+    } else {
+      setInCart(false)
+    }
+  }, [userRequests, id])
   
   return (
     <Container>
-      <Header />
+      
       <div className="wrapper">
         <TextLink name="voltar" icon={FiChevronLeft} to={-1} />
       </div>
@@ -53,6 +67,7 @@ export function Dish() {
         <Content 
           isAdmin={user.isAdmin}
           Numberingredients={dish.ingredients?.length}
+          inCart={inCart}
         >
           <img src={photoUrl} alt="" />
           
@@ -77,17 +92,16 @@ export function Dish() {
               )}
               <Link to={user.isAdmin ? `/edit/&{dish.id}` : ''}>
               <Button
-                onClick={user.isAdmin ? () => {} : handleRequest}
+                onClick={user.isAdmin ? null : handleRequest}
                 title={
                   user.isAdmin 
                     ? 'Editar prato' 
-                    : `pedir ∙ ${(dish.price * quantity).toLocaleString(
-                      'pt_BR',
-                      {
-                        style: 'currency',
-                        currency: 'BRL',
-                      }
-                    )}`
+                    : `${inCart ? 'alterar' : 'incluir'} ∙ ${(
+                      dish.price * quantity
+                    ).toLocaleString('pt-BR', {
+                      style: 'currency',
+                      currency: 'BRL',
+                    })}`
                 }
                 icon={user.isAdmin ? undefined : IoReceiptOutline}
               />
@@ -96,7 +110,7 @@ export function Dish() {
           </div>
         </Content>
       </main>
-      <Footer />
+    
     </Container>
-  );
+  )
 }

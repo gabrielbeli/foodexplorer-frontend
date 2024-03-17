@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Container } from './styles';
+import { Container } from './styles'
 
 export function Button({ icon: Icon, title, ...rest}) {
   return (
@@ -7,5 +7,5 @@ export function Button({ icon: Icon, title, ...rest}) {
       {Icon && <Icon/>}
       {title}      
     </Container>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.div`
   max-width: 53rem;
@@ -126,4 +126,4 @@ export const Container = styled.div`
     }
   }
  }
-`;
+`

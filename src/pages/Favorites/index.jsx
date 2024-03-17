@@ -1,62 +1,52 @@
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
-import { ItemDish } from '../../components/ItemDish';
+import { Header } from '../../components/Header'
+import { Footer } from '../../components/Footer'
+import { ItemDish } from '../../components/ItemDish'
 
-import { Container, Content } from './styles';
-import photoPlaceholder from '../../assets/photoPlaceholder.png';
-import { useEffect, useState } from 'react';
+import { Container, Content } from './styles'
+import photoPlaceholder from '../../assets/photoPlaceholder.png'
+import { useEffect, useState } from 'react'
 
-import { api } from '../../services/api';
+import { api } from '../../services/api'
 
 export function Favorites() {
-  const [favorites, setFavorites] = useState([]);
+  const [favorites, setFavorites] = useState([])
 
   async function removeFavorite(id) {
-    await api.delete(`/favorites/${id}`);
+    await api.delete(`/favorites/${id}`)
 
     setFavorites(prevState => prevState.filter(favorite => favorite.id !== id))
   }
 
   useEffect(() => {
     async function fetchFavorites() {
-      const response = await api.get('/favorites');
-      setFavorites(response.data);
+      const response = await api.get('/favorites')
+      setFavorites(response.data)
     }
 
-    fetchFavorites();
-  }, []);
+    fetchFavorites()
+  }, [])
 
   return (
     <Container>
-      <Header />
+      <h1>Meus favoritos</h1>
 
-      <main>
-        <Content>
-          <h1>Meus favoritos</h1>
-
-          <ul>
-            {favorites.map((favorite) => (
-              <li key={String(favorite.id)}>
-                <ItemDish
-                  img={
-                    favorite.photo
-                      ?
-                    `${api.defaults.baseURL}/filter/${favorite.photo}`
-                    : photoPlaceholder 
-                  }
-                  name={favorite.name}
-                  btnTitle="Remover dos favoritos"
-                  dishId={favorite.dish_id}
-                  onClick={() =>
-                  removeFavorite(favorite.id)}
-              />
-              </li>
-            ))}
-
-          </ul>
-        </Content>
-      </main>
-      <Footer />
+      <ul>
+        {favorites.map((favorite) => (
+          <li key={String(favorite.id)}>
+          <ItemDish
+            img={
+              favorite.photo
+              ? `${api.defaults.baseURL}/files/${favorite.photo}`
+              : photoPlaceholder
+            }
+            name={favorite.name}
+            btnTitle="Remover dos Favoritos"
+            dishId={favorite.dish_id}
+            onClick={() => removeFavorite(favorite.id)}
+           />
+          </li>
+        ))}
+      </ul>
     </Container>
-  );
+  )
 }

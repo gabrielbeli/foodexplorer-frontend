@@ -44,6 +44,6 @@ export default {
 
       MINT: '#04D361',
     },
-}
+},
 }
 

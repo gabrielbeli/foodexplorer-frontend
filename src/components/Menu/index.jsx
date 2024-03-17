@@ -1,19 +1,19 @@
 /* eslint-disable react/prop-types */
-import { FiSearch } from 'react-icons/fi';
+import { FiSearch } from 'react-icons/fi'
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/auth'
 
-import { TextLink } from '../TextLink';
-import { Input } from '../Input';
-import { Footer } from '../Footer';
+import { TextLink } from '../TextLink'
+import { Input } from '../Input'
+import { Footer } from '../Footer'
 
-import { Container } from './styles';
+import { Container } from './styles'
 
 export function Menu({ show, onChange, searchDisabled = true }) {
-  const { user, signOut } = useAuth;
+  const { user, signOut } = useAuth
 
   function handleSignOut() {
-    signOut();
+    signOut()
   }
   
   return (
@@ -52,5 +52,5 @@ export function Menu({ show, onChange, searchDisabled = true }) {
       </div>
       <Footer />
     </Container>
-  );
+  )
 }

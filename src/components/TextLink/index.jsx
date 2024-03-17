@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Container } from './styles';
+import { Container } from './styles'
 
 export function TextLink({ name, icon: Icon, ...rest }) {
   return (
@@ -7,5 +7,5 @@ export function TextLink({ name, icon: Icon, ...rest }) {
       {Icon && <Icon />}
       {name}
     </Container>
-  );
+  )
 }

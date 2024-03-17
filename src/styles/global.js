@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle } from "styled-components"
 
 export default createGlobalStyle`
   :root {
@@ -44,16 +44,16 @@ export default createGlobalStyle`
   }
 
   a {
-    text-decoration: none;
+  text-decoration: none;
   }
-
   button {
-    border: none;
+  border: none;
+
   }
 
   button, a {
     cursor: pointer;
-    transition: filter .2s;
+  transition: filter .2s;
   }
 
   button:hover, a:hover {
@@ -61,15 +61,29 @@ export default createGlobalStyle`
   }
 
   .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
   }
-`;
+
+  ::-webkit-scrollbar {
+    width: .8rem;
+
+  }
+  ::-webkit-scrollbar-track {
+  background-color: transparent;
+
+  }
+  
+  ::-webkit-scrollbar-thumb {
+  border-radius: .8rem;
+  background-color: ${({ theme }) => theme.TINTS.CAKE[100]};
+  }
+`
 

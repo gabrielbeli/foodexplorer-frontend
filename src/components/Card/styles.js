@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.div`
   background-color: ${({ theme }) => theme.DARK[200]};
@@ -143,4 +143,4 @@ export const Container = styled.div`
       }
     }
   }
-`;
+`

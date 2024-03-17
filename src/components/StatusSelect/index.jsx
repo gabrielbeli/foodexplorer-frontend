@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
-import { Container } from './styles';
+import { Container } from './styles'
 
-import Select from 'react-select';
-import chroma from 'chroma-js';
+import Select from 'react-select'
+import chroma from 'chroma-js'
 
 const options = [
   { value: 'pending', label: 'Pendente', color: '#AB222E'},
   { value: 'preparing', label: 'Preparando', color: '#FBA94C'},
   { value: 'delivered', label: 'Entregue', color: '#04D361'},
-];
+]
 
 const dot = (color = 'transparent') => ({
   alignItems: 'center',
@@ -23,7 +23,7 @@ const dot = (color = 'transparent') => ({
     height: 8,
     width: 8,
   },
-});
+})
 
 const colorStyles = {
   control: (styles, { isDisabled}) => ({
@@ -37,7 +37,7 @@ const colorStyles = {
   }),
 
   option: (styles, { data, isDisabled, isFocused, isSelected }) => {
-    const color = chroma(data.color);
+    const color = chroma(data.color)
     return {
       ...styles,
       backgroundColor: isDisabled
@@ -63,7 +63,7 @@ const colorStyles = {
             : color.alpha(0.3).css()
           : undefined,
       },
-    };
+    }
   },
   input: (styles) => ({ ...styles, ...dot() }),
   placeholder: (styles) => ({ ...styles, ...dot('#ccc') }),
@@ -79,11 +79,11 @@ const colorStyles = {
     ...styles,
     display: isDisabled ? 'none' : 'flex',
   }),
-  menu: (styles, state) => ({
+  menu: (styles) => ({
     ...styles,
     backgroundColor: '#0d1d25',
   }),
-};
+}
 
 export function StatusSelect({ isDisabled = false, className, value, ...rest}) {
   return (
@@ -97,5 +97,5 @@ export function StatusSelect({ isDisabled = false, className, value, ...rest}) {
         {...rest}
       />
     </Container>
-  );
+  )
 }

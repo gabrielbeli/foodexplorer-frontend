@@ -1,34 +1,34 @@
-import { Input } from '../../components/Input';
-import { Button } from '../../components/Button';
-import { TextLink } from '../../components/TextLink';
-import { toast } from 'react-toastify';
+import { Input } from '../../components/Input'
+import { Button } from '../../components/Button'
+import { TextLink } from '../../components/TextLink'
+import { toast } from 'react-toastify'
 
-import { useAuth } from '../../hooks/auth';
+import { useAuth } from '../../hooks/auth'
 
-import { Container, Form } from './styles';
-import { useState } from 'react';
+import { Container, Form } from './styles'
+import { useState } from 'react'
 
 export function SignIn() {
   
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [btnDisabled, setBtnDisabled] = useState(false);
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [btnDisabled, setBtnDisabled] = useState(false)
 
-  const { signIn } = useAuth();
+  const { signIn } = useAuth()
 
   async function handleSignIn() {
     if (!email || !password) {
-      return toast.warn('Preencha todos os campos!');
+      return toast.warn('Preencha todos os campos!')
     }
     if (!email.includes('@')) {
-      return toast.warn('Informe um e-mail válido!');
+      return toast.warn('Informe um e-mail válido!')
     }
     if (password.length < 6) {
-      return toast.warn('Informe uma senha válida!');
+      return toast.warn('Informe uma senha válida!')
     }
-    setBtnDisabled(true);
+    setBtnDisabled(true)
     await signIn({ email, password }).then(() => { setBtnDisabled(false)
-    });
+    })
   }
 
   return (
@@ -78,5 +78,5 @@ export function SignIn() {
 
       </Form>
     </Container>
-  );
+  )
 }

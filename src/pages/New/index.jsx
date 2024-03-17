@@ -1,46 +1,46 @@
 /* eslint-disable no-unused-vars */
-import { Container, Form, Textarea } from './styles';
-import { FiChevronLeft, FiUpload } from 'react-icons/fi';
-import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
-import { toast } from 'react-toastify';
+import { Container, Form, Textarea } from './styles'
+import { FiChevronLeft, FiUpload } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { toast } from 'react-toastify'
 
-import { api } from '../../services/api';
+import { api } from '../../services/api'
 
-import { Header } from '../../components/Header';
-import { Footer } from '../../components/Footer';
-import { TextLink } from '../../components/TextLink';
-import { Input } from '../../components/Input';
-import { Select } from '../../components/Select';
-import { Button } from '../../components/Button';
-import { AddIngredients } from '../../components/AddIngredients';
+import { Header } from '../../components/Header'
+import { Footer } from '../../components/Footer'
+import { TextLink } from '../../components/TextLink'
+import { Input } from '../../components/Input'
+import { Select } from '../../components/Select'
+import { Button } from '../../components/Button'
+import { AddIngredients } from '../../components/AddIngredients'
 
 export function New() {
-  const [photoFile, setPhotoFile] = useState(null);
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('meals');
-  const [price, setPrice] = useState(0);
-  const [description, setDescription] = useState('');
-  const [ingredients, setIngredients] = useState([]);
-  const [newIngredients, setNewIngredients] = useState('');
+  const [photoFile, setPhotoFile] = useState(null)
+  const [name, setName] = useState('')
+  const [category, setCategory] = useState('meal')
+  const [price, setPrice] = useState(0)
+  const [description, setDescription] = useState('')
+  const [ingredients, setIngredients] = useState([])
+  const [newIngredients, setNewIngredients] = useState('')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   async function newDish() {
-    const notANumber = isNaN(price) || price === '';
+    const notANumber = isNaN(price) || price === ''
 
     if (!name || price < 0 || notANumber) {
-      return;
+      return
     }
 
-    if (newIngredients != '') {
+    if (newIngredients !== '') {
       return toast.warn(
         `Clique no + para adicionar o ingrediente tag: ${newIngredients}. ou limpe o campo!`
-      );
+      )
     }
 
     if (ingredients.length === 0) {
-      return toast.warn('Informe ao menos o ingrediente principal do prato!');
+      return toast.warn('Informe ao menos o ingrediente principal do prato!')
     }
 
     const response = await api.post('/dishes', {
@@ -49,52 +49,52 @@ export function New() {
       price,
       description,
       ingredients,
-    });
+    })
 
-    const id = response.data.id;
+    const id = response.data.id
 
     if (photoFile) {
-      const fileUploadForm = new FormData();
-      fileUploadForm.append('photo', photoFile);
+      const fileUploadForm = new FormData()
+      fileUploadForm.append('photo', photoFile)
 
-      await api.patch(`dishes/photo/${id}`, fileUploadForm);
+      await api.patch(`dishes/photo/${id}`, fileUploadForm)
     }
 
-    navigate('/');
-    setName('');
-    setIngredients([]);
-    setPrice('');
-    setDescription('');
+    toast.success('Prato adicionado!')
+    navigate('/')
+    setName('')
+    setIngredients([])
+    setPrice('')
+    setDescription('')
   }
 
   function handleNewIngredients() {
     if (newIngredients) {
-      const isNewIngredients = !ingredients.includes(newIngredients);
+      const isNewIngredients = !ingredients.includes(newIngredients)
       if (isNewIngredients) {
-        setIngredients((prevState) => [...prevState, newIngredients]);        
+        setIngredients((prevState) => [...prevState, newIngredients])        
       } else {
-        toast.warn('Ingrediente já adicionado');
+        toast.warn('Ingrediente já adicionado')
       }
     }
 
-    setNewIngredients('');
-    document.getElementById('add').focus();
+    setNewIngredients('')
+    document.getElementById('add').focus()
   }
 
   function handleRemoveIngredients(ingredientsDeleted) {
     setIngredients((prevState) => prevState.filter((ingredients) =>
-    ingredients !== ingredientsDeleted)
+    ingredients !== ingredientsDeleted),
     );
   }
 
   function handleUploadPhoto(event) {
-    const file = event.target.files[0];
-    setPhotoFile(file);
+    const file = event.target.files[0]
+    setPhotoFile(file)
   }
 
   return (
     <Container>
-      <Header />
       
       <div className="wrapper">
         <TextLink name="voltar" icon={FiChevronLeft} to={-1}/>
@@ -152,7 +152,7 @@ export function New() {
               <AddIngredients 
                 key={String(index)} 
                 value={ingredients}
-                onClick={(e) => 
+                onClick={() => 
                 handleRemoveIngredients(ingredients)}
                 size={String(ingredients.length)} 
               />
@@ -176,6 +176,9 @@ export function New() {
              label="Preço"
              placeholder="R$ 00,00"
              min="0"
+             step="0.010"
+             onChange={(e) => 
+             setPrice(e.target.value)}
             />          
          </div>
 
@@ -190,10 +193,9 @@ export function New() {
           />
          </div>
 
-         <Button id="buttonAdd" title="Salvar alterações" onClick={newDish} />
+         <Button id="buttonAdd" title="Adicionar" onClick={newDish} />
         </Form>
       </main>
-      <Footer />
     </Container>
-  );
+  )
 }

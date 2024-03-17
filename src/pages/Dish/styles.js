@@ -1,23 +1,6 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.div`
-  min-height: 100vh;
-
-  > header {
-    position: sticky;
-    z-index: 2;
-    top: 0;
-  }
-  
-  display: grid;
-  grid-template-areas: 
-    'header'
-    'back'
-    'main'
-    'footer';
-
-  grid-template-rows: 11.4rem 7rem auto 7.7rem;
-
   > .wrapper,
   > main {
     width: min(90%, 1122px);
@@ -25,29 +8,17 @@ export const Container = styled.div`
   }
 
   > .wrapper {
-    grid-area: back;
-    display: flex;
-    align-items: center;
+    padding: 3rem 0;
     > a {
     font-size: clamp(1.4rem, 0.7333rem + 2.0833vw, 2.4rem);
     }
-  }
-
-  > main {
-    grid-area: main;
-  }
-
-  @media (min-width: 769px) {
-    grid-template-rows: 9.3rem 9rem auto 7.7rem;
-  }
-`;
+  }  
+`
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  padding-bottom: 2.4rem;
-
-  
+  padding-bottom: 2.4rem;  
     
   > img {
     margin: 0 auto;
@@ -81,8 +52,8 @@ export const Content = styled.div`
     }
 
     > ul {
-      columns: ${({ Numberingredients }) => 
-        (Numberingredients >= 3 ? 3 : Numberingredients)};
+      columns: ${({ Numberingredients }) =>
+        Numberingredients >= 3 ? 3 : Numberingredients};
       text-align: center;
       gap: 1rem;
 
@@ -93,8 +64,7 @@ export const Content = styled.div`
       @media (max-width: 400px) {
         columns: 2;
       }
-    }
-  
+    }  
 
     > div {
       display: grid;
@@ -109,6 +79,10 @@ export const Content = styled.div`
       }
       > a > button {
         font-size: clamp(1rem, 0.6632rem + 1.0526vw, 1.4rem);
+        background-color: ${({ inCart, theme }) =>
+          inCart
+            ? `${theme.TINTS.MINT}`
+            : `${({ theme }) => theme.TINTS.TOMATO[100]}`};
       }
     }
   }  
@@ -155,4 +129,4 @@ export const Content = styled.div`
         }
       }
     }
-  `;
+  `

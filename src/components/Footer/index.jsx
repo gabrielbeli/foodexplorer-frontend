@@ -1,4 +1,4 @@
-import { Container } from "./styles";
+import { Container } from "./styles"
 
 export function Footer() {
   return (
@@ -19,9 +19,11 @@ export function Footer() {
         </svg>
         food explorer
       </div>
-    <p><span>© 2023 -</span> Todos os direitos reservados.</p>
+    <p>
+      <span>© 2023 -</span> Todos os direitos reservados.
+    </p>
     </div>
 
   </Container>
-);
+)
 }

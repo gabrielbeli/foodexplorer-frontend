@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.select`
   background-color: ${({ theme }) => theme.DARK[800]};
@@ -22,4 +22,4 @@ export const Container = styled.select`
   -webkit-appearance: none;
   -moz-appearance: none;
   border: none;
-`;
+`

@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from 'styled-components'
 
 export const Container = styled.div`
   min-height: 100vh;
@@ -28,7 +28,7 @@ export const Container = styled.div`
   @media (min-width: 769px) {
     grid-template-rows: 9.3rem auto 7.7rem;
   }
-`;
+`
 
 export const Content = styled.div`
   display: flex;
@@ -92,4 +92,4 @@ export const Content = styled.div`
     display: block;
   }
  }
-`;
+`

@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.footer`
   grid-area: footer;
@@ -42,4 +42,4 @@ export const Container = styled.footer`
       gap: 1rem;
     }
   }
-`;
+`

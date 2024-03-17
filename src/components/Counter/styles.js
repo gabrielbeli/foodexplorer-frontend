@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "styled-components"
 
 export const Container = styled.div`
   font-size: 2rem;
@@ -19,4 +19,4 @@ export const Container = styled.div`
       }
     }
   }
-`;
+`

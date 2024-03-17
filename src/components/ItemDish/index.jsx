@@ -1,12 +1,21 @@
 /* eslint-disable react/prop-types */
-import { useNavigate } from 'react-router-dom';
-import { Container } from './styles';
+import { useNavigate } from 'react-router-dom'
+import { Container } from './styles'
 
-export function ItemDish({ quantity, name, amount, img, btnTitle, dishId, ...rest}) {
-  const navigate = useNavigate();
+export function ItemDish({ 
+  quantity, 
+  name, 
+  amount, 
+  img, 
+  btnTitle, 
+  dishId, 
+  ...rest
+}) {
+  
+  const navigate = useNavigate()
 
   function goToDish() {
-    navigate(`/dish/${dishId}`);
+    navigate(`/dish/${dishId}`)
   }
 
   return (
@@ -27,5 +36,5 @@ export function ItemDish({ quantity, name, amount, img, btnTitle, dishId, ...res
         <button {...rest}>{btnTitle}</button>
       </div>
     </Container>
-  );
+  )
 }
