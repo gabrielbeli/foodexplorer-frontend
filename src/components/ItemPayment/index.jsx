@@ -51,6 +51,7 @@ export function ItemPayment() {
     }
     
     await createPurchases();
+    toast.success('Recebemos seu pedido, receba em breve na sua casa!')
     setPurchase('await');
   }
 

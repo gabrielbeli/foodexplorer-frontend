@@ -12,6 +12,19 @@ function AuthProvider({ children }) {
 
   async function createPurchases() {
     await api.post('purchases');
+    const purchases = (await api.get('/purchases'));
+    localStorage.setItem(
+      '@foodexplorer:purchases',
+      JSON.stringify(purchases.data)
+    );
+
+    setData((prevState) => ({
+      ...prevState,
+      purchases:
+      JSON.parse(localStorage.getItem(
+        '@foodexplorer:purchases'
+      )),
+    }));
     await updateRequests();
   }
 
