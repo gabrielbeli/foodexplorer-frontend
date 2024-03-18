@@ -16,13 +16,15 @@ import { TextLink } from '../TextLink'
 import { Search } from './components/Search'
 import { Menu } from './components/Menu'
 import { useState } from 'react'
+import { usePurchase } from '../../hooks/purchase'
 
 export function Header({ onSetSearch }) {
- 
-  const navigate = useNavigate()
-  const { user, signOut, userRequests, userPurchases } = useAuth()
   const [open, setOpen] = useState(false)
 
+  const navigate = useNavigate()
+  const { user, signOut } = useAuth()
+  const { userRequests, userPurchases } = usePurchase()
+  
   const purchasesPending = userPurchases.filter(
     (purchase) => purchase.status === 'pending',
   )

@@ -5,9 +5,11 @@ import { ptBR } from 'date-fns/locale'
 import { useAuth } from '../../hooks/auth'
 
 import { Container, RequestMobile } from './styles'
+import { usePurchase } from '../../hooks/purchase'
 
 export function Requests() {
-  const { user, userPurchases, updateStatusPurchase } = useAuth()
+  const { user } = useAuth()
+  const { userPurchases, updateStatusPurchase } = usePurchase()
   
   async function handleStatus(purchaseId, status) {
     await updateStatusPurchase({purchaseId, status })

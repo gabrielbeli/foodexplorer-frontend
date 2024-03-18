@@ -11,58 +11,7 @@ const AuthContext = createContext({})
 function AuthProvider({ children }) {
   const [data, setData] = useState({})
 
-  async function createPurchases() {
-  const newPurchase = await api.post('purchases').then((res) => res.data)    
-    setData((prevState) => ({
-      ...prevState,
-      purchases: [...prevState.purchases, newPurchase],
-    }))
-  }
-
-  async function updateStatusPurchase({ purchaseId, status }) {
-    const updatedAt = await api
-      .patch(`purchases/${purchaseId}`, { status})
-      .then((res) => res.data)
-
-      setData((prevState) => ({
-        ...prevState,
-        purchases: prevState.purchases.map((purchase) =>
-        purchase.id === purchaseId
-          ? { ...purchase, status, updatedAt }
-          : purchase,
-      ),
-      }))
-  }  
-
-  async function createRequests({ quantity, dishid }) {
-    const newRequest = await api
-      .post('/requests', {
-        quantity,
-        dish_id: dishid,
-      })
-      .then((res) => res.data)
-    
-    const requests = [...data.requests].filter(
-      (request) => request.id !== newRequest.id,
-    )
-    
-    requests.push(newRequest)
-    setData((state) => ({
-      ...state,
-      requests,
-    }))
-  }
-
-  async function removeRequest(requestId) {
-    await api.delete(`/requests/${requestId}`)
-    setData((state) => ({
-      ...state,
-      requests: state.requests.filter(
-        (request) => request.id !== requestId),    
-    }))
-  }
-
-  async function signIn({ email, password }) {
+ async function signIn({ email, password }) {
     try {
       const response = await api.post('/sessions', { email, password })    
 
@@ -77,17 +26,9 @@ function AuthProvider({ children }) {
       
       api.defaults.headers.common.Authorization = `Bearer ${token}`
       
-      const requests =
-        (await api.get('/requests').then((res) => res.data)) || []
-      
-      const purchases =
-        (await api.get('/purchases').then((res) => res.data)) || []
-
       setData({
         user,
         token,
-        requests,
-        purchases,
       })
       
     } catch (error) {
@@ -119,18 +60,10 @@ function AuthProvider({ children }) {
       if (user && token) {
         api.defaults.headers.common.Authorization = `Bearer ${token}`
 
-       try {
-
-        const requests = await api.get('/requests').then((res) => res.data)
-        const purchases = await api.get('/purchases').then((res) => res.data)
-
-          setData({
-            user: JSON.parse(user),
-            token,
-            requests,
-            purchases,
-          })
-        } catch (error) {}  
+      setData({
+        user: JSON.parse(user),
+        token,
+      }) 
       }
     }
     update()   
@@ -141,12 +74,6 @@ function AuthProvider({ children }) {
       signIn, 
       signOut, 
       user: data.user,
-      userRequests: data.requests,
-      userPurchases: data.purchases,
-      createRequests,
-      createPurchases,
-      updateStatusPurchase,
-      removeRequest,
       }}
     >
       {children}

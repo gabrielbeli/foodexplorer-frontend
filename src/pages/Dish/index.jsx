@@ -15,13 +15,15 @@ import { Counter } from '../../components/Counter'
 import { Button } from '../../components/Button'
 
 import photoPlaceholder from '../../assets/photoPlaceholder.png'
+import { usePurchase } from '../../hooks/purchase'
 
 export function Dish() {
   const [dish, setDish] = useState({})
   const [quantity, setQuantity] = useState(1)
   const [inCart, setInCart] = useState(false)
 
-  const { user, createRequests, userRequests } = useAuth()
+  const { user } = useAuth()
+  const { createRequests, userRequests } = usePurchase()
   const { id } = useParams()
 
   const photoUrl = dish.photo

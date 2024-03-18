@@ -13,6 +13,7 @@ import { Counter } from '../Counter'
 import { Button } from '../Button'
 
 import { Container } from './styles'
+import { usePurchase } from '../../hooks/purchase'
 
 export function Card({ dish }) {
   const [favorite, setFavorite] = useState(false)
@@ -20,7 +21,8 @@ export function Card({ dish }) {
   const [quantity, setQuantity] = useState(1)
   const [inCart, setInCart] = useState(false)
 
-  const { user, createRequests, userRequests } = useAuth()
+  const { user } = useAuth()
+  const { createRequests, userRequests } = usePurchase()
 
   const photoUrl = dish.photo
     ? `${api.defaults.baseURL}/files/${dish.photo}`
