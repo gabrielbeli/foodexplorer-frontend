@@ -2,7 +2,7 @@
 import * as Dialog from '@radix-ui/react-dialog'
 import close from '../../../../assets/icons/close.svg'
 
-import { useAuth } from '../../../../hooks/auth'
+import { useAuth } from '../../../../contexts/auth'
 
 import { TextLink } from '../../../LinkText'
 import { Footer } from '../../../Footer'

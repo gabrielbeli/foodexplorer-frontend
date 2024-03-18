@@ -11,7 +11,7 @@ import { useForm } from 'react-hook-form'
 import { api } from '../../services/api'
 
 import { Container, Form } from './styles'
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '../../contexts/auth'
 
 const signUpSchema = zod.object({
   name: zod.string(),

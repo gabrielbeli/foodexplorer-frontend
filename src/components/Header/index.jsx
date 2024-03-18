@@ -4,7 +4,7 @@ import { IoReceiptOutline } from 'react-icons/io5'
 import { Link, useNavigate } from 'react-router-dom'
 import * as Dialog from '@radix-ui/react-dialog'
 
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '../../contexts/auth'
 
 import { Button } from '../Button'
 
@@ -16,14 +16,18 @@ import { TextLink } from '../TextLink'
 import { Search } from './components/Search'
 import { Menu } from './components/Menu'
 import { useState } from 'react'
-import { usePurchase } from '../../hooks/purchase'
+import { PurchaseContext } from '../../contexts/purchase'
+import { useContextSelector } from 'use-context-selector'
 
 export function Header({ onSetSearch }) {
   const [open, setOpen] = useState(false)
 
   const navigate = useNavigate()
   const { user, signOut } = useAuth()
-  const { userRequests, userPurchases } = usePurchase()
+  const { userRequests, userPurchases } = useContextSelector(
+    PurchaseContext,
+    ({ userRequests, userPurchases }) => ({ userRequests, userPurchases }),
+  )
   
   const purchasesPending = userPurchases.filter(
     (purchase) => purchase.status === 'pending',

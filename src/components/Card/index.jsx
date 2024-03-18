@@ -3,7 +3,7 @@ import { FiHeart } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '../../contexts/auth'
 import { api } from '../../services/api'
 
 import Edit from '../../assets/icons/pencil.svg'
@@ -13,7 +13,8 @@ import { Counter } from '../Counter'
 import { Button } from '../Button'
 
 import { Container } from './styles'
-import { usePurchase } from '../../hooks/purchase'
+import { PurchaseContext } from '../../contexts/purchase'
+import { useContextSelector } from 'use-context-selector'
 
 export function Card({ dish }) {
   const [favorite, setFavorite] = useState(false)
@@ -22,14 +23,17 @@ export function Card({ dish }) {
   const [inCart, setInCart] = useState(false)
 
   const { user } = useAuth()
-  const { createRequests, userRequests } = usePurchase()
+  const { createRequest, userRequests } = useContextSelector(
+    PurchaseContext,
+    ({ createRequest, userRequests }) => ({ createRequest, userRequests }),
+  )
 
   const photoUrl = dish.photo
     ? `${api.defaults.baseURL}/files/${dish.photo}`
     : photoPlaceholder
   
   async function handleRequest() {
-    await createRequests({ quantity, dishId: dish.id })
+    await createRequest({ quantity, dishId: dish.id })
   }
   
   async function handleFavorite() {

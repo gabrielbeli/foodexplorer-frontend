@@ -6,7 +6,7 @@ import { FiChevronLeft } from 'react-icons/fi'
 import { IoReceiptOutline } from 'react-icons/io5'
 import { Link, useParams } from 'react-router-dom'
 
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '../../contexts/auth'
 import { api } from '../../services/api'
 
 import { TextLink } from '../../components/TextLink'
@@ -15,7 +15,8 @@ import { Counter } from '../../components/Counter'
 import { Button } from '../../components/Button'
 
 import photoPlaceholder from '../../assets/photoPlaceholder.png'
-import { usePurchase } from '../../hooks/purchase'
+import { PurchaseContext } from '../../contexts/purchase'
+import { useContextSelector } from 'use-context-selector'
 
 export function Dish() {
   const [dish, setDish] = useState({})
@@ -23,7 +24,10 @@ export function Dish() {
   const [inCart, setInCart] = useState(false)
 
   const { user } = useAuth()
-  const { createRequests, userRequests } = usePurchase()
+  const { createRequest, userRequests } = useContextSelector(
+    PurchaseContext,
+    ({ createRequest, userRequests }) => ({ createRequest, userRequests }),
+  )
   const { id } = useParams()
 
   const photoUrl = dish.photo
@@ -31,7 +35,7 @@ export function Dish() {
     : photoPlaceholder
 
   async function handleRequest() {
-    await createRequests({ quantity, dishId: dish.id })
+    await createRequest({ quantity, dishId: dish.id })
   }
 
   useEffect(() => {

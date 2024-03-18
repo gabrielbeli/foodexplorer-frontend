@@ -2,14 +2,21 @@ import { StatusSelect } from '../../components/StatusSelect'
 
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
-import { useAuth } from '../../hooks/auth'
+import { useAuth } from '../../contexts/auth'
 
 import { Container, RequestMobile } from './styles'
-import { usePurchase } from '../../hooks/purchase'
+import { PurchaseContext } from '../../contexts/purchase'
+import { useContextSelector } from 'use-context-selector'
 
 export function Requests() {
   const { user } = useAuth()
-  const { userPurchases, updateStatusPurchase } = usePurchase()
+  const { userPurchases, updateStatusPurchase } = useContextSelector(
+    PurchaseContext,
+    ({ userPurchases, updateStatusPurchase }) => ({
+      userPurchases,
+      updateStatusPurchase,
+    }),
+  )
   
   async function handleStatus(purchaseId, status) {
     await updateStatusPurchase({purchaseId, status })
