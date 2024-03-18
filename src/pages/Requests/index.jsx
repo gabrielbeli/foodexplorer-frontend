@@ -17,7 +17,7 @@ export function Requests() {
       updateStatusPurchase,
     }),
   )
-  
+    
   async function handleStatus(purchaseId, status) {
     await updateStatusPurchase({purchaseId, status })
   }
@@ -44,7 +44,7 @@ export function Requests() {
 
       <section id="requests">
         {purchasesWithDate.map((purchase) => (
-          <RequestMobile isAdmin={user.isAdmin} key={purchase.id}>
+          <RequestMobile $isAdmin={user.isAdmin} key={purchase.id}>
             <span className="code">{String(purchase.id).padStart(6, '0')}</span>
             <span className="time">{purchase.updatedAt}</span>
 

@@ -3,7 +3,7 @@ import styled from "styled-components"
 export const Container = styled.div`
   min-height: 100vh;
   overflow: hidden;
-
+ 
   > h1 {
     color: ${({ theme }) => theme.LIGHT[100]};
     font-size: clamp(3.2rem, 2.2rem + 3.125vw, 4.2rem);
@@ -16,12 +16,13 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     gap: 2rem;
+  }
 
     @media (min-width: 769px) {
       padding: 0 7vw;
       display: flex;
       justify-content: space-between;
-      align-items: center;
+      align-items: center ;
       gap: 2rem;
 
       > h1 {
@@ -92,7 +93,6 @@ export const Container = styled.div`
         opacity: 1;
       }
     }
-  }
 `
 
 export const Form = styled.form`
@@ -178,7 +178,11 @@ export const Form = styled.form`
         rotateX(20deg) 
         translate(250px, -250px)
         skew(-12deg, -15deg);
-      
+      transform: 
+        rotateY(-35deg) 
+        rotateX(20deg) 
+        translate(250px, -250px)
+        skew(-12deg, -15deg);;
       opacity: 0;
     }
     100% {
@@ -187,7 +191,11 @@ export const Form = styled.form`
         rotateX(0deg) 
         translate(0, 0)
         skew(0deg, 0deg);
-      
+      transform: 
+        rotateY(0) 
+        rotateX(0deg) 
+        translate(0, 0) 
+        skew(0deg, 0deg);
       opacity: 1;
     }
   }
@@ -199,7 +207,11 @@ export const Form = styled.form`
         rotateX(20deg) 
         translate(250px, -250px)
         skew(-12deg, -15deg);
-      
+      transform: 
+        rotateY(-35deg) 
+        rotateX(20deg) 
+        translate(250px, -250px)
+        skew(-12deg, -15deg);
       opacity: 0;
     }
     100% {
@@ -208,7 +220,11 @@ export const Form = styled.form`
         rotateX(0deg) 
         translate(0, 0)
         skew(0deg, 0deg);
-      
+      transform: 
+        rotateY(0) 
+        rotateX(0deg) 
+        translate(0, 0) 
+        skew(0deg, 0deg);
       opacity: 1;
     }
   }

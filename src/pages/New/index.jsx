@@ -39,16 +39,16 @@ export function New() {
   const photoFile = watch('photo')
 
   function handleNewIngredient() {
-    if (newIngredient) {
-      const isNewIngredient = !ingredients.includes(newIngredient)
+    if (newIngredients) {
+      const isNewIngredient = !ingredients.includes(isNewIngredient)
       if (isNewIngredient) {
-        setIngredients((prevState) => [...prevState, newIngredient])
+        setIngredients((prevState) => [...prevState, isNewIngredient])
       } else {
         toast.warn('Ingredient já Adicionado!')
       }
     }
 
-    setNewIngredient('')
+    setNewIngredients('')
     document.getElementById('add').focus()
   }
 
@@ -160,7 +160,7 @@ export function New() {
                 key={String(index)} 
                 value={ingredients}
                 onClick={() => 
-                handleRemoveIngredients(ingredients)}
+                handleRemoveIngredient(ingredients)}
                 size={String(ingredients.length)} 
               />
              ))}
@@ -172,7 +172,7 @@ export function New() {
                 value={newIngredients}
                 onChange={(e) =>
                 setNewIngredients(e.target.value)}
-                onClick={handleNewIngredients}
+                onClick={handleNewIngredient}
               />
              </div>
            </div>

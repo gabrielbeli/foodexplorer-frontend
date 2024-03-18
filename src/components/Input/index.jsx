@@ -1,7 +1,6 @@
 /* eslint-disable react/prop-types */
 import { forwardRef } from 'react'
 import { Container } from './styles'
-import { forwardRef } from 'react'
 
 export const Input = forwardRef(({ id, label, ...rest }, ref) => {
   return (

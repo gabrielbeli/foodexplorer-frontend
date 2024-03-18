@@ -2,9 +2,11 @@ import styled from "styled-components"
 
 export const Container = styled.header`
   grid-area: header;
-
   background-color: ${({ theme }) => theme.DARK[700]};
   color: ${({ theme }) => theme.LIGHT[100]};
+  position: sticky;
+  z-index: 2;
+  top: 0;
 
   .hide {
     display: none !important;
@@ -27,12 +29,10 @@ export const Container = styled.header`
       align-items: center;
       gap: clamp(0.8rem, 0.6rem + 0.625vw, 1rem);
       margin: 0 auto;
-      
       > h1 {
         font-weight: 700;
         color: ${({ theme }) => theme.LIGHT[200]};
       }
-      
       > span {
         color: ${({ theme }) => theme.TINTS.CAKE[200]};
         font-size: 1.2rem;
@@ -81,6 +81,7 @@ export const Container = styled.header`
         margin: 0 auto;
       }    
       > #logout,
+      #search,
       > #new,
       #redBtn,
       #historic,
@@ -93,7 +94,7 @@ export const Container = styled.header`
       gap: clamp(1.5rem, -0.7573rem + 3.527vw, 3.2rem);
       padding-block: 2.4rem;
 
-      > #menuBurguer,
+      > #menuBurgue,
       > a:has(#receipt) {
         display: none !important;
       }

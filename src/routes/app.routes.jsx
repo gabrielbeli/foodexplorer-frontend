@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom"
 
-import { useAuth } from "../hooks/auth"
+import { useAuth } from "../contexts/auth"
 
 import { Dish } from '../pages/Dish'
 import { New } from '../pages/New'

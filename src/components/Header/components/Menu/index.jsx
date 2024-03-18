@@ -4,7 +4,7 @@ import close from '../../../../assets/icons/close.svg'
 
 import { useAuth } from '../../../../contexts/auth'
 
-import { TextLink } from '../../../LinkText'
+import { TextLink } from '../../../TextLink'
 import { Footer } from '../../../Footer'
 
 import { Content } from './styles'

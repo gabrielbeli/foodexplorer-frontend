@@ -43,7 +43,7 @@ export function Header({ onSetSearch }) {
   }
   
   return (
-    <Container isAdmin={user.isAdmin}>
+    <Container $isAdmin={user.isAdmin}>
      <header>
       <Dialog.Root open={open} onOpenChange={() => setOpen(!open)}>
         <Dialog.Trigger asChild>

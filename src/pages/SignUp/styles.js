@@ -16,7 +16,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     gap: 2rem;
-
+  }
     @media (min-width: 769px) {
       padding: 0 7vw;
       display: flex;
@@ -34,7 +34,7 @@ export const Container = styled.div`
     @media (max-width: 768px) {
       padding-top: 16vh;
     }
-  }
+  
 `
 
 export const Form = styled.form`

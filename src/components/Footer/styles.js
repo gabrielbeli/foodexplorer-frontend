@@ -13,6 +13,7 @@ export const Container = styled.footer`
 
     display: flex;
     align-items: center;
+    gap: 2rem;
     justify-content: space-between;
 
     > div {

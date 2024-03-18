@@ -69,7 +69,7 @@ export function Dish() {
 
       <main>
         <Content 
-          isAdmin={user.isAdmin}
+          $isAdmin={user.isAdmin}
           numberIngredients={dish.ingredients?.length}
           inCart={inCart}
         >

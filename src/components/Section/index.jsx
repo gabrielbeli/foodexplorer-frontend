@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 /* eslint-disable react/prop-types */
 import { Swiper, SwiperSlide } from 'swiper/react'
-/*import { Navigation } from 'swiper';*/
+import { Navigation } from 'swiper/modules'
 import { Container } from "./styles"
 
 import 'swiper/css'
@@ -21,6 +21,7 @@ export function Section({ title, cards }) {
     },
   },
 }
+
   return (
     <Container>
       <h2>{title}</h2>

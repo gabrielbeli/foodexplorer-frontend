@@ -1,14 +1,12 @@
 import styled from 'styled-components'
 import * as Dialog from '@radix-ui/react-dialog'
 
-export const Content = styled.div(Dialog.Content)`
-  
-    position: sticky;
+export const Content = styled(Dialog.Content)`
     background-color: ${({ theme }) => theme.DARK[400]};
     height: 100vh;
     position: fixed;
     inset: 0;
-     z-index: 3;
+    z-index: 3;
 
   > header {
     background-color: ${({ theme }) => theme.DARK[700]};
