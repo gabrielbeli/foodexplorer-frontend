@@ -1,43 +1,48 @@
 import { toast } from 'react-toastify'
-import { useState } from 'react'
+import * as zod from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
+
 import { useNavigate } from 'react-router-dom'
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
 import { TextLink } from '../../components/TextLink'
+import { useForm } from 'react-hook-form'
 
 import { api } from '../../services/api'
 
 import { Container, Form } from './styles'
 import { useAuth } from '../../hooks/auth'
 
+const signUpSchema = zod.object({
+  name: zod.string(),
+  email: zod.string(),
+  password: zod.string().min(6, 'A senha deve ter no mínimo 6 dígitos.'),
+})
+
 export function SignUp() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [btnDisabled, setBtnDisabled] = useState(false)
   const { signIn } = useAuth()
 
   const navigate = useNavigate()
 
-  async function handleSignUp() {
-    if (!name || !email || !password) {
-      return toast.warn('Preencha todos os campos!')
-    }
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+  } = useForm({
+    resolver: zodResolver(signUpSchema),
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+  })
 
-    if (!email.includes('@')) {
-      return toast.warn('Informe um e-mail válido!')
-    }
-    if (password.length < 6) {
-      return toast.warn('Informe uma senha válida!')
-    }
+  async function handleSignUp(data) {
+    const { name, email, password } = data
 
     try {
-      setBtnDisabled(true)
       await api.post('/users', { name, email, password })
 
-      setEmail('')
-      setPassword('')
-      setName('')
       toast.success('Cadastro realizado com sucesso!')
       await signIn({ email, password })
       navigate('/')
@@ -47,7 +52,6 @@ export function SignUp() {
       } else {
         toast.error('Não foi possível cadastrar')
       }
-      setBtnDisabled(false)
     }
   }
 
@@ -68,8 +72,7 @@ export function SignUp() {
       </svg>
       food explorer
     </h1>
-    <Form onSubmit={(e) => e.preventDefault()}>
-      
+    <Form onSubmit={handleSubmit(handleSignUp)}>      
       <h2>Crie sua conta</h2>
 
       <Input
@@ -78,8 +81,7 @@ export function SignUp() {
        label="Seu nome"
        placeholder="Joao P Souza"
        required
-       value={name}
-       onChange={(e) => setName(e.target.value)}
+       {...register('name')}
       />
 
       <Input
@@ -88,8 +90,7 @@ export function SignUp() {
        label="Email"
        placeholder="exemplo@exemplo.com.br"
        required
-       value={email}
-       onChange={(e) => setEmail(e.target.value)}
+       {...register('email')}
       />
 
       <Input
@@ -99,15 +100,10 @@ export function SignUp() {
        placeholder="No mínimo 6 caracteres"
        minLength="6"
        required
-       value={password}
-       onChange={(e) => setPassword(e.target.value)}
+       {...register('password')}
       />
 
-      <Button 
-        title="Criar conta" 
-        onClick={handleSignUp}
-        disabled={btnDisabled} 
-      />
+      <Button title="Criar conta" disabled={isSubmitting} />
       <TextLink name="Já tenho uma conta" to={-1}/>
 
     </Form>

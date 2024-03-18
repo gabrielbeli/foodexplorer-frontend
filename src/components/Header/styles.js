@@ -8,37 +8,7 @@ export const Container = styled.header`
 
   .hide {
     display: none !important;
-  }
-
-  #search {
-    background-color: ${({ theme }) => theme.DARK[900]};
-
-    border-radius: 5px;
-
-    display: flex;
-    align-items: center;
-    flex: 2;
-    padding-left: 1.2rem;
-
-    opacity: ${({ searchDisabled }) => (searchDisabled ? 0.5 : 1)};
-    cursor: ${({ searchDisabled }) => (searchDisabled ? 'not-allowed' : 'unset')};
-
-    > svg {
-      min-width: 1.2rem;
-    }
-
-    > div {
-      width: 100%;
-
-      > label {
-        display: none;
-      }
-
-      > input:focus {
-        outline: none;
-      }
-    }
-  }
+  } 
 
   > header {
     width: min(90%, 1122px);
@@ -73,9 +43,6 @@ export const Container = styled.header`
     @media (max-width: 768px) {
       padding: 5.6rem 0 2.4rem;
 
-      > #search {
-        margin: 0 auto;
-      }
       > button {
         background-color: transparent;
       }
@@ -110,7 +77,6 @@ export const Container = styled.header`
         }
       }
     
-      > #search,
       > #logout,
       > #new,
       #redBtn,

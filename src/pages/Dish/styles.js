@@ -1,12 +1,6 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  > .wrapper,
-  > main {
-    width: min(90%, 1122px);
-    margin: 0 auto;
-  }
-
   > .wrapper {
     padding: 3rem 0;
     > a {
@@ -52,8 +46,8 @@ export const Content = styled.div`
     }
 
     > ul {
-      columns: ${({ Numberingredients }) =>
-        Numberingredients >= 3 ? 3 : Numberingredients};
+      columns: ${({ numberIngredients }) =>
+        numberIngredients >= 3 ? 3 : numberIngredients};
       text-align: center;
       gap: 1rem;
 

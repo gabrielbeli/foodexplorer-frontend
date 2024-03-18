@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 import { Container, Form, Textarea } from './styles'
 import { FiChevronLeft, FiUpload } from 'react-icons/fi'
@@ -7,28 +8,61 @@ import { toast } from 'react-toastify'
 
 import { api } from '../../services/api'
 
-import { Header } from '../../components/Header'
-import { Footer } from '../../components/Footer'
 import { TextLink } from '../../components/TextLink'
 import { Input } from '../../components/Input'
 import { Select } from '../../components/Select'
 import { Button } from '../../components/Button'
 import { AddIngredients } from '../../components/AddIngredients'
+import { useForm } from 'react-hook-form'
 
 export function New() {
-  const [photoFile, setPhotoFile] = useState(null)
-  const [name, setName] = useState('')
-  const [category, setCategory] = useState('meal')
-  const [price, setPrice] = useState(0)
-  const [description, setDescription] = useState('')
   const [ingredients, setIngredients] = useState([])
   const [newIngredients, setNewIngredients] = useState('')
 
   const navigate = useNavigate()
 
-  async function newDish() {
-    const notANumber = isNaN(price) || price === ''
+  const {
+    register,
+    handleSubmit,
+    watch,
+    reset,
+    formState: { isSubmitting },
+  } = useForm({
+    defaultValues: {
+      photo: null,
+      name: '',
+      category: 'meal',
+      price: 0,
+    },
+  })
 
+  const photoFile = watch('photo')
+
+  function handleNewIngredient() {
+    if (newIngredient) {
+      const isNewIngredient = !ingredients.includes(newIngredient)
+      if (isNewIngredient) {
+        setIngredients((prevState) => [...prevState, newIngredient])
+      } else {
+        toast.warn('Ingredient já Adicionado!')
+      }
+    }
+
+    setNewIngredient('')
+    document.getElementById('add').focus()
+  }
+
+  function handleRemoveIngredient(ingredientDeleted) {
+    setIngredients((prevState) =>
+      prevState.filter((ingredient) => ingredient !== ingredientDeleted),
+    )
+  }
+
+  async function handleCreateNewDishForm(data) {
+    const photo = data.photo ? data.photo[0] : null
+    const { name, category, price, description } = data
+
+    const notANumber = isNaN(price) || price === ''
     if (!name || price < 0 || notANumber) {
       return
     }
@@ -53,44 +87,17 @@ export function New() {
 
     const id = response.data.id
 
-    if (photoFile) {
+    if (photo) {
       const fileUploadForm = new FormData()
-      fileUploadForm.append('photo', photoFile)
+      fileUploadForm.append('photo', photo)
 
       await api.patch(`dishes/photo/${id}`, fileUploadForm)
     }
 
     toast.success('Prato adicionado!')
     navigate('/')
-    setName('')
-    setIngredients([])
-    setPrice('')
-    setDescription('')
-  }
-
-  function handleNewIngredients() {
-    if (newIngredients) {
-      const isNewIngredients = !ingredients.includes(newIngredients)
-      if (isNewIngredients) {
-        setIngredients((prevState) => [...prevState, newIngredients])        
-      } else {
-        toast.warn('Ingrediente já adicionado')
-      }
-    }
-
-    setNewIngredients('')
-    document.getElementById('add').focus()
-  }
-
-  function handleRemoveIngredients(ingredientsDeleted) {
-    setIngredients((prevState) => prevState.filter((ingredients) =>
-    ingredients !== ingredientsDeleted),
-    );
-  }
-
-  function handleUploadPhoto(event) {
-    const file = event.target.files[0]
-    setPhotoFile(file)
+    reset()
+    setIngredients([])   
   }
 
   return (
@@ -101,7 +108,8 @@ export function New() {
       </div>
       
       <main>
-        <Form onSubmit={(e) => e.preventDefault()}>
+        setIngredients
+        <Form onSubmit={handleSubmit(handleCreateNewDishForm)}>
           <h1>Novo prato</h1>
 
           <div id='threeColumns'>
@@ -110,14 +118,14 @@ export function New() {
               <div>
                <span>
                 <FiUpload />{' '}
-                {photoFile ? photoFile.name : 'Selecione a imagem'}
+                {photoFile ? photoFile[0].name : 'Selecione a imagem'}
                </span>
                <Input 
                 id="image"
                 accept="image/png, image/jpeg"
                 type="file"
                 style={{ cursor: 'pointer' }}
-                onChange={handleUploadPhoto}  
+                {...register('photo')}  
                />
              </div>
            </div>
@@ -127,15 +135,14 @@ export function New() {
             label="Nome" 
             placeholder="Salada Ceaser"
             required
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            {...register('name')}
             />
 
            <div>
              <label htmlFor="category">Categoria</label>
              <Select 
               id="category"
-              onChange={(e) => setCategory(e.target.value)}
+              {...register('category')}
              >
               <option value="Refeição">Refeição</option>
               <option value="Pratos principais">Pratos principais</option>
@@ -177,8 +184,7 @@ export function New() {
              placeholder="R$ 00,00"
              min="0"
              step="0.010"
-             onChange={(e) => 
-             setPrice(e.target.value)}
+             {...register('price')}
             />          
          </div>
 
@@ -187,13 +193,11 @@ export function New() {
           <Textarea
             id="description"
             placeholder="Sobre o prato, ingredientes e composição"
-            value={description}
-            onChange={(e) => 
-            setDescription(e.target.value)}
+            {...register('description')}
           />
          </div>
 
-         <Button id="buttonAdd" title="Adicionar" onClick={newDish} />
+         <Button id="buttonAdd" title="Adicionar" disabled={isSubmitting} />
         </Form>
       </main>
     </Container>

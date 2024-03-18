@@ -1,11 +1,6 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  > .wrapper,
-  > main {
-    width: min(90%, 1122px);
-    margin: 0 auto;
-  }
   > .wrapper {
     padding: 3rem 0;
     > a {

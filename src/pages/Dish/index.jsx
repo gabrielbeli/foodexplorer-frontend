@@ -9,8 +9,6 @@ import { Link, useParams } from 'react-router-dom'
 import { useAuth } from '../../hooks/auth'
 import { api } from '../../services/api'
 
-import { Header } from '../../components/Header'
-import { Footer } from '../../components/Footer'
 import { TextLink } from '../../components/TextLink'
 import { Ingredients } from '../../components/Ingredients'
 import { Counter } from '../../components/Counter'
@@ -31,7 +29,7 @@ export function Dish() {
     : photoPlaceholder
 
   async function handleRequest() {
-    await createRequests({ quantity, dish_id: dish.id })
+    await createRequests({ quantity, dishId: dish.id })
   }
 
   useEffect(() => {
@@ -46,7 +44,7 @@ export function Dish() {
 
   useEffect(() => {
     const request = userRequests.find(
-      (requests) => requests.dish_id == id
+      (requests) => requests.dish_id === Number(id),
     )
     if (request) {
       setQuantity(request?.quantity)
@@ -66,7 +64,7 @@ export function Dish() {
       <main>
         <Content 
           isAdmin={user.isAdmin}
-          Numberingredients={dish.ingredients?.length}
+          numberIngredients={dish.ingredients?.length}
           inCart={inCart}
         >
           <img src={photoUrl} alt="" />

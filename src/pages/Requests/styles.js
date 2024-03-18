@@ -1,15 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  min-height: 100vh;
-  
-  > main {
-    width: min(90%, 1122px);
-    margin: 0 auto;
-  }
-`
-
-export const Content = styled.div`
+export const Container = styled.main`
   padding: 3.2rem 0;
   
   > h1 {

@@ -1,42 +1,11 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  min-height: 100vh;
-  > header {
-    position: sticky;
-    z-index: 2;
-    top: 0;
-  }
-  display: grid;
-  grid-template-areas:
-    'header'
-    'back'
-    'main'
-    'footer';
-  
-  grid-template-rows: 11.4rem 7rem auto 7.7rem;
-
-  > .wrapper,
-  > main {
-    width: min(90%, 1122px);
-    margin: 0 auto;
-  }
-
   > .wrapper {
-    grid-area: back;
-    display: flex;
-    align-items: center;
+    padding: 3rem 0;
     > a {
       font-size: clamp(1.4rem, 0.7333rem + 2.0833vw, 2.4rem);
     }
-  }
-
-  > main {
-    grid-area: main;
-  }
-
-  @media (min-width: 769px) {
-    grid-template-rows: 9.3rem 9rem auto 7.7rem;
   }
 `
 

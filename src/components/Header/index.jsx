@@ -1,102 +1,41 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react'
-import { FiSearch, FiLogOut, FiShoppingCart } from 'react-icons/fi'
+import { FiLogOut, FiShoppingCart } from 'react-icons/fi'
 import { IoReceiptOutline } from 'react-icons/io5'
 import { Link, useNavigate } from 'react-router-dom'
 
 import { useAuth } from '../../hooks/auth'
 
-import { Input } from '../Input'
 import { Button } from '../Button'
-import { Menu } from '../Menu'
 
 import menu from '../../assets/icons/menu.svg'
-import close from '../../assets/icons/close.svg'
+//import close from '../../assets/icons/close.svg'
 import explorer from '../../assets/icons/explorer.svg'
 
 import { Container } from './styles'
 import { TextLink } from '../TextLink'
+import { Search } from './components/Search'
 
-export function Header({ onChange, searchDisabled = true }) {
-  const [showMenu, setShowMenu] = useState(false)
+export function Header({ onSetSearch }) {
+ 
   const navigate = useNavigate()
-
   const { user, signOut, userRequests, userPurchases } = useAuth()
 
-  const [purchasesPending, setPurchasesPending] = useAuth([])
+  const purchasesPending = userPurchases.filter(
+    (purchase) => purchase.status === 'pending',
+  )
 
   function handleSignOut() {
     signOut()
     navigate('/')
   }
-
-  let scrollTop
-  let scrollLeft
-
-  function disableScroll() {
-    scrollTop = window.pageYOffset || document.documentElement.scrollTop
-    ;(scrollLeft = window.pageXOffset || document.documentElement.scrollLeft)(
-    (window.onscroll = function () {
-      window.scrollTo(scrollLeft, scrollTop)
-    }),
-    )
-  }
-
-  function enableScroll() {
-    window.onscroll = () => ''
-  }
-
-  function handleModal() {
-    setShowMenu((prevState) => !prevState)
-  }
-
-  useEffect(() => {
-    setPurchasesPending(
-      userPurchases.filter((purchase) => purchase.status === 'pending')
-    )
-  }, [userPurchases])
-
-  useEffect(() => {
-    enableScroll()
-    function handleResize() {
-      if (window.innerWidth > 768) {
-        setShowMenu(false)
-        enableScroll()
-      }
-    }
-
-    window.addEventListener('resize', handleResize)
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
-
+  
   return (
-    <Container isAdmin={user.isAdmin} searchDisabled={searchDisabled}>
+    <Container isAdmin={user.isAdmin}>
      <header>
         <button id='menuBurguer'>
-          {!showMenu && (
-            <img 
-              src={menu} 
-              alt="menu hamburguer" 
-              onClick={() => {
-                handleModal()
-                disableScroll()
-              }} 
-            />
-          )}
-          {!showMenu && (
-            <img 
-              src={close} 
-              alt="menu close" 
-              onClick={() => {
-                handleModal()
-                enableScroll()
-              }} 
-            />
-          )} 
-        </button>        
-        {!showMenu && (
+         <img src={menu} alt="menu hambúrguer" />
+            
+        </button>
           <>
             <Link id="logo" to="/">
               <img src={explorer} alt="Logo foodExplorer" />
@@ -104,54 +43,51 @@ export function Header({ onChange, searchDisabled = true }) {
               {user.isAdmin && <span>admin</span>}
             </Link>
 
-            <div id="search">
-              <FiSearch />
-              <Input
-                type="search"
-                placeholder="Busque por pratos ou ingredientes"
-                onChange={onChange}
-                disabled={searchDisabled}
-              />
-            </div>
+            <Search onSetSearch={onSetSearch} />
 
             {!user.isAdmin && (
               <div id="buttons">
+                <TextLink
+                  name="Histórico de pedidos"
+                  to="/requests"
+                  id="historic"
+                />
                 <TextLink 
-                  name="Histórico de pedidos" to="/requests" id="historic" />
-                <TextLink name="Meus favoritos" to="/favorites" id="fav" />
-              </div>
+                  name="Meus favoritos"
+                  to="/favorites"
+                  id="fav"
+                />
+             </div>
             )}
-
-            {user.isAdmin && <TextLink name="Novo prato" to="/new" id="new" />}
-
-            <Link to={user.isAdmin ? '/requests' : '/payment'} id="receiptDesktop">
-            <Button
-              id="redBtn"
-              title={user.isAdmin ? `Pedidos (${purchasesPending.length})` : `(${userRequests.length})`
-              }
-              icon={user.isAdmin ? IoReceiptOutline : FiShoppingCart}
-            />
+            {user.isAdmin && 
+              <TextLink name="Novo prato" to="/new" id="new" />}
+            
+            <Link
+              to={user.isAdmin ? '/requests' : '/payment'}
+              id="receiptDesktop"
+            >
+              <Button
+                id="redBtn"
+                title={
+                  user.isAdmin
+                  ? `Pedidos (${purchasesPending.length})`
+                  : `(${userPurchases.length})`
+                }
+                icon={user.isAdmin ? IoReceiptOutline : FiShoppingCart}
+              />
             </Link>
 
             <FiLogOut id="logout" onClick={handleSignOut} />
             <Link to={user.isAdmin ? '/requests' : '/payment'}>
               <button id="receipt">
                 {user.isAdmin ? <IoReceiptOutline /> : <FiShoppingCart />}
-
-                <span>
-                  {user.isAdmin ? purchasesPending.length : userRequests.length}
-                </span>
+                  <span>
+                    {user.isAdmin ? purchasesPending.length : userRequests.length}
+                  </span>
               </button>
-            </Link>            
-          </>
-        )}
-       {showMenu && <h2>Menu</h2>}
+            </Link>
+          </>                
       </header>
-      <Menu 
-        show={showMenu} 
-        onChange={onChange} 
-        searchDisabled={searchDisabled}
-      />      
     </Container>
   )
 }

@@ -1,105 +1,88 @@
-import { Header } from '../../components/Header'
-import { Footer } from '../../components/Footer'
 import { StatusSelect } from '../../components/StatusSelect'
-import { useEffect, useState } from 'react'
 
+import { format } from 'date-fns'
+import { ptBR } from 'date-fns/locale'
 import { useAuth } from '../../hooks/auth'
 
-import { Container, Content, RequestMobile } from './styles'
+import { Container, RequestMobile } from './styles'
 
 export function Requests() {
   const { user, userPurchases, updateStatusPurchase } = useAuth()
   
-  const [purchases, setPurchases] = useState([])
-
   async function handleStatus(purchaseId, status) {
     await updateStatusPurchase({purchaseId, status })
   }
 
-  useEffect(() => {
-    const purchasesWithDate = userPurchases.map((purchase) => {
+  const purchasesWithDate = userPurchases.map((purchase) => {
     const created = new Date(purchase.update_at)
 
     created.setTime(created.getTime() - 3 * 3600000)
 
-    const date = created.toLocaleString('default', {
-      day: '2-digit',
-      month: '2-digit',
+    const updatedAtFormatted = format(created, "dd'/'MM 'às' HH':'mm'", {
+      locale: ptBR,
     })
-    const hours = String(created.getHours()).padStart(2, '0')
-    const minutes = String(created.getMinutes()).padStart(2, '0')
-    const updatedAt = `${date} às ${hours}:${minutes}`
-
+    
     return {
       ...purchase,
-      updatedAt,
-    };
-  });
-  
-  setPurchases(purchasesWithDate.reverse());
-  }, [userPurchases])
+      updatedAt: updatedAtFormatted,
+    }
+  })  
+  .reverse()
 
   return (
     <Container>
-      <main>
-        <Content>
-          {user.isAdmin ? <h1>Pedidos</h1> : <h1>Histórico de pedidos</h1>}
+      {user.isAdmin ? <h1>Pedidos</h1> : <h1>Histórico de pedidos</h1>}
 
-          <section id="requests">
-            {purchases.map((purchase) => (
-              <RequestMobile isAdmin={user.isAdmin} key={purchase.id}>
-                <span className='code'>
-                  {String(purchase.id).padStart(6, '0')}
-                </span>
-                <span className="time">{purchase.updated_at}</span>
+      <section id="requests">
+        {purchasesWithDate.map((purchase) => (
+          <RequestMobile isAdmin={user.isAdmin} key={purchase.id}>
+            <span className="code">{String(purchase.id).padStart(6, '0')}</span>
+            <span className="time">{purchase.updatedAt}</span>
 
-                <p className="details">{purchase.details}</p>
-                <StatusSelect
-                  className="status"
-                  isDisabled={!user.isAdmin}
-                  value={purchase.status}
-                  onChange={(e) => {
-                  handleStatus(purchase.id, e.value)
-                  }}
-                />
-              </RequestMobile>
-            ))}
-          </section>
-
-          <table>
-            <thead>
-              <tr>
-                <th>Status</th>
-                <th>Código</th>
-                <th>Detalhamento</th>
-                <th>Data e hora</th>
-              </tr>
-            </thead>
-          <tbody>
-          {purchases.map((purchase) => (
-            <tr key={purchase.id}>
-              <td>
-                <StatusSelect
-                  isDisabled={!user.isAdmin}
-                  value={purchase.status}
-                  onChange={(e) => {
-                  handleStatus(purchase.id, e.value)
-                  }}
-                />
-              </td>
-
-              <td className="code">
-                {String(purchase.id).padStart(6, '0')}
-              </td>
-
-              <td className="details">{purchase.details}</td>
-              <td className="time">{purchase.updated_at}</td>
+            <p className="details">{purchase.details}</p>
+            <StatusSelect
+              className="status"
+              isDisabled={!user.isAdmin}
+              value={purchase.status}
+              onChange={(e) => {
+                handleStatus(purchase.id, e.value)
+              }}
+            />
+          </RequestMobile>
+        ))}
+      </section>
+        <table>
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Código</th>
+              <th>Detalhamento</th>
+              <th>Data e hora</th>
             </tr>
-              ))}
+          </thead>
+          <tbody>
+            {purchasesWithDate.map((purchase) => (
+              <tr key={purchase.id}>
+                <td>
+                  <StatusSelect
+                    isDisabled={!user.isAdmin}
+                    value={purchase.status}
+                    onChange={(e) => {
+                    handleStatus(purchase.id, e.value)
+                    }}
+                  />
+                </td>
+
+                <td className="code">
+                  {String(purchase.id).padStart(6, '0')}
+                </td>
+
+                <td className="details">{purchase.details}</td>
+                <td className="time">{purchase.updatedAt}</td>
+             </tr>
+            ))}
           </tbody>
-          </table>
-        </Content>
-      </main>
+        </table>
     </Container>
   )
 }

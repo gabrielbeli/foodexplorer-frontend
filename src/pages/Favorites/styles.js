@@ -1,8 +1,6 @@
 import styled from "styled-components"
 
 export const Container = styled.main`
-  width: min(90%, 1122px);
-  margin: 0 auto;
   padding: 3.2rem 0;
 
   > h1 {

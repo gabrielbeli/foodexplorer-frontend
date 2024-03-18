@@ -1,8 +1,6 @@
-import { Header } from '../../components/Header'
-import { Footer } from '../../components/Footer'
 import { ItemDish } from '../../components/ItemDish'
 
-import { Container, Content } from './styles'
+import { Container } from './styles'
 import photoPlaceholder from '../../assets/photoPlaceholder.png'
 import { useEffect, useState } from 'react'
 

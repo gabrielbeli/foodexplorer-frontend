@@ -1,7 +1,6 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  min-height: 100vh;  
   overflow: hidden;
 
   > main {   
@@ -62,8 +61,7 @@ export const Banner = styled.div`
     }
   }
 
-  @media (max-width: 399px) {
-
+  @media (max-width: 460px) {
     justify-content: center;
     align-items: center;
 

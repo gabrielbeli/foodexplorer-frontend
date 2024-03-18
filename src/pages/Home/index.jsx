@@ -1,8 +1,6 @@
 /* eslint-disable react/jsx-key */
 import { api } from '../../services/api'
 
-import { Header } from '../../components/Header'
-import { Footer } from '../../components/Footer'
 import { Card } from '../../components/Card'
 import { Section } from '../../components/Section'
 
@@ -10,12 +8,12 @@ import foots100 from '../../assets/foots-100.svg'
 import foots200 from '../../assets/foots-200.svg'
 
 import { Container, Banner } from './styles'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useOutletContext } from 'react-router-dom'
 
 
 export function Home() {
-  const [search, setSearch] = useState('')
+  const [search, ,] = useOutletContext()
   const [meals, setMeals] = useState([])
   const [desserts, setDesserts] = useState([])
   const [drinks, setDrinks] = useState([])
