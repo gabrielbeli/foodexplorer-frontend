@@ -14,14 +14,14 @@ export function Requests() {
   }
 
   const purchasesWithDate = userPurchases.map((purchase) => {
-    const created = new Date(purchase.update_at)
-
-    created.setTime(created.getTime() - 3 * 3600000)
-
-    const updatedAtFormatted = format(created, "dd'/'MM 'às' HH':'mm'", {
-      locale: ptBR,
-    })
-    
+    const updatedAtFormatted = format(
+      new Date(purchase.updatedAt),
+      "dd'/'MM 'às' HH':'mm'",
+      {
+        locale: ptBR,
+      },
+    )
+        
     return {
       ...purchase,
       updatedAt: updatedAtFormatted,

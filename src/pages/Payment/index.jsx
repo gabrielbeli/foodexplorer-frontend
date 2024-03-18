@@ -12,11 +12,10 @@ import { ItemPayment } from '../../components/ItemPayment'
 import { Container } from './styles'
 
 export function Payment() {
-  const { updateRequests, userRequests } = useAuth()
+  const { removeRequest, userRequests } = useAuth()
 
   async function handleRemoveRequest(id) {
-    await api.delete(`/requests/${id}`)
-    await updateRequests()
+    await removeRequest(id)
   }
 
   const total = userRequests.reduce((acc, request) =>
