@@ -36,7 +36,9 @@ export function Card({ dish }) {
       await api.delete(`/favorites/${idFavorite}`)
       setFavorite(false)
     } else {
-      const { id } = await api.post('/favorites', { dish_id: dish.id })
+      const { id } = await api
+        .post('/favorites', { dish_id: dish.id })
+        .then((res) => res.data)
       setFavorite(true)
       setIdFavorite(id)
     }

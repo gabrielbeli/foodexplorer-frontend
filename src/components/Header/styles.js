@@ -76,7 +76,10 @@ export const Container = styled.header`
           place-content: center;
         }
       }
-    
+
+      #search {
+        margin: 0 auto;
+      }    
       > #logout,
       > #new,
       #redBtn,

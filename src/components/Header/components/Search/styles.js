@@ -23,8 +23,4 @@ export const SearchContainer = styled.div`
       outline: none;
     }
   }
-  @media (max-width: 768px) {
-    margin: 0 auto;
-    display: none;
-  }
 `
