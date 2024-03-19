@@ -4,6 +4,7 @@ export const Container = styled.div`
   > .wrapper {
     display: flex;
     align-items: center;
+    margin-left: 4rem;
     > a {
       font-size: clamp(1.4rem, 0.7333rem + 2.0833vw, 2.4rem);
       padding: 3rem 0;
@@ -11,7 +12,7 @@ export const Container = styled.div`
   }
   
   > main {
-    padding-bottom: 3.2rem;
+    padding: 0 5rem 4rem 5rem;
   }
 `
 
@@ -144,7 +145,7 @@ export const Form = styled.form`
     background-color: ${({ theme }) => theme.TINTS.TOMATO[400]};
   }
 
-  @media (min-width: 740px) {
+  @media (min-width: 769px) {
     #threeColumns {
       flex-direction: row;
       justify-content: space-between;
@@ -168,7 +169,7 @@ export const Form = styled.form`
     }
   }
 
-  @media (min-width: 740px) {
+  @media (min-width: 769px) {
     > #buttonAdd {
       width: 17.2rem;
       align-self: flex-end;

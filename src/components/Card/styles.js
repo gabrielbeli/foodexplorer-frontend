@@ -34,7 +34,7 @@ export const Container = styled.div`
       color: ${({ theme }) => theme.LIGHT[200]};
 
       &.fav > path {
-        fill: ${({ theme }) => theme.DARK[300]};
+        fill: ${({ theme }) => theme.LIGHT[300]};
       }
     }
   }

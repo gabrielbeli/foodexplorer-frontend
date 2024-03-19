@@ -9,4 +9,11 @@ export const DefaultLayoutContainer = styled.div`
     width: min-content(90%, 1122px);
     margin: 0 auto;
   }
+
+  > Footer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+  }
 `

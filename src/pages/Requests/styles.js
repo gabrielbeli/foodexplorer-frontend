@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.main`
-  padding: 3.2rem 0;
+  padding: 5rem ;
   
   > h1 {
     font-family: 'Poppins', sans-serif;
@@ -10,6 +10,7 @@ export const Container = styled.main`
     line-height: 4.5rem;
     
     margin-bottom: 3.2rem;
+    margin-left: 2rem;
   }
 
   .details,
@@ -32,7 +33,7 @@ export const Container = styled.main`
   @media (min-width: 768px) {
     > #requests {
       grid-template-columns: repeat(auto-fit, minmax(35.8rem, 1fr));
-    }
+    }   
   }
 
   @media (min-width: 992px) {

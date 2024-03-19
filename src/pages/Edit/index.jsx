@@ -166,9 +166,9 @@ export function Edit() {
             <div>
             <label htmlFor="category">Categoria</label>
               <Select id="category" {...register('category')}>
-                <option value="Refeição">Refeição</option>
-                <option value="Pratos principais">Sobremesa</option>
-                <option value="Entrada">Bebida</option>
+                <option value="meal">Refeição</option>
+                <option value="desserts">Sobremesa</option>
+                <option value="drink">Bebida</option>
               </Select>
               </div>
             </div>
@@ -217,7 +217,7 @@ export function Edit() {
             />
           </div>
 
-          <div>
+          <div className='buttons'>
             <Button 
               type="button" 
               id="buttonRemove" 

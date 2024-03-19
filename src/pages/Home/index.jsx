@@ -31,7 +31,8 @@ export function Home() {
 
     fetchDishes()
   }, [search])
-   return (
+  
+  return (
     <Container>
 
       <Banner>

@@ -32,9 +32,15 @@ export function Card({ dish }) {
     ? `${api.defaults.baseURL}/files/${dish.photo}`
     : photoPlaceholder
   
-  async function handleRequest() {
-    await createRequest({ quantity, dishId: dish.id })
-  }
+  async function handleRequest() {    
+    const existingRequest = userRequests.find((request) => request.dish_id === dish.id);
+    
+    if (existingRequest) {
+      await api.put(`/requests/${existingRequest.id}`, { quantity });
+    } else {
+        await createRequest({ quantity, dishId: dish.id });
+      }
+    }
   
   async function handleFavorite() {
 
@@ -42,7 +48,7 @@ export function Card({ dish }) {
       await api.delete(`/favorites/${idFavorite}`)
       setFavorite(false)
     } else {
-      const { id } = await api
+      const id = await api
         .post('/favorites', { dish_id: dish.id })
         .then((res) => res.data)
       setFavorite(true)
@@ -93,7 +99,7 @@ export function Card({ dish }) {
         <img src={photoUrl} alt={dish.name} />
         <h3>{dish.name} &gt;</h3>
         <p>{dish.description}</p>
-        <span>R$ 
+        <span> 
           {dish.price.toLocaleString('pt-BR', {
             style: 'currency',
             currency: 'BRL',
@@ -104,7 +110,7 @@ export function Card({ dish }) {
         <div>
           <Counter quantity={quantity} setQuantity={setQuantity} />
           <Button 
-            title={inCart ? 'alterar' : 'incluir'} 
+            title={inCart ? 'Alterar' : 'Incluir'} 
             onClick={handleRequest}
           />
         </div>

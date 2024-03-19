@@ -2,7 +2,7 @@ import styled from "styled-components"
 
 export const Container = styled.div`
   > .wrapper {
-    padding: 3rem 0;
+    padding: 3rem;
     > a {
     font-size: clamp(1.4rem, 0.7333rem + 2.0833vw, 2.4rem);
     }
@@ -25,6 +25,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
+    margin-right: 2rem;
     
     > h2,
     > p {
@@ -77,6 +78,7 @@ export const Content = styled.div`
           inCart
             ? `${theme.TINTS.MINT}`
             : `${({ theme }) => theme.TINTS.TOMATO[100]}`};
+        width: 13rem;
       }
     }
   }  

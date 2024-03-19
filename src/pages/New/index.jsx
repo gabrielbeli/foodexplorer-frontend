@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
-import { Container, Form, Textarea } from './styles'
 import { FiChevronLeft, FiUpload } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
@@ -13,11 +12,13 @@ import { Input } from '../../components/Input'
 import { Select } from '../../components/Select'
 import { Button } from '../../components/Button'
 import { AddIngredients } from '../../components/AddIngredients'
+
+import { Container, Form, Textarea } from './styles'
 import { useForm } from 'react-hook-form'
 
 export function New() {
   const [ingredients, setIngredients] = useState([])
-  const [newIngredients, setNewIngredients] = useState('')
+  const [newIngredient, setNewIngredient] = useState('')
 
   const navigate = useNavigate()
 
@@ -39,16 +40,16 @@ export function New() {
   const photoFile = watch('photo')
 
   function handleNewIngredient() {
-    if (newIngredients) {
-      const isNewIngredient = !ingredients.includes(isNewIngredient)
+    if (newIngredient) {
+      const isNewIngredient = !ingredients.includes(newIngredient)
       if (isNewIngredient) {
-        setIngredients((prevState) => [...prevState, isNewIngredient])
+        setIngredients((prevState) => [...prevState, newIngredient])
       } else {
-        toast.warn('Ingredient já Adicionado!')
+        toast.warn('Ingrediente já Adicionado!')
       }
     }
-
-    setNewIngredients('')
+  
+    setNewIngredient('')
     document.getElementById('add').focus()
   }
 
@@ -67,9 +68,9 @@ export function New() {
       return
     }
 
-    if (newIngredients !== '') {
+    if (newIngredient !== '') {
       return toast.warn(
-        `Clique no + para adicionar o ingrediente tag: ${newIngredients}. ou limpe o campo!`
+        `Clique no + para adicionar o ingrediente tag: ${newIngredient}. ou limpe o campo!`
       )
     }
 
@@ -101,14 +102,13 @@ export function New() {
   }
 
   return (
-    <Container>
-      
+    <Container>      
       <div className="wrapper">
         <TextLink name="voltar" icon={FiChevronLeft} to={-1}/>
       </div>
       
       <main>
-        setIngredients
+ 
         <Form onSubmit={handleSubmit(handleCreateNewDishForm)}>
           <h1>Novo prato</h1>
 
@@ -140,13 +140,10 @@ export function New() {
 
            <div>
              <label htmlFor="category">Categoria</label>
-             <Select 
-              id="category"
-              {...register('category')}
-             >
-              <option value="Refeição">Refeição</option>
-              <option value="Pratos principais">Pratos principais</option>
-              <option value="Entrada">Entrada</option>
+             <Select id="category" {...register('category')}>
+              <option value="meal">Refeição</option>
+              <option value="dessert">Sobremesa</option>
+              <option value="drink">Bebidas</option>
              </Select>
            </div>
          </div>
@@ -155,13 +152,13 @@ export function New() {
            <div>
              <label htmlFor="add">Ingredientes</label>
              <div>
-             {ingredients.map((ingredients, index) => (
+             {ingredients.map((ingredient, index) => (
               <AddIngredients 
                 key={String(index)} 
-                value={ingredients}
+                value={ingredient}
                 onClick={() => 
-                handleRemoveIngredient(ingredients)}
-                size={String(ingredients.length)} 
+                handleRemoveIngredient(ingredient)}
+                size={String(ingredient.length)} 
               />
              ))}
         
@@ -169,9 +166,9 @@ export function New() {
                 id="add" 
                 isNew 
                 size="6"
-                value={newIngredients}
+                value={newIngredient}
                 onChange={(e) =>
-                setNewIngredients(e.target.value)}
+                setNewIngredient(e.target.value)}
                 onClick={handleNewIngredient}
               />
              </div>

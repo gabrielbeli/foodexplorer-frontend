@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const Container = styled.main`
-  padding: 3.2rem 0;
+  padding: 4rem 5rem 4rem 5rem;
 
   > h1 {
     font-family: 'Poppins', sans-serif;
@@ -10,6 +10,7 @@ export const Container = styled.main`
     line-height: 4.5rem;
 
     margin-bottom: 3.2rem;
+    margin-left: 2rem;
   }
   > ul {
     list-style: none;

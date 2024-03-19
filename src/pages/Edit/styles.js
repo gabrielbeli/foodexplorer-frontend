@@ -1,14 +1,15 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
+  padding: 3rem 5rem;
   > .wrapper {
-    padding: 3rem 0;
+    padding: 2rem ;
     > a {
       font-size: clamp(1.4rem, 0.7333rem + 2.0833vw, 2.4rem);
     }
   }
   > main {
-    padding-bottom: 3.2rem;
+    padding: 3.2rem;
   }
 `
 
@@ -155,11 +156,22 @@ export const Form = styled.form`
     gap: 1.6rem;
   }
 
+  > .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4rem;
+    margin-left: 50rem;
+  }
+
+  > #buttonRemove {
+    background-color: ${({ theme }) => theme.TINTS.TOMATO[400]};
+  }
+
   > #buttonAdd {
     background-color: ${({ theme }) => theme.TINTS.TOMATO[400]};
   }
 
-  @media (min-width: 740px) {
+  @media (min-width: 769px) {
     #threeColumns {
       flex-direction: row;
       justify-content: space-between;
@@ -184,8 +196,14 @@ export const Form = styled.form`
   }
 
   @media (min-width: 769px) {
+    
+    > #buttonRemove {
+      width: 15rem;
+      align-self: flex-end;
+    }
+    
     > #buttonAdd {
-      width: 17.2rem;
+      width: 15rem;
       align-self: flex-end;
     }
   }

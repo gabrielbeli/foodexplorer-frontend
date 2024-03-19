@@ -4,7 +4,7 @@ export const Container = styled.main`
   display: flex;
   flex-direction: column;
 
-  padding: 3.2rem 0;
+  padding: 4rem 5rem 4rem 5rem ;
 
   h1 {
     font-family: 'Poppins', sans-serif;
