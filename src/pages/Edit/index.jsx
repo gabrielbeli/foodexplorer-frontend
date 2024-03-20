@@ -35,45 +35,41 @@ export function Edit() {
   async function handleUpdateDishForm(data) {
     const photo = data.photo ? data.photo[0] : null
     const { name, category, price, description } = data
-    
+  
     const notANumber = isNaN(price) || price === ''
-
-    if (!name || price < 0 || notANumber) {
-      return
-    }  
-
-    if (newIngredient !== '') {
-      return toast.warn(
-        `Clique o + para adicionar o ingrediente tag: ${newIngredient}. ou limpe o campo!`,
-      )
+  
+    if (!name || notANumber) {
+      return toast.warn(`O nome e o preço são obrigatórios.`)
     }
-
-  try {
-    await api.put(`/dishes/${params.id}`, {
-      name,
-      category,
-      price,
-      description,
-      ingredients,
-    })
-
-    if (photo) {
-      const fileUploadForm = new FormData()
-      fileUploadForm.append('photo', photo)
-
-      await api.patch(`dishes/photo/${id}`, fileUploadForm);
-    }
-
-    toast.success('Prato atualizado!')
-    navigate(-1)
-  } catch (error) {
-    if (error.response) {
-      toast.error(error.response.data.message)
-    } else {
-      toast.error('Não foi possível atualizar!')
+  
+    try {
+      await api.put(`/dishes/${id}`, {
+        name,
+        category,
+        price,
+        description,
+        ingredients,
+      })
+  
+      if (photo) {
+        const fileUploadForm = new FormData()
+        fileUploadForm.append('photo', photo)
+  
+        await api.patch(`dishes/photo/${id}`, fileUploadForm);
+      }
+  
+      toast.success('Prato atualizado!')
+      navigate(-1)
+    } catch (error) {
+      console.error(error); // Imprimir o erro completo para depuração
+      if (error.response) {
+        toast.error(error.response.data.message)
+      } else {
+        toast.error('Não foi possível atualizar!')
+      }
     }
   }
-}
+  
 
   async function removeDish() {
     const confirmation = confirm(`Certeza que deseja remover o ${name}`)
