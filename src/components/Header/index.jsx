@@ -88,7 +88,7 @@ export function Header({ onSetSearch }) {
                 title={
                   user.isAdmin
                   ? `Pedidos (${purchasesPending.length})`
-                  : `(${userPurchases.length})`
+                  : `(${userRequests.length})`
                 }
                 icon={user.isAdmin ? IoReceiptOutline : FiShoppingCart}
               />

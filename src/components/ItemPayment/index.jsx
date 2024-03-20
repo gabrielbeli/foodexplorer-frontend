@@ -52,7 +52,7 @@ export function ItemPayment() {
   }
 
   async function handlePurchase(data) {
-    console.log(data); // Verifica se os dados do cartão estão sendo recebidos corretamente
+    //console.log(data); // Verifica se os dados do cartão estão sendo recebidos corretamente
   
     if (userRequests.length === 0) {
       return toast.warn('Adicione ao menos um item no carrinho');
@@ -63,7 +63,7 @@ export function ItemPayment() {
     }
     
     await createPurchase();
-    console.log('Purchase created'); // Verifica se a compra está sendo criada corretamente
+    //console.log('Purchase created'); // Verifica se a compra está sendo criada corretamente
     toast.success('Recebemos seu pedido, receba em breve na sua casa!');
     setPurchase('await');
   }
