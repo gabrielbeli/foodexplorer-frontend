@@ -75,17 +75,12 @@ export const Content = styled.div`
       }
       > a > button {
         font-size: clamp(1rem, 0.6632rem + 1.0526vw, 1.4rem);
-        background-color: ${({ inCart, theme }) =>
-          inCart
-            ? `${theme.TINTS.MINT}`
-            : `${({ theme }) => theme.TINTS.TOMATO[100]}`};
-        width: 13rem;
+        background-color: ${({ theme }) => theme.TINTS.TOMATO[100]}};
+        
       }
-    }
+    } 
 
-  }  
-
-    @media (min-width: 781px) {
+    @media (min-width: 769px) {
       flex-direction: row;
       gap: clamp(2rem, -1.571rem + 5.571vw, 4rem);
 
@@ -124,6 +119,7 @@ export const Content = styled.div`
 
         > div > a > button {
           padding-inline: ${({ isAdmin }) => (isAdmin ? '2.4rem' : '0')};
+          width: 50rem;
         }
       }
     }

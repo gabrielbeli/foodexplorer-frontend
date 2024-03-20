@@ -100,7 +100,7 @@ export function Dish() {
                 title={
                   user.isAdmin 
                     ? 'Editar prato' 
-                    : `${inCart ? 'alterar' : 'incluir'} ∙ ${(
+                    : `${ 'incluir'} ∙ ${(
                       dish.price * quantity
                     ).toLocaleString('pt-BR', {
                       style: 'currency',

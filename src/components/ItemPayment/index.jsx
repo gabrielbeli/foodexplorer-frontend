@@ -52,17 +52,20 @@ export function ItemPayment() {
   }
 
   async function handlePurchase(data) {
+    console.log(data); // Verifica se os dados do cartão estão sendo recebidos corretamente
+  
     if (userRequests.length === 0) {
-      return toast.warn('Adicione ao menos um item no carrinho')
+      return toast.warn('Adicione ao menos um item no carrinho');
     }
-
+  
     if (!data.numberCard || !data.validityCard || !data.CVCCard) {
-      return toast.warn('Informe todos os dados do cartão')
+      return toast.warn('Informe todos os dados do cartão');
     }
     
-    await createPurchase()
-    toast.success('Recebemos seu pedido, receba em breve na sua casa!')
-    setPurchase('await')
+    await createPurchase();
+    console.log('Purchase created'); // Verifica se a compra está sendo criada corretamente
+    toast.success('Recebemos seu pedido, receba em breve na sua casa!');
+    setPurchase('await');
   }
 
   useEffect(() => {
