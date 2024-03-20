@@ -164,7 +164,7 @@ export function New() {
         
               <AddIngredients 
                 id="add" 
-                isNew 
+                isNew={true}
                 size="6"
                 value={newIngredient}
                 onChange={(e) =>

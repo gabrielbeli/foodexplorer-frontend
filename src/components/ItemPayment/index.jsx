@@ -165,7 +165,7 @@ export function ItemPayment() {
                   type="text"
                   mask="999" 
                   placeholder="000"
-                  {...register('validityCard')}
+                  {...register('CVCCard')}
                 />
               </div>
             </div>
@@ -174,6 +174,7 @@ export function ItemPayment() {
               icon={IoReceiptOutline}
               title="Finalizar pagamento"
               disabled={isSubmitting}
+              type="submit"
             />
           </form>
         )}

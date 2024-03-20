@@ -1,7 +1,7 @@
 import styled from "styled-components"
 
 export const Container = styled.div`
-  padding: 3rem 5rem;
+  //padding: 3rem 5rem;
   > .wrapper {
     padding: 2rem ;
     > a {
@@ -158,10 +158,10 @@ export const Form = styled.form`
 
   > .buttons {
     display: flex;
-    justify-content: flex-end;
-    gap: 4rem;
-    margin-left: 50rem;
+    justify-content: center;
+    gap: 2rem;    
   }
+    
 
   > #buttonRemove {
     background-color: ${({ theme }) => theme.TINTS.TOMATO[400]};
@@ -172,6 +172,7 @@ export const Form = styled.form`
   }
 
   @media (min-width: 769px) {
+    
     #threeColumns {
       flex-direction: row;
       justify-content: space-between;
@@ -196,6 +197,14 @@ export const Form = styled.form`
   }
 
   @media (min-width: 769px) {
+    padding: 2rem 5rem;
+
+    > .buttons {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4rem;
+    margin-left: 50rem;
+  }
     
     > #buttonRemove {
       width: 15rem;

@@ -6,13 +6,14 @@ export const Container = styled.div`
     > a {
     font-size: clamp(1.4rem, 0.7333rem + 2.0833vw, 2.4rem);
     }
-  }  
+  }
+
 `
 
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
-  padding-bottom: 2.4rem;  
+  padding: 0rem 2rem 2.4rem 2rem;
     
   > img {
     margin: 0 auto;
@@ -66,7 +67,7 @@ export const Content = styled.div`
       justify-items: center;
       grid-template-columns: ${({ isAdmin }) => (isAdmin ? '1fr' : '1fr 2fr')};
       gap: clamp(1rem, -93.5421rem + 121.0526vw, 3.3rem);
-
+      
       margin-top: 2rem;
 
       > a {
@@ -81,6 +82,7 @@ export const Content = styled.div`
         width: 13rem;
       }
     }
+
   }  
 
     @media (min-width: 781px) {

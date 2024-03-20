@@ -94,7 +94,7 @@ export function Dish() {
               {!user.isAdmin && (
                 <Counter quantity={quantity} setQuantity={setQuantity} />
               )}
-              <Link to={user.isAdmin ? `/edit/&{dish.id}` : ''}>
+              <Link to={`/edit/${dish.id}`}>
               <Button
                 onClick={user.isAdmin ? null : handleRequest}
                 title={

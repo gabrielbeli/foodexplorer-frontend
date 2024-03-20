@@ -17,7 +17,7 @@ import { Container, Form, Textarea } from './styles'
 
 export function Edit() {
   const [ingredients, setIngredients] = useState([])
-  const [newIngredients, setNewIngredients] = useState('')
+  const [newIngredient, setNewIngredient] = useState('')
 
   const navigate = useNavigate()
   const { id } = useParams()
@@ -42,14 +42,14 @@ export function Edit() {
       return
     }  
 
-    if (newIngredients !== '') {
+    if (newIngredient !== '') {
       return toast.warn(
-        `Clique o + para adicionar o ingrediente tag: ${newIngredients}. ou limpe o campo!`,
+        `Clique o + para adicionar o ingrediente tag: ${newIngredient}. ou limpe o campo!`,
       )
     }
 
   try {
-    await api.put(`/dishes/${id}`, {
+    await api.put(`/dishes/${params.id}`, {
       name,
       category,
       price,
@@ -79,39 +79,40 @@ export function Edit() {
     const confirmation = confirm(`Certeza que deseja remover o ${name}`)
     if (confirmation) {
       await api.delete(`/dishes/${id}`)
-      toast.sucess('Prato removido!')
+      toast.success('Prato removido!')
       navigate('/')
     }
   }
 
-  function handleNewIngredients() {
-    if (newIngredients) {
-      const isNewIngredients = !ingredients.includes(newIngredients)
-      if (isNewIngredients) { setIngredients((prevState) => [
-        ...prevState, newIngredients])
+  function handleNewIngredient() {
+    if (newIngredient) {
+      const isNewIngredient = !ingredients.includes(newIngredient)
+      if (isNewIngredient) { setIngredients((prevState) => [
+        ...prevState, newIngredient])
       } else {
         toast.warn('Ingrediente já adicionado')
       }
     }
 
-    setNewIngredients('');
-    document.getElementById('add').focus();
+    setNewIngredient('')
+    document.getElementById('add').focus()
   }
 
-  function handleRemoveIngredients(ingredientsDeleted) {
-    setIngredients((prevState) => prevState.filter((ingredients) => ingredients !==
-    ingredientsDeleted),
+  function handleRemoveIngredient(ingredientDeleted) {
+    setIngredients((prevState) => prevState.filter((ingredient) => ingredient !==
+    ingredientDeleted),
     )
   }
 
   useEffect(() => {
+    console.log(id);
     async function fetchDish() {
       const response = await api.get(`/dishes/${id}`)
 
       const dish = response.data
 
-      setIngredients(dish.ingredients.map((ingredients) =>
-      ingredients.name))
+      setIngredients(dish.ingredients.map((ingredient) =>
+      ingredient.name))
 
       if (dish) {
         reset({
@@ -177,22 +178,22 @@ export function Edit() {
             <div>
               <label htmlFor="add">Ingredientes</label>
               <div>
-                {ingredients.map((ingredients, index) => (
+                {ingredients.map((ingredient, index) => (
                   <AddIngredients
                     key={String(index)}
-                    value={ingredients}
-                    onClick={() => handleRemoveIngredients(ingredients)}
-                    size={String(ingredients.length)}
+                    value={ingredient}
+                    onClick={() => handleRemoveIngredient(ingredient)}
+                    size={String(ingredient.length)}
                   />
                 ))}
 
                 <AddIngredients
                   id="add"
-                  isNew
+                  isNew={true}
                   size="6"
-                  value={newIngredients}
-                  onChange={(e) => setIngredients(e.target.value)}
-                  onClick={handleNewIngredients}
+                  value={newIngredient}
+                  onChange={(e) => setNewIngredient(e.target.value)}
+                  onClick={handleNewIngredient}
                 />
               </div>
             </div>
@@ -224,10 +225,10 @@ export function Edit() {
               title="Excluir prato" 
               onClick={removeDish} 
             />
-            <Button 
+            <Button              
               id="buttonAdd" 
               title="Salvar alterações"
-              onClick={isSubmitting} 
+              onClick={handleSubmit(handleUpdateDishForm)}
             />
           </div>
         </Form>

@@ -110,7 +110,7 @@ export function Card({ dish }) {
         <div>
           <Counter quantity={quantity} setQuantity={setQuantity} />
           <Button 
-            title={inCart ? 'Alterar' : 'Incluir'} 
+            title='Incluir' 
             onClick={handleRequest}
           />
         </div>
