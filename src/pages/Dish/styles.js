@@ -9,7 +9,6 @@ export const Container = styled.div`
   }
 
 `
-
 export const Content = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,7 +25,7 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     gap: 2.4rem;
-    margin-right: 2rem;
+    margin-right: rem;
     
     > h2,
     > p {
@@ -45,6 +44,7 @@ export const Content = styled.div`
       line-height: 2.2rem;
       max-width: 29ch;
       margin: 0 auto;
+      text-align: justify;
     }
 
     > ul {
@@ -76,7 +76,10 @@ export const Content = styled.div`
       > a > button {
         font-size: clamp(1rem, 0.6632rem + 1.0526vw, 1.4rem);
         background-color: ${({ theme }) => theme.TINTS.TOMATO[100]}};
-        
+        display: flex;
+        justify-content: center;
+        width: 17.2rem;
+        margin: 0 auto;
       }
     } 
 
@@ -94,6 +97,7 @@ export const Content = styled.div`
         align-items: flex-start;
         align-self: center;
         max-width: 666px;
+        padding-right: 4rem;
 
         > h2 {
           font-size: clamp(2.4rem, -0.4568rem + 4.568, 4rem);
@@ -101,9 +105,10 @@ export const Content = styled.div`
         }
 
         > p {
-          text-align: start;
+
+          text-align: justify;
           font-size: clamp(1.4rem, -0.3855rem + 2.7855vw, 2.4rem);
-          line-height: clamp(2.2rem, 0.2359 + 3.0641vw, 3.3rem);
+          line-height: 3rem;
           max-width: none;
         }
 
@@ -119,8 +124,9 @@ export const Content = styled.div`
 
         > div > a > button {
           padding-inline: ${({ isAdmin }) => (isAdmin ? '2.4rem' : '0')};
-          width: 50rem;
-        }
+          width: 17.4rem;
+          align-items: flex-start;
+        }        
       }
     }
   `

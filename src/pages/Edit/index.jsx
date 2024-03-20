@@ -101,7 +101,7 @@ export function Edit() {
   }
 
   useEffect(() => {
-    console.log(id);
+    //console.log(id);
     async function fetchDish() {
       const response = await api.get(`/dishes/${id}`)
 

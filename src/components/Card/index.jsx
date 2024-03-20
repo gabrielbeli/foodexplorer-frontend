@@ -83,7 +83,7 @@ export function Card({ dish }) {
   }, [dish.id]);
   
   return (
-    <Container inCart={inCart}>
+    <Container $inCart={inCart}>
       {user.isAdmin ? (
         <button>
           <Link to={`/edit/${dish.id}`}>

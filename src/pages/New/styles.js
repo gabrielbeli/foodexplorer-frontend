@@ -142,7 +142,7 @@ export const Form = styled.form`
   }
 
   > #buttonAdd {
-    background-color: ${({ theme }) => theme.TINTS.TOMATO[400]};
+    background-color: ${({ theme }) => theme.TINTS.TOMATO[100]};
   }
 
   @media (min-width: 769px) {

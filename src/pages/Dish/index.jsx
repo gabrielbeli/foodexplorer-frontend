@@ -71,7 +71,7 @@ export function Dish() {
         <Content 
           $isAdmin={user.isAdmin}
           numberIngredients={dish.ingredients?.length}
-          inCart={inCart}
+          $inCart={inCart}
         >
           <img src={photoUrl} alt="" />
           
