@@ -23,10 +23,10 @@ O front-end do projeto final do Explorer foi desenvolvido com um layout altament
 ## 💻 Projeto
 
 ## Usuário Admin na versão desktop:
-![ezgif com-add-text](https://github.com/gabrielbeli/YOURFOODEXPLORER/blob/main/UserAdmin-ezgif.com-video-to-gif-converter.gif)
+![ezgif com-add-text](https://github.com/gabrielbeli/foodexplorer-frontend/blob/main/src/assets/UserAdmin-ezgif.com-video-to-gif-converter.gif)
 
 ## Usuário comum na versão mobile:
-![ezgif com-gif-maker](https://github.com/gabrielbeli/YOURFOODEXPLORER/blob/main/User-ezgif.com-video-to-gif-converter.gif)
+![ezgif com-gif-maker](https://github.com/gabrielbeli/foodexplorer-frontend/blob/main/src/assets/User-ezgif.com-video-to-gif-converter.gif)
 
 
 <div align="center">
