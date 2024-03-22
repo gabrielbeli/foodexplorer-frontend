@@ -9,7 +9,7 @@ O front-end do projeto final do Explorer foi desenvolvido com um layout altament
   <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-instruções">Instruções</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="https://github.com/eduardonobrega/food-explorer-backend">Back-end</a>&nbsp;&nbsp;&nbsp;
+  <a href="https://github.com/gabrielbeli/foodexplorer-backend">Back-end</a>&nbsp;&nbsp;&nbsp;
 </p>
 
 <p align="center">
