@@ -18,9 +18,11 @@ import { Menu } from './components/Menu'
 import { useState } from 'react'
 import { PurchaseContext } from '../../contexts/purchase'
 import { useContextSelector } from 'use-context-selector'
+import { useEffect } from 'react'
 
 export function Header({ onSetSearch }) {
   const [open, setOpen] = useState(false)
+  const [totalItems, setTotalItems] = useState(0)
 
   const navigate = useNavigate()
   const { user, signOut } = useAuth()
@@ -41,6 +43,12 @@ export function Header({ onSetSearch }) {
     signOut()
     navigate('/')
   }
+
+  useEffect(() => {
+    const total = userRequests.reduce((accumulator, request) => accumulator + request.quantity, 0)
+
+    setTotalItems(total)
+  }, [userRequests])
   
   return (
     <Container $isAdmin={user.isAdmin}>
@@ -88,7 +96,7 @@ export function Header({ onSetSearch }) {
                 title={
                   user.isAdmin
                   ? `Pedidos (${purchasesPending.length})`
-                  : `(${userRequests.length})`
+                  : `(${totalItems})`
                 }
                 icon={user.isAdmin ? IoReceiptOutline : FiShoppingCart}
               />
@@ -99,7 +107,7 @@ export function Header({ onSetSearch }) {
               <button id="receipt">
                 {user.isAdmin ? <IoReceiptOutline /> : <FiShoppingCart />}
                   <span>
-                    {user.isAdmin ? purchasesPending.length : userRequests.length}
+                    {user.isAdmin ? purchasesPending.length : totalItems}
                   </span>
               </button>
             </Link>

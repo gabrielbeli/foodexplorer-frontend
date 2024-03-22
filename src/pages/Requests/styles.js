@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Container = styled.main`
-  padding: 5rem ;
+  padding: 2rem ;
   
   > h1 {
     font-family: 'Poppins', sans-serif;
@@ -75,17 +75,13 @@ export const RequestMobile = styled.div`
   border: 2px solid ${({ theme }) => theme.DARK[1000]};
   border-radius: 0.8rem;
 
-  grid-template-columns: 0.5fr 1fr 1fr;
+  grid-template-columns: 1fr;
 
-  grid-template-areas: ${({ isAdmin }) => {
-    if (isAdmin) {
-      return `'code . time'
-      'details details details'
-      'status status status'`
-    }
-    return `'code status time'
-    'details detaisl details'`
-  }};
+  grid-template-areas: 
+    'code'
+    'details'
+    'status'
+    'time';
 
   > .details {
     line-height: 2.2rem;

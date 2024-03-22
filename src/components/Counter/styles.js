@@ -10,6 +10,7 @@ export const Container = styled.div`
 
   button {
     background-color: transparent;
+    width: 2rem;
     svg {
       font-size: 2.4rem;
       color: ${({ theme }) => theme.LIGHT[100]};
